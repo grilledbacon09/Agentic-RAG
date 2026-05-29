@@ -1,0 +1,365 @@
+[
+  {
+    "vector_id": "drug:D001:indication",
+    "source_type": "drug",
+    "source_id": "D001",
+    "chunk_type": "indication",
+    "content": "타이레놀정500mg 효능/효과: 감기로 인한 발열 및 통증, 두통, 신경통",
+    "metadata": {
+      "drug_name": "타이레놀정500mg",
+      "field": "indications"
+    }
+  },
+  {
+    "vector_id": "drug:D001:dosage",
+    "source_type": "drug",
+    "source_id": "D001",
+    "chunk_type": "dosage",
+    "content": "타이레놀정500mg 복용법: 성인 1회 1~2정, 1일 3~4회(최대 4g)",
+    "metadata": {
+      "drug_name": "타이레놀정500mg",
+      "field": "dosage"
+    }
+  },
+  {
+    "vector_id": "drug:D001:warning",
+    "source_type": "drug",
+    "source_id": "D001",
+    "chunk_type": "warning",
+    "content": "타이레놀정500mg 주의사항: 간 손상 위험, 매일 3잔 이상 음주자 금기",
+    "metadata": {
+      "drug_name": "타이레놀정500mg",
+      "field": "warnings"
+    }
+  },
+  {
+    "vector_id": "drug:D001:summary",
+    "source_type": "drug",
+    "source_id": "D001",
+    "chunk_type": "summary",
+    "content": "타이레놀정500mg. 성분: 아세트아미노펜. 효능: 감기로 인한 발열 및 통증, 두통, 신경통. 복용법: 성인 1회 1~2정, 1일 3~4회(최대 4g). 주의사항: 간 손상 위험, 매일 3잔 이상 음주자 금기.",
+    "metadata": {
+      "drug_name": "타이레놀정500mg",
+      "field": "parent_text"
+    }
+  },
+  {
+    "vector_id": "drug:D002:indication",
+    "source_type": "drug",
+    "source_id": "D002",
+    "chunk_type": "indication",
+    "content": "애드빌연질캡슐 효능/효과: 감기로 인한 발열, 요통, 생리통",
+    "metadata": {
+      "drug_name": "애드빌연질캡슐",
+      "field": "indications"
+    }
+  },
+  {
+    "vector_id": "drug:D002:dosage",
+    "source_type": "drug",
+    "source_id": "D002",
+    "chunk_type": "dosage",
+    "content": "애드빌연질캡슐 복용법: 성인 1회 1~2캡슐, 1일 3~4회",
+    "metadata": {
+      "drug_name": "애드빌연질캡슐",
+      "field": "dosage"
+    }
+  },
+  {
+    "vector_id": "drug:D002:warning",
+    "source_type": "drug",
+    "source_id": "D002",
+    "chunk_type": "warning",
+    "content": "애드빌연질캡슐 주의사항: 위장관 출혈 위험, 심혈관계 질환자 주의",
+    "metadata": {
+      "drug_name": "애드빌연질캡슐",
+      "field": "warnings"
+    }
+  },
+  {
+    "vector_id": "drug:D002:summary",
+    "source_type": "drug",
+    "source_id": "D002",
+    "chunk_type": "summary",
+    "content": "애드빌연질캡슐. 성분: 이부프로펜. 효능: 감기로 인한 발열, 요통, 생리통. 복용법: 성인 1회 1~2캡슐, 1일 3~4회. 주의사항: 위장관 출혈 위험, 심혈관계 질환자 주의.",
+    "metadata": {
+      "drug_name": "애드빌연질캡슐",
+      "field": "parent_text"
+    }
+  },
+  {
+    "vector_id": "drug:D003:indication",
+    "source_type": "drug",
+    "source_id": "D003",
+    "chunk_type": "indication",
+    "content": "메트포르민정 효능/효과: 제2형 당뇨병 환자의 혈당 조절",
+    "metadata": {
+      "drug_name": "메트포르민정",
+      "field": "indications"
+    }
+  },
+  {
+    "vector_id": "drug:D003:dosage",
+    "source_type": "drug",
+    "source_id": "D003",
+    "chunk_type": "dosage",
+    "content": "메트포르민정 복용법: 식사 중 또는 식후 복용, 용량은 개별 조절",
+    "metadata": {
+      "drug_name": "메트포르민정",
+      "field": "dosage"
+    }
+  },
+  {
+    "vector_id": "drug:D003:warning",
+    "source_type": "drug",
+    "source_id": "D003",
+    "chunk_type": "warning",
+    "content": "메트포르민정 주의사항: 유산산증 위험, 신기능 장애 환자 금기",
+    "metadata": {
+      "drug_name": "메트포르민정",
+      "field": "warnings"
+    }
+  },
+  {
+    "vector_id": "drug:D003:summary",
+    "source_type": "drug",
+    "source_id": "D003",
+    "chunk_type": "summary",
+    "content": "메트포르민정. 성분: 메트포르민염산염. 효능: 제2형 당뇨병 환자의 혈당 조절. 복용법: 식사 중 또는 식후 복용, 용량은 개별 조절. 주의사항: 유산산증 위험, 신기능 장애 환자 금기.",
+    "metadata": {
+      "drug_name": "메트포르민정",
+      "field": "parent_text"
+    }
+  },
+  {
+    "vector_id": "drug:D004:indication",
+    "source_type": "drug",
+    "source_id": "D004",
+    "chunk_type": "indication",
+    "content": "아목시실린캡슐 효능/효과: 종기, 인후염, 편도염, 방광염",
+    "metadata": {
+      "drug_name": "아목시실린캡슐",
+      "field": "indications"
+    }
+  },
+  {
+    "vector_id": "drug:D004:dosage",
+    "source_type": "drug",
+    "source_id": "D004",
+    "chunk_type": "dosage",
+    "content": "아목시실린캡슐 복용법: 성인 1회 250~500mg, 8시간마다 복용",
+    "metadata": {
+      "drug_name": "아목시실린캡슐",
+      "field": "dosage"
+    }
+  },
+  {
+    "vector_id": "drug:D004:warning",
+    "source_type": "drug",
+    "source_id": "D004",
+    "chunk_type": "warning",
+    "content": "아목시실린캡슐 주의사항: 페니실린계 과민반응 환자 금기",
+    "metadata": {
+      "drug_name": "아목시실린캡슐",
+      "field": "warnings"
+    }
+  },
+  {
+    "vector_id": "drug:D004:summary",
+    "source_type": "drug",
+    "source_id": "D004",
+    "chunk_type": "summary",
+    "content": "아목시실린캡슐. 성분: 아목시실린. 효능: 종기, 인후염, 편도염, 방광염. 복용법: 성인 1회 250~500mg, 8시간마다 복용. 주의사항: 페니실린계 과민반응 환자 금기.",
+    "metadata": {
+      "drug_name": "아목시실린캡슐",
+      "field": "parent_text"
+    }
+  },
+  {
+    "vector_id": "drug:D005:indication",
+    "source_type": "drug",
+    "source_id": "D005",
+    "chunk_type": "indication",
+    "content": "리피토정 효능/효과: 고콜레스테롤혈증 치료",
+    "metadata": {
+      "drug_name": "리피토정",
+      "field": "indications"
+    }
+  },
+  {
+    "vector_id": "drug:D005:dosage",
+    "source_type": "drug",
+    "source_id": "D005",
+    "chunk_type": "dosage",
+    "content": "리피토정 복용법: 1일 1회 10~80mg (식사 상관없음)",
+    "metadata": {
+      "drug_name": "리피토정",
+      "field": "dosage"
+    }
+  },
+  {
+    "vector_id": "drug:D005:warning",
+    "source_type": "drug",
+    "source_id": "D005",
+    "chunk_type": "warning",
+    "content": "리피토정 주의사항: 횡문근융해증 위험, 임부 금기",
+    "metadata": {
+      "drug_name": "리피토정",
+      "field": "warnings"
+    }
+  },
+  {
+    "vector_id": "drug:D005:summary",
+    "source_type": "drug",
+    "source_id": "D005",
+    "chunk_type": "summary",
+    "content": "리피토정. 성분: 아토르바스타틴. 효능: 고콜레스테롤혈증 치료. 복용법: 1일 1회 10~80mg (식사 상관없음). 주의사항: 횡문근융해증 위험, 임부 금기.",
+    "metadata": {
+      "drug_name": "리피토정",
+      "field": "parent_text"
+    }
+  },
+  {
+    "vector_id": "symptom:S001:summary",
+    "source_type": "symptom",
+    "source_id": "S001",
+    "chunk_type": "summary",
+    "content": "발열",
+    "metadata": {
+      "symptom_name": "발열",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S002:summary",
+    "source_type": "symptom",
+    "source_id": "S002",
+    "chunk_type": "summary",
+    "content": "통증",
+    "metadata": {
+      "symptom_name": "통증",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S003:summary",
+    "source_type": "symptom",
+    "source_id": "S003",
+    "chunk_type": "summary",
+    "content": "두통",
+    "metadata": {
+      "symptom_name": "두통",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S004:summary",
+    "source_type": "symptom",
+    "source_id": "S004",
+    "chunk_type": "summary",
+    "content": "신경통",
+    "metadata": {
+      "symptom_name": "신경통",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S005:summary",
+    "source_type": "symptom",
+    "source_id": "S005",
+    "chunk_type": "summary",
+    "content": "요통",
+    "metadata": {
+      "symptom_name": "요통",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S006:summary",
+    "source_type": "symptom",
+    "source_id": "S006",
+    "chunk_type": "summary",
+    "content": "생리통",
+    "metadata": {
+      "symptom_name": "생리통",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S007:summary",
+    "source_type": "symptom",
+    "source_id": "S007",
+    "chunk_type": "summary",
+    "content": "제2형 당뇨병",
+    "metadata": {
+      "symptom_name": "제2형 당뇨병",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S008:summary",
+    "source_type": "symptom",
+    "source_id": "S008",
+    "chunk_type": "summary",
+    "content": "혈당 조절",
+    "metadata": {
+      "symptom_name": "혈당 조절",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S009:summary",
+    "source_type": "symptom",
+    "source_id": "S009",
+    "chunk_type": "summary",
+    "content": "종기",
+    "metadata": {
+      "symptom_name": "종기",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S010:summary",
+    "source_type": "symptom",
+    "source_id": "S010",
+    "chunk_type": "summary",
+    "content": "인후염",
+    "metadata": {
+      "symptom_name": "인후염",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S011:summary",
+    "source_type": "symptom",
+    "source_id": "S011",
+    "chunk_type": "summary",
+    "content": "편도염",
+    "metadata": {
+      "symptom_name": "편도염",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S012:summary",
+    "source_type": "symptom",
+    "source_id": "S012",
+    "chunk_type": "summary",
+    "content": "방광염",
+    "metadata": {
+      "symptom_name": "방광염",
+      "is_red_flag": null
+    }
+  },
+  {
+    "vector_id": "symptom:S013:summary",
+    "source_type": "symptom",
+    "source_id": "S013",
+    "chunk_type": "summary",
+    "content": "고콜레스테롤혈증",
+    "metadata": {
+      "symptom_name": "고콜레스테롤혈증",
+      "is_red_flag": null
+    }
+  }
+]

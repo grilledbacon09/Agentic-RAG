@@ -1,0 +1,244 @@
+[
+  {
+    "drug_id": "D001",
+    "name_ko": "타이레놀정500mg",
+    "name_en": null,
+    "ingredient": [
+      "아세트아미노펜"
+    ],
+    "indications": "감기로 인한 발열 및 통증, 두통, 신경통",
+    "dosage": "성인 1회 1~2정, 1일 3~4회(최대 4g)",
+    "warnings": "간 손상 위험, 매일 3잔 이상 음주자 금기",
+    "category": "해열진통소염제",
+    "updated_date": "2026-04-01",
+    "combination_contraindication": [
+      "D002"
+    ],
+    "parent_text": "타이레놀정500mg. 성분: 아세트아미노펜. 효능: 감기로 인한 발열 및 통증, 두통, 신경통. 복용법: 성인 1회 1~2정, 1일 3~4회(최대 4g). 주의사항: 간 손상 위험, 매일 3잔 이상 음주자 금기.",
+    "child_chunks": [
+      {
+        "chunk_type": "indication",
+        "text": "감기로 인한 발열 및 통증, 두통, 신경통에 사용된다.",
+        "metadata": {
+          "treats": [
+            "발열",
+            "통증",
+            "두통",
+            "신경통",
+            "감기"
+          ]
+        }
+      },
+      {
+        "chunk_type": "dosage",
+        "text": "성인 1회 1~2정, 1일 3~4회(최대 4g) 복용한다.",
+        "metadata": {
+          "age_group": [
+            "adult"
+          ]
+        }
+      },
+      {
+        "chunk_type": "warning",
+        "text": "간 손상 위험이 있으며 매일 3잔 이상 음주자는 금기이다.",
+        "metadata": {
+          "forbidden_conditions": [
+            "간 손상",
+            "음주"
+          ],
+          "severity": "high"
+        }
+      }
+    ]
+  },
+  {
+    "drug_id": "D002",
+    "name_ko": "애드빌연질캡슐",
+    "name_en": null,
+    "ingredient": [
+      "이부프로펜"
+    ],
+    "indications": "감기로 인한 발열, 요통, 생리통",
+    "dosage": "성인 1회 1~2캡슐, 1일 3~4회",
+    "warnings": "위장관 출혈 위험, 심혈관계 질환자 주의",
+    "category": null,
+    "updated_date": null,
+    "combination_contraindication": [],
+    "parent_text": "애드빌연질캡슐. 성분: 이부프로펜. 효능: 감기로 인한 발열, 요통, 생리통. 복용법: 성인 1회 1~2캡슐, 1일 3~4회. 주의사항: 위장관 출혈 위험, 심혈관계 질환자 주의.",
+    "child_chunks": [
+      {
+        "chunk_type": "indication",
+        "text": "감기로 인한 발열, 요통, 생리통에 사용된다.",
+        "metadata": {
+          "treats": [
+            "발열",
+            "요통",
+            "생리통",
+            "감기"
+          ]
+        }
+      },
+      {
+        "chunk_type": "dosage",
+        "text": "성인 1회 1~2캡슐, 1일 3~4회 복용한다.",
+        "metadata": {
+          "age_group": [
+            "adult"
+          ]
+        }
+      },
+      {
+        "chunk_type": "warning",
+        "text": "위장관 출혈 위험이 있으며 심혈관계 질환자는 주의해야 한다.",
+        "metadata": {
+          "forbidden_conditions": [
+            "위장관 출혈",
+            "심혈관계 질환"
+          ],
+          "severity": "high"
+        }
+      }
+    ]
+  },
+  {
+    "drug_id": "D003",
+    "name_ko": "메트포르민정",
+    "name_en": null,
+    "ingredient": [
+      "메트포르민염산염"
+    ],
+    "indications": "제2형 당뇨병 환자의 혈당 조절",
+    "dosage": "식사 중 또는 식후 복용, 용량은 개별 조절",
+    "warnings": "유산산증 위험, 신기능 장애 환자 금기",
+    "category": null,
+    "updated_date": null,
+    "combination_contraindication": [],
+    "parent_text": "메트포르민정. 성분: 메트포르민염산염. 효능: 제2형 당뇨병 환자의 혈당 조절. 복용법: 식사 중 또는 식후 복용, 용량은 개별 조절. 주의사항: 유산산증 위험, 신기능 장애 환자 금기.",
+    "child_chunks": [
+      {
+        "chunk_type": "indication",
+        "text": "제2형 당뇨병 환자의 혈당 조절에 사용된다.",
+        "metadata": {
+          "treats": [
+            "제2형 당뇨병",
+            "혈당 조절"
+          ]
+        }
+      },
+      {
+        "chunk_type": "dosage",
+        "text": "식사 중 또는 식후 복용하며 용량은 개별 조절한다.",
+        "metadata": {
+          "age_group": [
+            "adult"
+          ]
+        }
+      },
+      {
+        "chunk_type": "warning",
+        "text": "유산산증 위험이 있고 신기능 장애 환자는 금기이다.",
+        "metadata": {
+          "forbidden_conditions": [
+            "유산산증",
+            "신기능 장애"
+          ],
+          "severity": "high"
+        }
+      }
+    ]
+  },
+  {
+    "drug_id": "D004",
+    "name_ko": "아목시실린캡슐",
+    "name_en": null,
+    "ingredient": [
+      "아목시실린"
+    ],
+    "indications": "종기, 인후염, 편도염, 방광염",
+    "dosage": "성인 1회 250~500mg, 8시간마다 복용",
+    "warnings": "페니실린계 과민반응 환자 금기",
+    "category": null,
+    "updated_date": null,
+    "combination_contraindication": [],
+    "parent_text": "아목시실린캡슐. 성분: 아목시실린. 효능: 종기, 인후염, 편도염, 방광염. 복용법: 성인 1회 250~500mg, 8시간마다 복용. 주의사항: 페니실린계 과민반응 환자 금기.",
+    "child_chunks": [
+      {
+        "chunk_type": "indication",
+        "text": "종기, 인후염, 편도염, 방광염에 사용된다.",
+        "metadata": {
+          "treats": [
+            "종기",
+            "인후염",
+            "편도염",
+            "방광염"
+          ]
+        }
+      },
+      {
+        "chunk_type": "dosage",
+        "text": "성인 1회 250~500mg을 8시간마다 복용한다.",
+        "metadata": {
+          "age_group": [
+            "adult"
+          ]
+        }
+      },
+      {
+        "chunk_type": "warning",
+        "text": "페니실린계 과민반응 환자는 금기이다.",
+        "metadata": {
+          "forbidden_conditions": [
+            "페니실린계 과민반응"
+          ],
+          "severity": "high"
+        }
+      }
+    ]
+  },
+  {
+    "drug_id": "D005",
+    "name_ko": "리피토정",
+    "name_en": null,
+    "ingredient": [
+      "아토르바스타틴"
+    ],
+    "indications": "고콜레스테롤혈증 치료",
+    "dosage": "1일 1회 10~80mg (식사 상관없음)",
+    "warnings": "횡문근융해증 위험, 임부 금기",
+    "category": null,
+    "updated_date": null,
+    "combination_contraindication": [],
+    "parent_text": "리피토정. 성분: 아토르바스타틴. 효능: 고콜레스테롤혈증 치료. 복용법: 1일 1회 10~80mg (식사 상관없음). 주의사항: 횡문근융해증 위험, 임부 금기.",
+    "child_chunks": [
+      {
+        "chunk_type": "indication",
+        "text": "고콜레스테롤혈증 치료에 사용된다.",
+        "metadata": {
+          "treats": [
+            "고콜레스테롤혈증"
+          ]
+        }
+      },
+      {
+        "chunk_type": "dosage",
+        "text": "1일 1회 10~80mg을 식사와 관계없이 복용한다.",
+        "metadata": {
+          "age_group": [
+            "adult"
+          ]
+        }
+      },
+      {
+        "chunk_type": "warning",
+        "text": "횡문근융해증 위험이 있으며 임부는 금기이다.",
+        "metadata": {
+          "forbidden_conditions": [
+            "횡문근융해증",
+            "임부"
+          ],
+          "severity": "high"
+        }
+      }
+    ]
+  }
+]

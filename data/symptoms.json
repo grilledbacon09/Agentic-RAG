@@ -1,0 +1,106 @@
+[
+  {
+    "symptom_id": "S001",
+    "name": "발열",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S002",
+    "name": "통증",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S003",
+    "name": "두통",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S004",
+    "name": "신경통",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S005",
+    "name": "요통",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S006",
+    "name": "생리통",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S007",
+    "name": "제2형 당뇨병",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S008",
+    "name": "혈당 조절",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S009",
+    "name": "종기",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S010",
+    "name": "인후염",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S011",
+    "name": "편도염",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S012",
+    "name": "방광염",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  },
+  {
+    "symptom_id": "S013",
+    "name": "고콜레스테롤혈증",
+    "is_red_flag": null,
+    "urgency": null,
+    "context": null,
+    "action_guide": null
+  }
+]
