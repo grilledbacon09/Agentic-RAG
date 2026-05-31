@@ -24,7 +24,7 @@ LINKS_FILE = BASE_DIR / "data" / "msd_source" / "links.csv"
 RAW_DATA_FILE = BASE_DIR / "data" / "msd_source" / "symptoms.csv"
 EXTRACTED_DATA_FILE = BASE_DIR / "data" / "msd_source" / "silver_data.csv"
 
-API_KEY="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"
+API_KEY=os.getenv('OPENROUTER_API_KEY')
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=API_KEY)
 
 #######################################################################################
