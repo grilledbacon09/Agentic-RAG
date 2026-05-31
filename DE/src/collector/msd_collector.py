@@ -16,8 +16,6 @@ import set_client
 import re
 from pydantic import BaseModel, Field, ValidationError, field_validator
 from typing import List, Optional
-import os
-from dotenv import load_dotenv
 
 # 설정
 current_file = Path(__file__).resolve()
@@ -28,7 +26,8 @@ EXTRACTED_DATA_FILE = BASE_DIR / "data" / "msd_source" / "silver_data.csv"
 
 load_dotenv()
 # api key
-API_KEY=os.getenv('OPENROUTER_API_KEY')
+API_KEY = os.getenv('OPENROUTER_API_KEY')
+API_KEY = "temporary string"
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=API_KEY)
 
 #######################################################################################
