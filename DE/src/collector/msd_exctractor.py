@@ -27,6 +27,7 @@ RAW_DATA_FILE = BASE_DIR / "data" / "msd_source" / "symptoms.csv"
 EXTRACTED_DATA_FILE = BASE_DIR / "data" / "msd_source" / "silver_data.csv"
 
 load_dotenv()
+# api key
 API_KEY=os.getenv('OPENROUTER_API_KEY')
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=API_KEY)
 
