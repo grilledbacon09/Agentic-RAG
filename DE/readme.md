@@ -509,7 +509,7 @@ results = collection.query(
 # distance < 0.3이면 "즉시 병원 방문" 응답으로 분기, 약 추천 생략
 ```
 
-**2단계 — 약 추천** (핵심)
+**2단계 — 약 추천**
 ```python
 results = collection.query(
     query_texts=[f"query: {user_query}"],
@@ -580,17 +580,6 @@ SELECT symptom_id, name FROM silver_symptom LIMIT 10;
 -- 특정 증상의 매핑 여부 확인
 SELECT COUNT(*) FROM silver_drug_integration
 WHERE indications LIKE '%두통%';
-```
-
-**API 키 하드코딩 주의**
-`collector/msd_exctractor.py`에 OpenRouter API 키가 코드에 직접 작성되어 있습니다. Git 커밋 전 반드시 `.env`로 이동하세요.
-
-```python
-# 수정 전 (위험)
-API_KEY = "sk-or-v1-..."
-
-# 수정 후
-API_KEY = os.getenv('OPENROUTER_API_KEY')
 ```
 
 **`api_ingestion.py` API 키 분리**
