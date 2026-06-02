@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List
 
-from models import Symptom, UserInput
-from safety import check_symptom_red_flags
+from agents.models import Symptom, UserInput
+from agents.safety import check_symptom_red_flags
 
 
 DEFAULT_RED_FLAG_KEYWORDS = {

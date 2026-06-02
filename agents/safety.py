@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, List
 
-from models import Drug, SafetyResult, Symptom, UserInput
+from agents.models import Drug, SafetyResult, Symptom, UserInput
 
 
 def check_symptom_red_flags(user_input: UserInput, symptom_db: List[Symptom]) -> SafetyResult:

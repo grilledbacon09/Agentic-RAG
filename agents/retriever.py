@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import List, Set
 
-from models import Drug, RetrievalResult, UserInput
+from agents.models import Drug, RetrievalResult, UserInput
 
 
 def _normalize_text(text: str) -> str:

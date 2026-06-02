@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from loader import load_drugs, load_symptoms
-from models import UserInput
+from agents.models import UserInput
 from pipeline import run_pipeline
 
 
