@@ -11,8 +11,8 @@ class ChatRequest(BaseModel):
     content: str
 
 @router.post("/diagnosis")
-async def predict_symptom(request: ChatRequest, req_obj: Request):
-    user_msg = request.content
+async def predict_symptom(request: Request, body: ChatRequest): # 💡 1. 인프라 Request를 맨 앞으로, Pydantic 바디 모델을 뒤로 정렬!
+    user_msg = body.content
     current_user = "user_01"
     
     # 1. 유저의 세팅 데이터 실시간 조회
@@ -27,9 +27,9 @@ async def predict_symptom(request: ChatRequest, req_obj: Request):
         conditions=[]
     )
     
-    # 3. main.py 가동 시 서버 메모리에 들고 있는 마스터 데이터 스냅샷 획득
-    drugs_db = req_obj.app.state.DRUGS
-    symptoms_db = req_obj.app.state.SYMPTOMS
+    # 3. main.py 가동 시 서버 메모리에 들고 있는 마스터 데이터 스냅샷 획득 (request.app.state 활용)
+    drugs_db = request.app.state.DRUGS
+    symptoms_db = request.app.state.SYMPTOMS
     
     try:
         # 4. 💡 가짜 조건문 대신 진짜 AI 멀티 에이전트 파이프라인 구동!
