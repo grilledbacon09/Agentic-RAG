@@ -1,7 +1,12 @@
+import os
+from pathlib import Path
 
 import boto3
 import psycopg2
-import os
+from dotenv import load_dotenv
+
+_DE_ROOT = Path(__file__).resolve().parent.parent.parent
+load_dotenv(_DE_ROOT / ".env")
 
 # 클라이언트 초기화 (S3/MinIO & Postgres)
 s3 = boto3.client(

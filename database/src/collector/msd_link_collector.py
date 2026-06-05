@@ -1,23 +1,21 @@
-from bs4 import BeautifulSoup
-import set_client
-from pathlib import Path
-import os
-import boto3
-from dotenv import load_dotenv
-from urllib.parse import urljoin
+import csv
 from datetime import datetime
+from urllib.parse import urljoin
 
-#############################################
-# 설정
-FILENAME = "symptoms.html"
+import sys
+from pathlib import Path
 
-# 현재 스크립트(msd_collector.py)의 절대 경로를 가져옴
-current_file = Path(__file__).resolve()
-# src의 부모인 graduation_project(루트)로 이동 후 data/... 경로 생성
-# .parent는 한 단계 위 폴더를 의미합니다.
-BASE_DIR = current_file.parent.parent
-TARGET_FILE = BASE_DIR / "data" / "msd_source" / FILENAME
-OUTPUT_FILE = BASE_DIR / "data" / "msd_source" / "links.csv"
+_SRC = Path(__file__).resolve().parent.parent
+if str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
+
+import bootstrap  # noqa: E402
+import set_client
+from bs4 import BeautifulSoup
+from paths import MSD_LINKS_CSV, MSD_SYMPTOMS_HTML, ensure_data_dirs
+
+TARGET_FILE = MSD_SYMPTOMS_HTML
+OUTPUT_FILE = MSD_LINKS_CSV
 
 base_url = "https://www.msdmanuals.com"
 #################################################################
@@ -75,29 +73,6 @@ def get_links(html, output_file=OUTPUT_FILE):
             # 2. 텍스트 존재 여부 체크 (공백 제거)
             text = a.get_text(strip=True)
             
-        # local 저장용----------------------------------------------------------------------------------
-        #     if href:
-        #         category_element = a.find_previous(class_="accordion_accordionHeading__EFFen")
-        #         category_text = category_element.get_text(strip=True) if category_element else "미분류"
-                
-                
-        #         url = urljoin(base_url, href)
-        #         extracted_data.append([text, url, category_text])
-        #     else:
-        #         # 데이터 유실 방지를 위해 로그 출력
-        #         print(f"로그: {index}번째 태그에 href가 없어 제외됨 (Text: {text})")
-                
-        # # csv파일에 저장
-        # with open(output_file, 'a', encoding='utf-8-sig', newline='') as f:
-        #     writer = csv.writer(f)
-            
-        #     # 헤더
-        #     if not os.path.exists(output_file):
-        #         writer.writerow(['증상', 'URL', '분류'])
-        #     writer.writerows(extracted_data)
-            
-        #     print(f"성공: {len(a_tags)}개의 링크가 '{output_file}'에 저장되었습니다.")
-        # --------------------------------------------------------------------------------------------
             if href and not href.startswith('#') and not href.startswith('javascript'):
                     category_element = a.find_previous(class_="accordion_accordionHeading__EFFen")
                     category_text = category_element.get_text(strip=True) if category_element else "미분류"
@@ -109,10 +84,19 @@ def get_links(html, output_file=OUTPUT_FILE):
                         "url": url,
                         "category": category_text
                     })
-        store(extracted_data, f"msd_raw/links_{datetime.now().strftime("%Y%m%d")}.json")
-                
+        store(extracted_data, f"msd_raw/links_{datetime.now().strftime('%Y%m%d')}.json")
+
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        with output_file.open("w", encoding="utf-8-sig", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["SYMPTOM_NAME", "URL", "CATEGORY"])
+            for item in extracted_data:
+                writer.writerow([item["title"], item["url"], item["category"]])
+        print(f"[+] links.csv 저장 완료: {output_file} ({len(extracted_data)}건)")
+
     except Exception as e:
         print(f"오류 발생: {e}")
 
-if __name__=="__main__":
+if __name__ == "__main__":
+    ensure_data_dirs()
     load_and_extract(TARGET_FILE)

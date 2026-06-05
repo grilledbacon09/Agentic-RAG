@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from pathlib import Path
-
+from config import load_config
 from loader import load_drugs, load_symptoms
 from agents.models import UserInput
 from pipeline import run_pipeline
@@ -14,13 +13,13 @@ def parse_csv_input(raw: str) -> list[str]:
 
 
 def main() -> None:
-    base_dir = Path(__file__).resolve().parent
-    data_dir = base_dir / "data"
+    config = load_config()
+    drugs = load_drugs(config.data_dir / "drugs.json")
+    symptoms = load_symptoms(config.data_dir / "symptoms.json")
 
-    drugs = load_drugs(data_dir / "drugs.json")
-    symptoms = load_symptoms(data_dir / "symptoms.json")
-
-    print("=== 초기 정적 RAG 약 정보 응답 데모 ===")
+    print("=== Agentic RAG 약 정보 응답 데모 ===")
+    print(f"데이터: {config.data_dir}")
+    print(f"ChromaDB: {'ON' if config.use_chroma else 'OFF'}")
     print("쉼표(,)로 여러 값을 입력할 수 있습니다.")
     print()
 
@@ -38,7 +37,7 @@ def main() -> None:
         conditions=conditions,
     )
 
-    result = run_pipeline(user_input, drugs, symptoms)
+    result = run_pipeline(user_input, drugs, symptoms, config=config)
 
     print()
     print("=" * 60)

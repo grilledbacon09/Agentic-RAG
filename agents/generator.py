@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import List
 
-from agents.models import RetrievalResult, SafetyResult, UserInput
+from models import ChromaEvidence, RetrievalResult, SafetyResult, UserInput
 
 
 def build_emergency_response(user_input: UserInput, safety_result: SafetyResult) -> str:
@@ -28,6 +28,8 @@ def build_normal_response(
     results: List[RetrievalResult],
     global_safety: SafetyResult,
     per_drug_safety: List[SafetyResult],
+    symptom_context: List[ChromaEvidence] | None = None,
+    use_chroma: bool = True,
 ) -> str:
     lines: List[str] = []
     lines.append("[입력 정보]")
@@ -38,9 +40,16 @@ def build_normal_response(
     lines.append(f"- 기저/특이 상태: {', '.join(user_input.conditions) if user_input.conditions else '없음'}")
     lines.append("")
 
+    if use_chroma and symptom_context:
+        lines.append("[ChromaDB 증상 참고]")
+        for item in symptom_context:
+            preview = item.document.replace("\n", " ")[:160]
+            lines.append(f"- ({item.metadata.get('chunk_type', 'symptom')}) {preview}")
+        lines.append("")
+
     if not results:
         lines.append("[검색 결과]")
-        lines.append("현재 샘플 데이터 기준으로 관련 약 후보를 찾지 못했습니다.")
+        lines.append("관련 약 후보를 찾지 못했습니다.")
         return "\n".join(lines)
 
     lines.append("[추천 후보]")
@@ -53,6 +62,14 @@ def build_normal_response(
         lines.append(f"   - 주의사항: {drug.warnings if drug.warnings else '정보 없음'}")
         lines.append(f"   - 매칭 증상: {', '.join(result.matched_symptoms) if result.matched_symptoms else '없음'}")
         lines.append(f"   - 추천 근거: {'; '.join(result.reasons) if result.reasons else '없음'}")
+
+        if result.chroma_evidence:
+            top_hit = max(result.chroma_evidence, key=lambda x: x.relevance)
+            preview = top_hit.document.replace("\n", " ")[:120]
+            lines.append(
+                f"   - ChromaDB 근거: {top_hit.chunk_id} "
+                f"(유사도 {top_hit.relevance:.2f}) {preview}"
+            )
 
         if safety.interaction_warnings or safety.contraindication_warnings:
             lines.append("   - 안전성 경고:")
@@ -70,7 +87,10 @@ def build_normal_response(
 
     lines.append("")
     lines.append("[주의]")
-    lines.append("- 현재 결과는 DE 팀에서 전달한 샘플 데이터 기반의 초기 정적 RAG 결과입니다.")
+    if use_chroma:
+        lines.append("- 약물 후보는 규칙 기반 점수 + ChromaDB(medical_knowledge) 검색을 함께 사용했습니다.")
+    else:
+        lines.append("- 약물 후보는 JSON 기반 규칙 검색만 사용했습니다.")
     lines.append("- 실제 복약 판단은 의사/약사 상담이 우선입니다.")
 
     return "\n".join(lines)

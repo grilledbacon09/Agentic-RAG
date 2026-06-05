@@ -63,11 +63,26 @@ def check_drug_contraindication(user_input: UserInput, candidate: Drug, all_drug
         warnings.append(f"현재 복용약과 중복 성분 감지: {', '.join(duplicated)}")
         penalty += 3.0
 
-    warning_text = _norm(candidate.warnings)
+    forbidden: set[str] = set()
+    for chunk in candidate.child_chunks:
+        for item in chunk.metadata.get("forbidden_conditions", []) or []:
+            forbidden.add(_norm(str(item)))
+
     for condition in user_input.conditions:
         condition_norm = _norm(condition)
-        if condition_norm and condition_norm != "없음" and condition_norm in warning_text:
+        if not condition_norm or condition_norm == _norm("없음"):
+            continue
+        if condition_norm == _norm("음주") and _norm("음주") in forbidden:
+            warnings.append(
+                f"{candidate.name_ko}: 음주 시 복용 전 약사 상담을 권장합니다."
+            )
+            penalty += 0.5
+            continue
+        if any(condition_norm in f or f in condition_norm for f in forbidden if f):
             penalty += 2.0
+            warnings.append(
+                f"사용자 상태 '{condition}' 관련 금기/주의 성분이 있습니다."
+            )
 
     if penalty >= 4.0:
         risk_level = "high"

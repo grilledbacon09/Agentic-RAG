@@ -1,77 +1,74 @@
+"""ChromaDB 검색 테스트.
+
+실행 (DE 루트):
+    python src/vectordb/test_vectordb.py
+    python src/vectordb/test_vectordb.py 두통
 """
-n_results: 너무 적으면 충분한 정보를 못 얻고, 너무 많으면 LLM의 토큰 제한에 걸립니다. 보통 3~5개가 적당합니다.
-Distance(거리): results['distances'] 값을 확인해 보세요. 이 값이 작을수록 유사도가 높다는 뜻입니다. (보통 1.0 이상이면 관련성이 낮다고 판단할 수 있습니다.)
-"""
 
-import chromadb
-import create_vectordb
+from __future__ import annotations
 
-# 1. 클라이언트 연결
-client = chromadb.HttpClient(host='localhost', port=8000)
+import sys
+import traceback
+from pathlib import Path
 
-# 2. 컬렉션 가져오기
-collection = client.get_collection(name="medical_knowledge",
-                                   embedding_function=create_vectordb.e5_embedding_function)
+_SRC = Path(__file__).resolve().parent.parent
+if str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
 
-sample = collection.get(limit=3)
-print(sample['documents'])
-
-# 컬렉션 목록 확인
-print(client.list_collections())
-
-# 문서 수 확인
-print(collection.count())
+import bootstrap  # noqa: E402
 
 
-# 3. 쿼리 실행
-print("\n===== vectorDB test =====\n")
-user_query = input("질문: ")
+def main() -> None:
+    import chromadb
+    import create_vectordb
 
-query = f"query: {user_query}"
-results = collection.query(
-    query_texts=[query],
-    n_results=5
-)
+    print("[*] test_vectordb.py 시작", flush=True)
 
-# 4. 결과 출력
-for i, dist in enumerate(results['distances'][0]):
-    print(i, dist)
+    chroma_client = create_vectordb.get_client()
+    print("컬렉션 목록:", chroma_client.list_collections(), flush=True)
 
-top_distance = results['distances'][0]
+    try:
+        collection = chroma_client.get_collection(
+            name="medical_knowledge",
+            embedding_function=create_vectordb.get_embedding_function(),
+        )
+    except Exception as e:
+        print(
+            f"[!] medical_knowledge 컬렉션을 찾을 수 없습니다: {e}\n"
+            "    먼저 `python src/vectordb/vectorizer.py`를 실행하세요.",
+            flush=True,
+        )
+        sys.exit(1)
+
+    print("문서 수:", collection.count(), flush=True)
+
+    sample = collection.get(limit=3)
+    print("샘플 문서:", sample.get("documents"), flush=True)
+
+    user_query = sys.argv[1] if len(sys.argv) > 1 else input("질문: ")
+    # simple/onnx 백엔드는 query: 접두어 불필요
+    query = user_query
+
+    print("\n===== vectorDB test =====\n", flush=True)
+    results = collection.query(query_texts=[query], n_results=5)
+
+    if not results["ids"] or not results["ids"][0]:
+        print("[!] 검색 결과가 없습니다.", flush=True)
+        return
+
+    print("\n===== 검색 결과 =====\n", flush=True)
+    for i in range(len(results["ids"][0])):
+        print(f"순위: {i + 1}", flush=True)
+        print(f"ID: {results['ids'][0][i]}", flush=True)
+        print(f"거리: {results['distances'][0][i]}", flush=True)
+        print(f"메타데이터: {results['metadatas'][0][i]}", flush=True)
+        print(f"내용:\n{results['documents'][0][i][:300]}", flush=True)
+        print("-" * 50, flush=True)
 
 
-
-print("\n===== 검색 결과 =====\n")
-
-for i in range(len(results['ids'][0])):
-
-    distance = results['distances'][0][i]
-
-    print(f"순위: {i+1}")
-    print(f"ID: {results['ids'][0][i]}")
-    print(f"거리: {distance}")
-
-    print(
-        f"메타데이터: "
-        f"{results['metadatas'][0][i]}"
-    )
-
-    print(
-        f"내용:\n"
-        f"{results['documents'][0][i][:300]}"
-    )
-
-    print("-" * 50)
-
-# valid_indices = [
-#     idx for idx, dist in enumerate(results['distances'][0])
-#     if dist <= top_distance + 0.15
-# ]
-# for i in valid_indices:
-#     print(f"순위: {i+1}")
-#     print(f"ID: {results['ids'][0][i]}")
-#     print(f"[내용] {results['documents'][0][i][:200]}...") # 100자만 출력
-#     print(f"거리: {results['distances']}")
-#     print(f"메타데이터: {results['metadatas'][0][i]}")
-#     print("-" * 30)
-    
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception:
+        traceback.print_exc()
+        sys.exit(1)

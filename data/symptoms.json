@@ -2,105 +2,6457 @@
   {
     "symptom_id": "S001",
     "name": "발열",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": "39도 이상 고열, 의식 변화, 호흡 곤란, 경련이 동반되면 주의가 필요합니다.",
+    "action_guide": "수분 섭취, 해열제 복용, 충분한 휴식을 권장합니다."
+  },
+  {
+    "symptom_id": "S001-1",
+    "name": "가려움, 항문",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "따뜻한 물 또는 치핵 전용 화학 세정제를 적신 탈지면 또는 부드러운 무지 티슈로 닦기, 비누 및 물티슈 사용하지 않기, 비의료용 옥수수 전분을 자주 뿌려주기, 코르티코스테로이드 연고(예: 1% 하이드로코티손) 단기간 사용, 헐렁한 의복 착용, 가벼운 침구 사용"
+  },
+  {
+    "symptom_id": "S001-2",
+    "name": "가려움, 항문",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "항문 또는 항문 주위에서 배출되는 고름(배출성 누공), 혈액성 설사, 불거져 나왔거나 돌출된 치핵, 배설물로 더럽혀진 항문 주변 피부, 칙칙하거나 두꺼워진 항문 주변 피부",
+    "action_guide": "의사의 진찰을 가능한 한 빨리 받을 것"
   },
   {
     "symptom_id": "S002",
     "name": "통증",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": "원인에 따라 해열진통제, 휴식, 국소 치료가 도움이 될 수 있습니다."
+  },
+  {
+    "symptom_id": "S002-1",
+    "name": "가스",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "트림을 줄이기 위해 공기 삼키는 양을 줄이기 (껌 씹기 피하기, 편안한 환경에서 천천히 식사하기), 식사 일지 작성, 특정 음식 섭취 줄이기 (탄수화물, 유제품 등), 소화 효소 보충제 복용"
+  },
+  {
+    "symptom_id": "S002-2",
+    "name": "가스",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "체중 감량(고의성 없음), 대변 내 혈액, 흉통 또는 흉부의 배부품",
+    "action_guide": "의사의 진찰을 받을 것. 특히 흉통을 동반한 배부품이 느껴질 경우 즉시 병원을 방문해야 함."
   },
   {
     "symptom_id": "S003",
     "name": "두통",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": "갑작스러운 심한 두통, 의식 저하, 시야 이상, 발열, 목 경직, 사지 마비가 동반되면 응급 상황일 수 있습니다.",
+    "action_guide": "충분한 수분 섭취, 휴식, 소음·빛 자극 최소화. 일반적인 긴장성 두통에는 해열진통제(아세트아미노펜 등)가 도움이 될 수 있습니다."
+  },
+  {
+    "symptom_id": "S003-1",
+    "name": "딸꾹질",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분의 딸꾹질이 치료 여부에 상관 없이 사라집니다. 많은 민간요법이 단기간 딸꾹질을 치료하는 데 사용되었습니다. 대부분이 효능이 없었거나 아주 약간 효능이 있었습니다. 그러나 이러한 치료법이 일반적으로 안전하고 하기 쉽기 때문에 시도한다고 해서 해로울 것은 없습니다. 많은 방법들이 다음과 같이 혈액 내 이산화탄소 수치를 높이기 위한 방식을 포함합니다: 숨 참기, 종이 봉투(비닐봉지 안 됨) 안으로 깊이 호흡하기. 기타 방법은 미주 신경을 자극하기 위해 이루어지는데, 이는 뇌부터 위까지 작용합니다. 다음은 이 신경을 자극할 수 있는 방법입니다: 빠르게 물 마시기, 뻑뻑한 빵, 알갱이 형태의 설탕 또는 으깬 얼음 삼킴, 천천히 혀 당기기, 구역질 자극(손가락으로 인후 안으로 집어넣는 등), 눈을 부드럽게 문지르기"
+  },
+  {
+    "symptom_id": "S003-2",
+    "name": "딸꾹질",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "신경학적 증상(두통, 쇠약, 무감각, 균형 상실 등)",
+    "action_guide": "딸꾹질과 경고 징후가 있는 환자는 즉시 병원을 방문해야 합니다."
   },
   {
     "symptom_id": "S004",
     "name": "신경통",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S004-1",
+    "name": "복통, 만성",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인 및 증상에 따라 치료, 젖당 불내성이 있는 경우 젖당이 없는 식사, 변비에 걸릴 경우 설사제를 사용하고 식이에 섬유 음식을 추가"
+  },
+  {
+    "symptom_id": "S004-2",
+    "name": "복통, 만성",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "열, 식욕 부진 및 체중 감소, 수면 중에 깨어나게 하는 통증, 구토, 배변 또는 소변 내 혈액, 심하고 빈번한 구토, 황달(피부와 눈 흰자위가 노랗게 됨), 복부 및/또는 다리의 부기",
+    "action_guide": "경고 징후가 식욕 부진, 황달 및/또는 부기가 아니라면 즉시 병원을 방문해야 합니다. 식욕 부진, 황달 및/또는 부기나 통증 악화를 겪는 환자는 며칠 내에 의사를 만나야 합니다."
   },
   {
     "symptom_id": "S005",
     "name": "요통",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S005-1",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 합니다. 약간의 구토를 했지만(설사 유무 여부 관계 없음) 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 합니다."
+  },
+  {
+    "symptom_id": "S005-10",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "탈수 징후(갈증, 구강 건조, 소변 양이 적거나 없음, 쇠약해지고 피곤해지는 느낌), 두통, 목 뻣뻣해짐, 혼돈 또는 주의력 감소, 지속적인 복통, 복부를 만졌을 때 압통 발생, 팽창된(부가) 복부",
+    "action_guide": "경고 징후가 있는 사람은 즉시 병원을 방문해야 하며 피를 토하거나 최근 두부 손상이 있었던 사람도 마찬가지입니다."
+  },
+  {
+    "symptom_id": "S005-2",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 합니다. 약간의 구토를 했지만(설사 유무 여부 관계 없음) 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 합니다."
+  },
+  {
+    "symptom_id": "S005-3",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 합니다. 약간의 구토를 했지만(설사 유무 여부 관계 없음) 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 합니다."
+  },
+  {
+    "symptom_id": "S005-4",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 합니다. 약간의 구토를 했지만(설사 유무 여부 관계 없음) 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 합니다."
+  },
+  {
+    "symptom_id": "S005-5",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 합니다. 약간의 구토를 했지만(설사 유무 여부 관계 없음) 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 합니다."
+  },
+  {
+    "symptom_id": "S005-6",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 합니다. 약간의 구토를 했지만(설사 유무 여부 관계 없음) 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 합니다."
+  },
+  {
+    "symptom_id": "S005-7",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 합니다. 약간의 구토를 했지만(설사 유무 여부 관계 없음) 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 합니다."
+  },
+  {
+    "symptom_id": "S005-8",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 합니다. 약간의 구토를 했지만(설사 유무 여부 관계 없음) 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 합니다."
+  },
+  {
+    "symptom_id": "S005-9",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 합니다. 약간의 구토를 했지만(설사 유무 여부 관계 없음) 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 합니다."
   },
   {
     "symptom_id": "S006",
     "name": "생리통",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S006-1",
+    "name": "성인의 변비",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "더 많은 과일, 채소, 섬유, 곡물을 섭취하여 증상을 완화"
+  },
+  {
+    "symptom_id": "S006-2",
+    "name": "성인의 변비",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "팽창, 부어 오른 복부, 구토, 대변 내 혈액, 체중 감소, 노인에게 중증의 변비 악화/새롭게 생김",
+    "action_guide": "즉시 병원 방문"
   },
   {
     "symptom_id": "S007",
     "name": "제2형 당뇨병",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S007-1",
+    "name": "성인의 설사",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경고 징후가 없는 환자는 설사가 72시간 이상 지속되었을 경우 병원을 방문해야 합니다. 기타 증상, 연령, 병력에 따라 의사는 검사를 받거나 집에서 해결하고 또는 일반 의약품 치료를 권장합니다"
+  },
+  {
+    "symptom_id": "S007-2",
+    "name": "성인의 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "대변 내 혈액 또는 농궤, 열, 탈수 징후(배뇨 감소, 무기력 또는 노곤함, 극심한 갈증, 구강 건조 등), 만성 설사, 수면 중 설사, 체중 감소",
+    "action_guide": "대변 내의 혈액 또는 농궤, 열 또는 탈수라는 경고 징후가 있는 환자는 즉시 병원을 방문해야 하며 상당한 복통을 겪는 사람도 마찬가지입니다. 이러한 환자는 즉각적인 검사, 치료가 필요하며 종종 입원해야 합니다."
+  },
+  {
+    "symptom_id": "S007-3",
+    "name": "성인의 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "대변 내 혈액 또는 농궤, 열, 탈수 징후(배뇨 감소, 무기력 또는 노곤함, 극심한 갈증, 구강 건조 등), 만성 설사, 수면 중 설사, 체중 감소",
+    "action_guide": "경고 징후가 만성 또는 야간에 발생하는 설사 또는 체중 감량인 경우, 일주일 이내에 병원을 방문해야 합니다."
   },
   {
     "symptom_id": "S008",
     "name": "혈당 조절",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S008-1",
+    "name": "소아 변비",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "자두, 배, 사과 주스 섭취, 물 섭취량 증가, 과일, 야채, 고섬유질 시리얼 섭취, 변비 유발 음식 섭취 줄이기, 배변 훈련 격려 및 보상"
+  },
+  {
+    "symptom_id": "S008-2",
+    "name": "소아 변비",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "출생 후 첫 24~48시간 동안 배변 활동 없음, 체중 감소 또는 발육 부진, 식욕 감퇴, 혈변, 열, 구토, 복부 팽만, 복통, 영아의 근긴장 손실 및 흡입력 감소, 고연령 소아의 비자발적인 소변 배출, 요통, 다리 무력증 또는 보행 문제",
+    "action_guide": "즉시 의사에게 진찰"
+  },
+  {
+    "symptom_id": "S008-3",
+    "name": "소아 변비",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
   },
   {
     "symptom_id": "S009",
     "name": "종기",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S009-1",
+    "name": "소아 설사",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경미한 경우 일반적으로 의사 방문 불필요, 2일 이상 지속되거나 하루 6~8회 이상 설사 시 의사에게 문의"
+  },
+  {
+    "symptom_id": "S009-2",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "탈수 징후, 아파 보임, 고열, 대변 내 혈액, 복부 통증 및 압통, 피부 출혈",
+    "action_guide": "즉시 의사 평가 필요, 음료를 마시지 못하거나 거의 마실 수 없는 경우에도 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S009-3",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "탈수 징후, 아파 보임, 고열, 대변 내 혈액, 복부 통증 및 압통, 피부 출혈",
+    "action_guide": "즉시 의사 평가 필요, 음료를 마시지 못하거나 거의 마실 수 없는 경우에도 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S009-4",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "탈수 징후, 아파 보임, 고열, 대변 내 혈액, 복부 통증 및 압통, 피부 출혈",
+    "action_guide": "즉시 의사 평가 필요, 음료를 마시지 못하거나 거의 마실 수 없는 경우에도 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S009-5",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "탈수 징후, 아파 보임, 고열, 대변 내 혈액, 복부 통증 및 압통, 피부 출혈",
+    "action_guide": "즉시 의사 평가 필요, 음료를 마시지 못하거나 거의 마실 수 없는 경우에도 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S009-6",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "탈수 징후, 아파 보임, 고열, 대변 내 혈액, 복부 통증 및 압통, 피부 출혈",
+    "action_guide": "즉시 의사 평가 필요, 음료를 마시지 못하거나 거의 마실 수 없는 경우에도 의사 평가 필요"
   },
   {
     "symptom_id": "S010",
     "name": "인후염",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S010-1",
+    "name": "소화가 되지 않음, 소화불량",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "식별 가능 장애가 없는 환자를 시간이 흐르면서 관찰하고 안심시킵니다."
+  },
+  {
+    "symptom_id": "S010-2",
+    "name": "소화가 되지 않음, 소화불량",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "식별 가능 장애가 없는 환자를 시간이 흐르면서 관찰하고 안심시킵니다."
+  },
+  {
+    "symptom_id": "S010-3",
+    "name": "소화가 되지 않음, 소화불량",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "소화불량과 함께 동반되는 숨가쁨, 땀흘림 또는 빠른 심박수",
+    "action_guide": "즉시 병원을 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S010-4",
+    "name": "소화가 되지 않음, 소화불량",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "식욕 부진(식욕 감퇴), 메스꺼움 또는 구토, 체중 감소, 대변 내 혈액, 삼키기 어려움(삼킴곤란) 또는 삼키면서 통증 발생(연하통), 양성자 펌프 억제제(PPI) 등의 약물 치료에도 불구하고 지속되는 소화불량",
+    "action_guide": "며칠부터 일주일 내에 병원을 방문해야 합니다."
   },
   {
     "symptom_id": "S011",
     "name": "편도염",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S011-1",
+    "name": "연하 곤란, 삼킴 곤란, 삼키기 어려움",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음식을 조금씩 먹고 철저하게 씹으십시오. 뇌졸중으로 인해 삼킴곤란을 겪는 환자는 재활 전문가의 치료로 도움을 받을 수 있습니다."
+  },
+  {
+    "symptom_id": "S011-2",
+    "name": "연하 곤란, 삼킴 곤란, 삼키기 어려움",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "완전한 신체 폐색 증상(침흘림 또는 아무 것도 삼킬 수 없음 등), 삼킴곤란으로 체중 감량, 통증이 생기는 삼킴(연하통), 신경, 척수 또는 뇌 기능의 새로운 문제, 특히 쇠약, 재발성 흡인 폐렴(구강 분비물, 위 내용물이나 둘 다를 흡인하여 유발되는 폐 감염)",
+    "action_guide": "즉시 병원을 방문해야 합니다."
   },
   {
     "symptom_id": "S012",
     "name": "방광염",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S012-1",
+    "name": "영아 및 소아의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "소아가 충분한 체액을 공급받자마자 구토를 하지 않는 경우, 나이에 맞는 식이요법을 해야 함. 영아는 모유 또는 이유식을 공급받을 수 있음."
+  },
+  {
+    "symptom_id": "S012-2",
+    "name": "영아 및 소아의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "졸음증 및 무기력함, 영아의 경우 주체할 수 없는 슬픔이나 성마름 및 천문의 돌출, 고연령 소아의 경우 심각한 두통, 턱을 가슴 아래로 내리는 것이 어려운 경직된 목, 빛에 민감함 및 발열, 복통, 부종, 성장이나 발육이 부진한 영아의 지속적인 구토, 혈변, 밝은 녹색 또는 혈액성 구토",
+    "action_guide": "경고 징후가 있는 소아는 즉시 의사의 평가를 받아야 함"
   },
   {
     "symptom_id": "S013",
     "name": "고콜레스테롤혈증",
-    "is_red_flag": null,
+    "is_red_flag": false,
     "urgency": null,
-    "context": null,
-    "action_guide": null
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S013-1",
+    "name": "인후의 덩이, 종류감",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "특정한 분위기에서 일어나는 식도 이물감을 이해하는 것이 환자에게 필요할 수 있음. 내재된 우울증, 불안감 또는 기타 행동적 장애가 환자에게 증상에 대한 불안감을 심어주는 것으로 보일 때 의사는 항우울제를 제공하거나 심리상담사 또는 정신과의사에게 환자를 의뢰할 수 있음."
+  },
+  {
+    "symptom_id": "S013-2",
+    "name": "인후의 덩이, 종류감",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "목 또는 인후 통증, 체중 감소, 갑작스러운 발생, 통증, 숨막힘 또는 삼킴 곤란(삼킴곤란), 음식 구토(역류), 근쇠약, 육안으로 보이거나 느낄 수 있는 목 종괴, 증상의 지속적인 악화",
+    "action_guide": "경고 징후가 있는 환자는 며칠에서 일주일 내에 병원을 방문해야 함. 경고 징후가 없는 환자는 의사에게 연락하십시오. 감각의 심한 정도 및 종류에 따라 의사는 증상이 어떻게 발달하는지 확인하도록 기다리게 하거나 모두에게 편한 시간을 제시함."
+  },
+  {
+    "symptom_id": "S014-1",
+    "name": "임신 초기 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "적게 자주 먹거나 마시기(하루 5~6회 소량 식사), 배고프기 전에 먹기, 맛이 강하지 않은 음식만 먹기(바나나, 쌀, 사과 소스, 버터를 바르지 않은 구운 빵), 잠자리 옆에 크래커를 두고 아침에 일어나기 전 1~2개를 먹기, 탄산 음료 마시기, 생강 섭취, 침술, 차멀미 밴드, 최면, 산전 비타민을 엽산이 함유된 어린이용 씹어 먹는 비타민으로 바꾸기"
+  },
+  {
+    "symptom_id": "S014-2",
+    "name": "임신 초기 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "지속되는 또는 악화되는 구토, 복통, 배뇨 감소, 땀흘림 감소, 갈증 증가, 구강 건조, 빠른 심박수, 기립 시 어지러움과 같은 탈수 징후, 열, 임신 24주 이상인 경우 태동 없음, 혼돈, 신체 한쪽의 쇠약 또는 무감각, 언어 또는 시력 문제, 또는 게으름",
+    "action_guide": "수액을 정맥 내로 투여, 필요한 보충제가 든 수액을 계속하여 투여, 경구, 주사 또는 좌약으로 항구토제 투여"
+  },
+  {
+    "symptom_id": "S014-3",
+    "name": "임신 초기 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "해당 질환 치료"
+  },
+  {
+    "symptom_id": "S015-1",
+    "name": "객혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "일반적으로 의사의 평가가 중요하지 않음. 증상, 병력과 다른 요소에 기반하여 얼마나 빨리 찾아야 하는지 여부를 판단할 수 있는 의사에게 문의할 수도 있음. 일반적으로 잠시 지연되는 것은 해로울 가능성이 낮음"
+  },
+  {
+    "symptom_id": "S015-2",
+    "name": "객혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "기침으로 뱉어낸 대량의 혈액, 숨가쁨, 상당한 실혈의 징후(쇠약, 서 있을 때 어지러움, 땀흘림과 빠른 심박수), 쇠약 또는 피로, 허리 통증, 기관절개술 받기",
+    "action_guide": "즉시 병원을 찾아야 함"
+  },
+  {
+    "symptom_id": "S015-3",
+    "name": "객혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S015-4",
+    "name": "객혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "자연적으로 멈추거나 출혈을 초래하는 장애를 성공적으로 치료한 경우 멈출 수 있음"
+  },
+  {
+    "symptom_id": "S015-5",
+    "name": "객혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "혈장, 응고 인자 또는 혈소판 수혈이 필요할 수 있음"
+  },
+  {
+    "symptom_id": "S015-6",
+    "name": "객혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "폐암 확인 필요"
+  },
+  {
+    "symptom_id": "S016-1",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-10",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-11",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-12",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-13",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-14",
+    "name": "소변 내 혈액",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "소변에 다량의 혈액, 발이나 다리의 부종과 함께 고혈압, 50세 이상",
+    "action_guide": "즉시 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S016-15",
+    "name": "소변 내 혈액",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "소변을 볼 수 없는 사람들 또는 심한 통증이 있는 경우",
+    "action_guide": "즉시 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S016-2",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-3",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-4",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-5",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-6",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-7",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-8",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S016-9",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사를 찾아 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S017-1",
+    "name": "위장 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S017-2",
+    "name": "위장 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "기절(실신), 중증 또는 장기간 땀흘림(발한), 빠른 심박수(신체 활동 없이 분당 100회 이상), 대변 또는 구토로 혈액이 1컵(250밀리리터) 이상 배출",
+    "action_guide": "출혈의 징후가 배변 후 화장지에 묻은 혈액이 아니라면 즉시 병원을 방문해야 함"
+  },
+  {
+    "symptom_id": "S017-3",
+    "name": "위장 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "빠른 맥박, 저혈압, 소변 흐름 감소, 감기에 걸림, 손과 발에 경련",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S017-4",
+    "name": "위장 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "혼돈, 지남력상실, 졸림",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S017-5",
+    "name": "위장 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": "쇠약, 쉽게 피로해짐, 창백해짐(창백), 흉통, 어지러움",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S018-1",
+    "name": "임신 초기 질 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "유산이 진행되고 있음을 의심하는 여성은 의사에게 연락해야 합니다. 때때로 가정에서 유산을 경험할 수 있으나, 통증 또는 출혈이 중증인 경우 또는 임신 조직이 완전히 배출되지 않는 경우, 여성이 안전하고 임신이 완전히 배출되도록 보장하기 위해 약물 또는 절차로 치료받아야 합니다."
+  },
+  {
+    "symptom_id": "S018-2",
+    "name": "임신 초기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "실신, 현기증 또는 빠른 심박수, 혈액, 또는 조직이나 혈전이 포함된 혈액의 과다 손실, 여성이 움직이거나 자세를 바꿀 때 악화되는 심각한 복통, 열, 오한 및 피가 섞인 고름이 든 질 분비물",
+    "action_guide": "경고 징후가 있는 여성은 즉시 의사의 진찰을 받아야 합니다. 경고 징후가 없는 여성도 48~72시간 내에 의사의 진단을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S019-1",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S019-2",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "임신 후기의 모든 질 출혈",
+    "action_guide": "임신 후기 동안 질 출혈이 있는 여성은 즉시 병원을 방문해야 합니다. 그러나 출혈이 이슬인 것 같으면 먼저 의사를 부를 수 있습니다. 의사는 출혈량과 기간 및 분만 징후의 존재에 따라 진찰받을 시기를 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S019-3",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "임신 후기의 모든 질 출혈",
+    "action_guide": "임신 후기 동안 질 출혈이 있는 여성은 즉시 병원을 방문해야 합니다. 그러나 출혈이 이슬인 것 같으면 먼저 의사를 부를 수 있습니다. 의사는 출혈량과 기간 및 분만 징후의 존재에 따라 진찰받을 시기를 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S019-4",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "임신 후기의 모든 질 출혈",
+    "action_guide": "임신 후기 동안 질 출혈이 있는 여성은 즉시 병원을 방문해야 합니다. 그러나 출혈이 이슬인 것 같으면 먼저 의사를 부를 수 있습니다. 의사는 출혈량과 기간 및 분만 징후의 존재에 따라 진찰받을 시기를 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S019-5",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "임신 후기의 모든 질 출혈",
+    "action_guide": "임신 후기 동안 질 출혈이 있는 여성은 즉시 병원을 방문해야 합니다. 그러나 출혈이 이슬인 것 같으면 먼저 의사를 부를 수 있습니다. 의사는 출혈량과 기간 및 분만 징후의 존재에 따라 진찰받을 시기를 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S020-1",
+    "name": "정액 안의 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분의 경우 심각한 문제가 아니며 자연히 해결되므로 즉시 의학적 평가를 거치지 않아도 됨. 35세 미만이고 음낭/서혜부 통증이나 배뇨 중 통증이 없다면 의사 진찰 불필요. 35세 이상은 몇 주 안에 의사 진찰 고려."
+  },
+  {
+    "symptom_id": "S020-2",
+    "name": "정액 안의 혈액",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "1개월 넘게 지속되는 출혈(최근 전립선 생검을 받지 않았다면), 음낭에서 만져 느낄 수 있는 덩어리, 주혈흡충증이 유행하는 곳에 여행을 감",
+    "action_guide": "즉시 의사 진찰 필요"
+  },
+  {
+    "symptom_id": "S021-1",
+    "name": "코피",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "똑바로 앉은 채 콧구멍을 10분 정도 쥐기. 멈추지 않으면 10분 더 반복. 그래도 안되면 의사 진료."
+  },
+  {
+    "symptom_id": "S021-2",
+    "name": "코피",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "과다출혈 징후(쇠약, 실신, 어지러움), 혈액 응고 방해 약물 사용, 출혈 장애 징후, 쉽게 멈추지 않는 출혈, 최근 잦은 코피",
+    "action_guide": "즉시 병원 방문"
+  },
+  {
+    "symptom_id": "S021-3",
+    "name": "코피",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "즉시 병원으로 가야 함"
+  },
+  {
+    "symptom_id": "S022-1",
+    "name": "타박상과 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "출혈이나 타박상이 빈번하게 발생하는 경우 의사의 진찰을 받아야 함. 증상과 기타 요인에 따라 환자를 얼마나 빨리 평가해야 하는지 결정. 일반적으로 간 질환이나 특정 약물 사용 등 출혈 위험 인자가 있거나 건강 상태가 좋지 않은 사람, 또는 출혈 장애 가족 병력이 있는 사람은 1~2일 내에 의사의 진찰을 받아야 함. 건강 상태가 좋지 않지만 몇 번의 코피가 저절로 멈췄거나 피부에 타박상이나 반점이 있는 사람은 시간이 될 때 의사를 찾아가면 됨"
+  },
+  {
+    "symptom_id": "S022-2",
+    "name": "타박상과 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "발한, 쇠약, 실신 또는 어지러움 또는 극심한 갈증 등 심각한 혈액 손실 증상, 임신 또는 최근 분만, 발열, 오한, 설사 또는 전신의 불편함 등 감염의 징후, 두통, 혼돈 또는 뇌 또는 신경계와 관련된 그 밖의 갑작스러운 증상",
+    "action_guide": "경고 징후가 있는 사람은 즉시 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S023-1",
+    "name": "근경련",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경련이 발생할 경우, 발생 근육에 스트레칭을 하면 경련이 완화될 수 있습니다. 마사지는 일부 유형의 경련을 일시적으로 완화할 수 있습니다. 식후 바로 운동하지 않음, 운동 또는 수면 전에 부드럽게 근육 스트레칭, 운동 후 충분한 양의 수분 섭취, 카페인 섭취 금지, 금연, 자극제 금지"
+  },
+  {
+    "symptom_id": "S023-2",
+    "name": "근경련",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "팔 또는 몸통 경련, 근육 수축, 다량의 알코올 섭취력, 거미 정맥, 붉은 손바닥과 같은 알코올 사용 장애 징후, 쇠약, 체액 손실(탈수증) 또는 이뇨제 사용 이후 발생하는 경련, 경련과 동시에 발생하지 않는 통증 또는 감각 상실",
+    "action_guide": "가능한 빨리 의사와 상의해야 합니다."
+  },
+  {
+    "symptom_id": "S024-1",
+    "name": "기립시의 현기증 또는 경미한 두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "대변 속의 혈액 또는 검은 타리 변(tarry stool), 걷기 곤란 및/또는 조절능력 불량 또는 균형 불량 등의 신경계 증상, 낙상 또는 기절(실신), 흉부 통증 또는 불편감",
+    "action_guide": "경고 증상이 있는 사람은 즉시 응급실 진료를 받아야 합니다."
+  },
+  {
+    "symptom_id": "S024-2",
+    "name": "기립시의 현기증 또는 경미한 두통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "앉았다가 다시 천천히 일어서면 금방 회복됩니다. 의사는 다른 증상들과 병력에 따라서 해당 환자를 만날지 여부와 얼마나 빨리 만날지를 결정할 것입니다."
+  },
+  {
+    "symptom_id": "S025-1",
+    "name": "기억 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기억 상실의 원인이 뇌의 정상적인 노화 관련 변화, 경도 인지 장애, 우울증 또는 조기 치매인지 여부를 결정"
+  },
+  {
+    "symptom_id": "S025-2",
+    "name": "기억 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "일상적인 활동을 하기 어려움, 의식 수준이 동요하고, 주의를 기울이기 어려움, 우울증 증상(식욕 상실, 자살 사고, 수면 장애, 언어 및 일반적인 활동 둔화 등), 주의를 기울일 수 없고, 혼란스럽고, 초점을 맞출 수 없고, 지남력이 없을 때, 우울감을 느끼고, 자신을 해치고 싶은 생각이 드는 경우, 두통, 언어 사용 또는 이해 어려움, 게으름, 시력 문제 또는 현기증 등 신경계에 문제가 있음을 암시하는 다른 증상",
+    "action_guide": "경고 징후가 있는 환자는 의사에게 보여야 함. 다음과 같은 경우, 즉시 의사에게 보여야 함"
+  },
+  {
+    "symptom_id": "S026-1",
+    "name": "기절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "넘어져서 상처를 입지 않는 한 심각하지 않은 경향이 있습니다."
+  },
+  {
+    "symptom_id": "S026-2",
+    "name": "기절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "운동 도중 기절, 짧은 시간 동안의 몇 가지 에피소드, 어떠한 예고 혹은 분명한 유발인자가 없는 돌발성 기절, 흉통, 심계항진, 또는 숨가쁨 등 가능한 심장 증상에 선행하는 또는 그 이후에 나오는 기절, 고령, 기절의 결과로서 상당한 상처, 예상하지 못한 돌연사, 운동 중 기절 또는 원인이 확인되지 않은 반복적인 기절이나 발작 사례의 가족력",
+    "action_guide": "즉시 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S026-3",
+    "name": "기절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S027-1",
+    "name": "무감각",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "무감각 환자는 불편감을 덜 느끼는 경향이 있으므로, 부상을 방지하기 위한 주의사항이 필요합니다. 감각이 없는 경우, 특히, 순환 장애가 있는 경우, 환자는 잘 맞는 양말과 신발을 신고, 신발을 신기 전에 자갈이나 이물질이 들어가 있지 않은지 확인해야 합니다. 환자는 붉어짐 등 발에 상처나 감염 징후가 있는지 매일 발을 검사해야 합니다."
+  },
+  {
+    "symptom_id": "S027-2",
+    "name": "무감각",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑자기 시작된(몇 분 또는 몇 시간 이내) 무감각, 무감각을 동반하고 갑자기 또는 빠르게(몇 시간 또는 며칠 이내) 시작된 쇠약, 신체 위 또는 아래로 급속히 퍼져 더 많은 신체 부위가 수반되는 무감각 또는 쇠약, 호흡 곤란, 허벅지, 엉덩이, 생식기 및 그 사이 영역(안장 부위), 방광 및 장 제어력 상실(실금) 무감각, 신체 특정 수준(가슴 중간 부분 이하 등) 이하에서 양측 무감각, 다리 또는 팔 전체 무감각, 얼굴 및 몸통 감각 상실",
+    "action_guide": "경고 징후가 있는 환자는 즉시 병원에 가야 합니다. 경고 징후가 없는 사람도 의사를 찾아야 합니다. 의사는 징후에 따라 얼마나 신속하게 병원에 와야 하는지 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S028-1",
+    "name": "불면증 및 주간 과다 졸림증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "수면을 개선하는 데 도움이 될만한 행동 변화를 시도 (1~2주 이내의 기간)"
+  },
+  {
+    "symptom_id": "S028-2",
+    "name": "불면증 및 주간 과다 졸림증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "운전 중일 때 혹은 잠재적 위험이 있는 다른 상황에서 졸음, 예고도 없이 자주 졸음, 수면 중 호흡 정지 또는 숨이 가쁘거나 막히는 현상을 동반한 각성, 수면 중 격렬하게 몸을 움직이거나 자신의 몸 또는 다른 동숙자의 몸을 상해, 몽유병, 끊임없이 변동하는(불안정한) 일종의 심폐 질환, 근육 쇠약 발작, 최근에 경험한 뇌졸중",
+    "action_guide": "머지않아 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S028-3",
+    "name": "불면증 및 주간 과다 졸림증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S029-1",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 다양하므로 의사 진찰 후 원인에 따른 치료 필요"
+  },
+  {
+    "symptom_id": "S029-2",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "새로운 두통 발병 또는 중증 두통, 목 통증, 걷기 곤란, 의식 손실(실신), 다른 신경학적 증상들(듣기, 보기, 말하기, 또는 삼키기 곤란이나 팔 또는 다리 움직임의 어려움과 같은)",
+    "action_guide": "즉시 병원으로 가야 함"
+  },
+  {
+    "symptom_id": "S029-3",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S029-4",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S029-5",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S030-1",
+    "name": "사지 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "아세트아미노펜과 같은 진통제와 비스테로이드계 소염제는 통증을 완화하는데 도움이 됩니다. 때때로 아편유사제도 필요합니다."
+  },
+  {
+    "symptom_id": "S030-2",
+    "name": "사지 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기저 질환을 치료"
+  },
+  {
+    "symptom_id": "S030-3",
+    "name": "사지 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스럽고 심한 통증, 만졌을 때 차갑거나 창백한 사지, 흉통, 발한, 숨가쁨, 또는 심계항진, 심각한 질병의 징후(예를 들면 혼란, 열, 또는 허탈 등), 갑자기 붓거나 수포가 생기거나 검은 반점이 생긴 사지, 최근의 수술, 장기 요양, 또는 다리 깁스와 같은 심부 정맥 혈전증의 위험 요인, 영향을 받은 사지의 쇠약 또는 마비와 같은 새로운 신경 결핍",
+    "action_guide": "즉시 의사를 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S031-1",
+    "name": "성인의 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기침이 멈추는지 또는 덜 심해지는지 며칠 동안 기다리면서 살펴보아야 합니다."
+  },
+  {
+    "symptom_id": "S031-2",
+    "name": "성인의 기침",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "숨가쁨, 객혈, 체중 감소, 1주일 이상 지속되는 열, 결핵에 노출, 인체 면역결핍 바이러스(HIV) 감염, 스테로이드 투약, 면역체계를 억제하는 다른 약물 투약, 고위험 성적 활동, 주사를 통한 불법 약물 사용",
+    "action_guide": "즉시 병원을 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S032-1",
+    "name": "심계항진",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분 심각한 심장 장애를 나타내는 것은 아님. 심장 질환이 없는 사람들에게도 발생 가능."
+  },
+  {
+    "symptom_id": "S032-2",
+    "name": "심계항진",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "현기증, 기절, 흉통, 흉부 압박, 숨가쁨, 분당 120회를 초과하거나 분당 45회 미만인 맥박수, 심장 질환, 돌연사 가족력, 재발성 기절, 설명되지 않는 발작 장애 가족력, 운동 중 의식 손실",
+    "action_guide": "즉시 응급실 방문, 응급 서비스 연락 필요"
+  },
+  {
+    "symptom_id": "S033-1",
+    "name": "쌕쌕거림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "흡입된 알부테롤과 같은 기관지확장제 사용"
+  },
+  {
+    "symptom_id": "S033-2",
+    "name": "쌕쌕거림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "고통스러운 호흡, 호흡 노력 약화, 저하된 의식 수준, 얼굴과 혀의 부기",
+    "action_guide": "앰뷸런스로 병원의 응급실로 이송"
+  },
+  {
+    "symptom_id": "S033-3",
+    "name": "쌕쌕거림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사에게 연락"
+  },
+  {
+    "symptom_id": "S033-4",
+    "name": "쌕쌕거림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기관지경 검사 및 제거"
+  },
+  {
+    "symptom_id": "S034-1",
+    "name": "유방통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "아세트아미노펜 혹은 비스테로이드 항염증약(NSAID) 복용, 고정되고 지지해 주는 브라 착용, 피임약 사용 또는 내분비 요법 중단, 영양 보충제 달맞이유 섭취"
+  },
+  {
+    "symptom_id": "S034-2",
+    "name": "유방통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "낭종에서 액체를 빼내는 치료"
+  },
+  {
+    "symptom_id": "S034-3",
+    "name": "유방통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 통증, 붉어짐, 부종",
+    "action_guide": "하루 또는 이틀 내에 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S034-4",
+    "name": "유방통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "몽우리, 함몰 유두 또는 피부의 특정 변화 존재",
+    "action_guide": "의사의 평가를 받아야 함"
+  },
+  {
+    "symptom_id": "S035-1",
+    "name": "협착음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 확인되고 환자의 호흡이 안정되면, 치료는 협착음을 유발한 장애에 초점을 맞춤"
+  },
+  {
+    "symptom_id": "S035-2",
+    "name": "협착음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "휴식을 취할 때 숨가쁨을 야기하는 협착음, 협착음과 중증의 숨가쁨",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S035-3",
+    "name": "협착음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S035-4",
+    "name": "협착음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "가벼운 활동만으로도 호흡 곤란과 숨을 쉴 때마다 거친 고음의 소리(협착음)",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S035-5",
+    "name": "협착음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "흡입한 이물질이 가능한 원인이고 환자가 병원 밖에 있는 경우, (교육을 받았다면) 다른 사람이 때때로 이물질을 배출하도록 도와줄 수 있음. 예를 들어, 성인의 경우, 다른 사람이 복부 밀어내기(이전에는 하임리히 구명법이라고 함)를 사용할 수 있음"
+  },
+  {
+    "symptom_id": "S036-1",
+    "name": "흉통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "오랜 시간 동안 흉통을 앓았던 사람들(일주일 이상)은 가능한 한 빨리 의사를 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S036-2",
+    "name": "흉통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "짓눌리는 또는 쥐어짜는 듯한 통증, 숨가쁨, 발한, 메스꺼움 또는 구토, 등, 목, 턱, 상복부, 또는 어깨나 팔 중 한 곳의 통증, 현기증 또는 기절, 빠르거나 불규칙한 심박동의 느낌",
+    "action_guide": "새로운 흉통이 있는 여성, 경고 징후가 있는 환자, 심장마비가 일어나고 있는 것으로 의심되는 환자의 경우 즉시 응급실 의사의 진찰을 받아야 합니다. 이러한 사람들은 최대한 빨리 응급 서비스(911)를 부르거나 응급실로 가야 합니다. 이러한 사람들은 병원에 직접 운전을 해서 가려고 해서는 안 됩니다."
+  },
+  {
+    "symptom_id": "S037-1",
+    "name": "소아 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "습윤 공기를 마시게 하고 수분을 보충"
+  },
+  {
+    "symptom_id": "S037-2",
+    "name": "소아 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S037-3",
+    "name": "소아 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S037-4",
+    "name": "소아 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S037-5",
+    "name": "소아 기침",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "입술 및/또는 피부가 푸른 빛을 띰(청색증), 소아가 숨을 들이 마실 때 크게 끼익하는 소리(협착음), 호흡 곤란, 아파 보임, 통제할 수 없는 연축, 반복적인 기침 후에 높은 음을 내면서 공기를 흡입(쌕쌕거리는 소리와 비슷)",
+    "action_guide": "즉시 의사 또는 응급실로 데려가야 함"
+  },
+  {
+    "symptom_id": "S038-1",
+    "name": "울음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "필요성을 충족 (수유, 트림, 기저귀 교체, 안아주기)"
+  },
+  {
+    "symptom_id": "S038-2",
+    "name": "울음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "스스로 진정하게끔 하기, 정해진 시간에 아기 침대에 눕혀 자고 일어나게 하기"
+  },
+  {
+    "symptom_id": "S038-3",
+    "name": "울음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "해당 장애 치료 (모발 지혈대 제거, 항생제 연고)"
+  },
+  {
+    "symptom_id": "S038-4",
+    "name": "울음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "호흡 곤란, 두부 또는 신체 다른 부분에 멍이나 부종, 신체 부분의 비정상적인 움직임이나 단일수축, 극심한 성마름, 지속적인 울음(특히 열 동반), 음낭 발적 및/또는 부종",
+    "action_guide": "즉시 의사에게 평가"
+  },
+  {
+    "symptom_id": "S038-5",
+    "name": "울음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S039-1",
+    "name": "귀 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "상태가 확인되기 전까지 귀에 물이 닿지 않도록 합니다."
+  },
+  {
+    "symptom_id": "S039-2",
+    "name": "귀 분비물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "최근의 큰 두부 손상, 모든 신경학적 증상(현기증 또는 보기, 소리내기, 삼키기 및/또는 말하기의 어려움), 감염된 귀의 청력 상실, 열, 귀 또는 귀 주변 부위의 붉어짐 및/또는 부기, 당뇨병 또는 약화된 면역체계",
+    "action_guide": "즉시 의사를 보러 가야 합니다."
+  },
+  {
+    "symptom_id": "S040-1",
+    "name": "귀 울림 또는 윙윙거림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "청력 상실 교정(보청기), 스트레스 및 정신 건강 문제 치료, 카페인 및 자극제 피하기, 배경 음악 활용, 이명 차폐기 사용, 전문 진료소 치료"
+  },
+  {
+    "symptom_id": "S040-2",
+    "name": "귀 울림 또는 윙윙거림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "한쪽 귀의 이명, 청력 상실, 균형 잡기 어려움, 현기증, 보기/소리내기/삼키기/말하기 어려움",
+    "action_guide": "즉시 의사 진찰"
+  },
+  {
+    "symptom_id": "S041-1",
+    "name": "귀통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "통증 완화 약물(비스테로이드성 항염증제 또는 아세트아미노펜)을 복용할 수 있습니다. 심각한 외이염의 경우 의사는 이도에서 고름이나 다른 분비물을 빨아내고 항생제 및/또는 코르티코스테로이드 점이제로 적신 심지를 넣을 수 있습니다."
+  },
+  {
+    "symptom_id": "S041-2",
+    "name": "귀통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "당뇨병, 약화된 면역체계, 또는 만성 신장 질환, 귀 뒤쪽의 붉어짐 및 부기, 이도 입구의 심한 부기, 귀에서 흘러나오는 체액, 열, 특히 다른 머리/목의 증상들(목쉼, 삼키기 어려움, 비폐색과 같은)을 가진 사람에서의 만성 통증, 수면 중에 깨어나게 하는 통증",
+    "action_guide": "경고 징후가 나타나거나 귀 분비물이 나타나는 경우, 증후가 만성 통증이기만 한 경우를 제외하고는 최대한 빨리 의사를 보러 가야 합니다. 급성 통증을 겪는 경우 며칠 이내에 의사를 보러 가야 합니다."
+  },
+  {
+    "symptom_id": "S042-1",
+    "name": "인후염",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "전형적인 감기 증상과 경증에서 보통의 불편함을 가진 사람들에게는 집에 머무른 채로 일반 의약품(OTC)을 사용하여 증상을 치료하도록 조언합니다."
+  },
+  {
+    "symptom_id": "S042-2",
+    "name": "인후염",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "숨을 들이쉴 때 끽 소리가 남(협착음), 호흡 곤란의 징후, 침흘림, 잘 들리지 않는 \"뜨거운 감자\" 목소리, 눈으로 확인 가능한 인후 뒤쪽의 돌출",
+    "action_guide": "경고 징후를 보이는 사람들은 즉시 병원으로 가야 합니다."
+  },
+  {
+    "symptom_id": "S043-1",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S043-10",
+    "name": "청력 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "한쪽 귀의 청력 상실, 모든 신경학적 이상(씹거나 말하기의 어려움, 얼굴의 무감각, 어지러움, 또는 균형 장애)",
+    "action_guide": "경고 징후가 있는 사람들은 즉시 의사를 보러 가야 함"
+  },
+  {
+    "symptom_id": "S043-2",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S043-3",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S043-4",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분의 소아들은 귀 감염이 해결된 후 3주에서 4주 내에 정상 청력을 되찾지만, 일부는 지속적인 청력 상실을 겪음. 지속적인 청력 상실은 재발성 귀 감염을 갖고 있는 소아들에게서 더 흔히 나타남"
+  },
+  {
+    "symptom_id": "S043-5",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S043-6",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S043-7",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S043-8",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S043-9",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S044-1",
+    "name": "청력 상실: 돌발성 난청",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "돌발성 청력 상실 자체가 경고 징후",
+    "action_guide": "돌발성 청력 상실을 경험하는 모든 사람들은 즉시 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S044-2",
+    "name": "청력 상실: 돌발성 난청",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "청력도 검사, 가돌리늄 조영증강 MRI 또는 CT 촬영, 원인으로 보이는 것들을 토대로 추가 검사 (예: 머리 손상 시 MRI, 성병 위험 시 HIV/매독 혈액 검사)"
+  },
+  {
+    "symptom_id": "S045-1",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "가정용 가습기(예: 쿨미스트 기화기 또는 가습기)와 비강 식염수 스프레이를 사용한 후, 많은 부작용을 야기하지 않는 항히스타민제(예: 세티리진 또는 펙소페나딘)를 필요할 때마다 사용하여 관리합니다."
+  },
+  {
+    "symptom_id": "S045-2",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "항히스타민제로 치료합니다. 코르티코스테로이드 점비 스프레이(예: 플루티카손)도 증상 완화에 도움이 됩니다."
+  },
+  {
+    "symptom_id": "S045-3",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S045-4",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S045-5",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "사용을 피해야 합니다."
+  },
+  {
+    "symptom_id": "S045-6",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S045-7",
+    "name": "코 충혈 분비물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "한쪽 코에서 분비물, 특히 고름이나 혈액이 섞여 있는 경우, 얼굴 통증, 압통, 또는 둘 다",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S045-8",
+    "name": "코 충혈 분비물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "환자가 코에 무언가를 넣었을지도 모른다고 간병인이 생각하는 경우",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S046-1",
+    "name": "코골기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "코골기를 줄이는 데 도움이 될 만한 일반 조치 시도"
+  },
+  {
+    "symptom_id": "S046-2",
+    "name": "코골기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "수면 중 무호흡 또는 숨막힘 에피소드(잠자리를 같이 하는 파트너가 목격), 아침에 잠에서 깰 때 두통 호소, 낮 시간에 졸음, 비만, 매우 시끄럽고 지속적인 코골기, 고혈압",
+    "action_guide": "검사를 위해 의사 진찰 필요"
+  },
+  {
+    "symptom_id": "S047-1",
+    "name": "후각 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인 치료 (부비동염의 경우 증기 흡입, 점비약, 항생제, 수술 등), 금연, 음식에 농축된 감미료 첨가, 연기 탐지기 설치, 음식 보관 및 가스 사용 주의"
+  },
+  {
+    "symptom_id": "S047-2",
+    "name": "후각 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "쇠약, 균형 장애, 보기, 말하기, 삼키기의 어려움과 같은 신경계 기능 이상 증상, 증상의 급성 출현",
+    "action_guide": "즉시 의사 방문"
+  },
+  {
+    "symptom_id": "S048-1",
+    "name": "급성 시력 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "눈의 통증, 시신경 부기, 두통",
+    "action_guide": "급성 시력 상실을 겪는 모든 사람은 안과의를 만나거나 즉시 응급실로 가야 함"
+  },
+  {
+    "symptom_id": "S048-2",
+    "name": "급성 시력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈 검사, 초음파, MRI, CT 스캔, ESR, C-반응성 단백질 수치 측정"
+  },
+  {
+    "symptom_id": "S048-3",
+    "name": "급성 시력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S049-1",
+    "name": "눈꺼풀 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "부기를 유발하는 장애 치료. 부기에 대한 특정 치료법은 없음"
+  },
+  {
+    "symptom_id": "S049-2",
+    "name": "눈꺼풀 부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "열, 시력 상실, 복시, 안구 돌출증",
+    "action_guide": "경고 징후가 있는 경우 즉시 의사 진찰. 통증 시작 시 1~2일 이내 의사 진찰"
+  },
+  {
+    "symptom_id": "S050-1",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "알레르기성 비염이 원인인 경우 의사는 점비 스테로이드를 투여할 수 있습니다. 건성안 또는 눈의 피부 자극이 원인인 경우 눈의 눈물 감소시키기 위해 때로는 인공 눈물의 사용을 권장합니다."
+  },
+  {
+    "symptom_id": "S050-2",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "근원이 되는 장애를 치료합니다."
+  },
+  {
+    "symptom_id": "S050-3",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S050-4",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "충혈된 눈물 어린 눈의 반복적이며 원인을 알 수 없는 증상의 발현, 누관 내 또는 근처의 단단한 종괴",
+    "action_guide": "경고 증상이 있는 사람은 일주일 정도 이내에 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S050-5",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S051-1",
+    "name": "눈의 충혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈의 충혈 자체는 치료가 필요 없습니다. 눈의 충혈은 대개 원인이 해결되면서 저절로 낫습니다(예를 들어, 감염성 결막염의 경우 며칠). 가려움이 특히 문제인 경우 차가운 수건 또는 인공 눈물을 적용할 수 있습니다."
+  },
+  {
+    "symptom_id": "S051-2",
+    "name": "눈의 충혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈의 충혈 자체는 치료가 필요 없습니다. 눈의 충혈은 대개 원인이 해결되면서 저절로 낫습니다(예를 들어, 결막하 출혈의 경우 2~3주). 가려움이 특히 문제인 경우 차가운 수건 또는 인공 눈물을 적용할 수 있습니다."
+  },
+  {
+    "symptom_id": "S051-3",
+    "name": "눈의 충혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S051-4",
+    "name": "눈의 충혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 급성 통증과 구토, 얼굴 특히 눈 주변 또는 코끝의 발진, 시야의 선명도(시력) 저하, 각막의 개방성 통증, 눈의 심부 통증",
+    "action_guide": "경고 증상 특히 심부 통증 또는 시력 변화가 있는 사람은 즉시 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S052-1",
+    "name": "눈의 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "통증이 경미하고 눈의 충혈 또는 경고 증상이 없는 사람은 불편함이 사라질 경우 만나는 것을 하루 또는 이틀 정도 늦출 수 있습니다."
+  },
+  {
+    "symptom_id": "S052-2",
+    "name": "눈의 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "구토, 빛 주변의 후광, 열, 오한, 피로, 또는 근육통, 시야의 선명도(시력) 저하, 한쪽 눈 또는 양쪽 눈의 돌출(안구 돌출증), 모든 방향으로 눈의 이동 불가(상/하/좌/우 등)",
+    "action_guide": "심각한 통증, 눈의 충혈, 경고 증상이 있는 사람은 즉시 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S053-1",
+    "name": "돌출 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "돌출 눈이 심한 건성안으로 이어지는 경우 각막(홍채와 동공 앞쪽의 투명층)을 보호하기 위해 인공 눈물을 사용한 윤활이 필요합니다. 때때로 윤활이 부족한 경우 눈 표면에 보호를 제공하거나 돌출을 감소시키는 수술이 필요할 수 있습니다."
+  },
+  {
+    "symptom_id": "S053-2",
+    "name": "돌출 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "감염의 경우 항생제를 투여합니다."
+  },
+  {
+    "symptom_id": "S053-3",
+    "name": "돌출 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "종양은 수술로 제거해야 합니다."
+  },
+  {
+    "symptom_id": "S053-4",
+    "name": "돌출 눈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "시력 상실 또는 시력 감소, 복시, 눈의 통증 또는 출혈, 두통, 열, 돌출 안구 박동, 신생아 또는 소아의 돌출 안구",
+    "action_guide": "경고 증상이 있는 사람은 돌출 눈이 발생한지 며칠 이내에 가능한 빨리 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S054-1",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대개 치료가 필요하지 않음"
+  },
+  {
+    "symptom_id": "S054-2",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": "눈의 심한 통증",
+    "action_guide": "원인이 되는 장애에 대한 치료가 필요할 수 있음"
+  },
+  {
+    "symptom_id": "S054-3",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "처진 눈꺼풀(안검하수), 복시, 시력 상실, 두통 또는 경부통, 눈의 통증, 최근에 발생한 두부 손상 또는 눈 손상",
+    "action_guide": "즉시 의사를 보러 가야 함"
+  },
+  {
+    "symptom_id": "S054-4",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "수축된 동공, 처진 눈꺼풀, 영향을 받는 눈 주위에 땀이 나지 않는 무한증",
+    "action_guide": "즉시 의사를 보러 가야 함"
+  },
+  {
+    "symptom_id": "S054-5",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 되는 약물 중단 고려"
+  },
+  {
+    "symptom_id": "S055-1",
+    "name": "복시",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "신경계 기능 장애(예: 무력증 또는 마비, 감각 상실, 말 또는 언어 문제, 삼킴 또는 걷기 곤란, 현기증, 두통, 실금 또는 둔함)를 나타낼 수 있는 복시 이외의 일체의 증상, 눈의 통증, 눈의 돌출(안구 돌출), 최근 눈 또는 머리에 부상 여부",
+    "action_guide": "복시를 가진 사람은 주로 응급실에서 의사가 즉시 평가해야 함. 복시가 있는 모든 사람은 복시가 해결되어도 며칠 이내의 편한 시간에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S055-2",
+    "name": "복시",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "복시가 나타났다 없어지기도 하고, 잠재적인 신경계 기능 장애의 다른 증상이 있다면, 중증근육무력증과 다발 경화증이 원인일 가능성이 있습니다."
+  },
+  {
+    "symptom_id": "S056-1",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분 유해하지 않음"
+  },
+  {
+    "symptom_id": "S056-2",
+    "name": "부유물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "부유물의 갑작스러운 증가, 반복되며 종종 번개 같은 섬광, 완전한 또는 부분적인 시력 상실, 최근의 눈 수술 또는 눈 손상, 눈의 통증",
+    "action_guide": "안과 의사를 즉시 만나야 함. 며칠 또는 몇 시간 만에 영구적인 시력 상실로 이어질 수 있음"
+  },
+  {
+    "symptom_id": "S056-3",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "약 20분 후에 주변 시야에서 사라지기 시작하여 마지막에는 시야의 중앙에서 사라짐. 섬광 선이 두통을 유발하지 않을 수 있음"
+  },
+  {
+    "symptom_id": "S056-4",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S056-5",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S056-6",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S057-1",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈 검사 및 교정 렌즈 처방"
+  },
+  {
+    "symptom_id": "S057-10",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "눈의 통증 (안구 운동 여부에 관계 없음)",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S057-11",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "특정 시야 영역의 상실 (시야 결함)",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S057-12",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "면역체계에 영향을 미치는 상태 (예: 화학요법 또는 다른 면역억제제 사용)",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S057-2",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈 검사 및 치료"
+  },
+  {
+    "symptom_id": "S057-3",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈 검사 및 수술 고려"
+  },
+  {
+    "symptom_id": "S057-4",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "혈당 관리 및 정기적인 안과 검진"
+  },
+  {
+    "symptom_id": "S057-5",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "안압 측정 및 치료"
+  },
+  {
+    "symptom_id": "S057-6",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "유전자 검사 및 전문의 상담"
+  },
+  {
+    "symptom_id": "S057-7",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "비타민 A 보충"
+  },
+  {
+    "symptom_id": "S057-8",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스러운 시력 변화",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S057-9",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "증상이 조금씩 시작되더라도 특히 한쪽 눈에서 심한 시력 저하",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S058-1",
+    "name": "가려움",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "가려움증이 건성 피부로 인해 발생하는 경우, 기본적인 피부 관리 변경이 종종 매우 효과적입니다. 덜 빈번하게 목욕하거나 씻기, 뜨거운 물 대신 미지근한 물 사용하기, 비누 적게 사용하기 등이 포함됩니다. 건성 피부를 과도하게 문지르는 것을 피하고, 목욕 또는 씻은 후 보습 크림을 발라야 합니다."
+  },
+  {
+    "symptom_id": "S058-2",
+    "name": "가려움",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "체중 감소, 피로, 야간 발한, 쇠약, 마비 또는 저림, 복통 또는 피부와 눈이 누렇게 변색되는 것(황달), 심한 갈증, 비정상적인 빈뇨, 체중 감소",
+    "action_guide": "체중 감소, 피로 또는 야간 발한이 있는 사람은 가능한 즉시 의사의 진찰을 받아야 합니다. 다른 경고 징후 또는 중증의 가려움증이 나타나는 경우, 아마도 즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S059-1",
+    "name": "기립시의 현기증 또는 경미한 두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "대변 속의 혈액 또는 검은 타리 변, 걷기 곤란 및/또는 조절능력 불량 또는 균형 불량 등의 신경계 증상, 낙상 또는 기절(실신), 흉부 통증 또는 불편감",
+    "action_guide": "경고 증상이 있는 사람은 즉시 응급실 진료를 받아야 합니다. 기립하는 동안 현기증 사례가 자주 있거나 또는 진행중인 다른 사람들은 가능한 한 빨리 의사에게 가야 합니다. 가끔씩 기립 시 현기증 사례가 발생하는 사람들은 의사에게 문의하여야 합니다."
+  },
+  {
+    "symptom_id": "S059-2",
+    "name": "기립시의 현기증 또는 경미한 두통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기립 시 현기증이 있거나 경미한 두통이 있는 사람들은 종종 앉았다가 다시 천천히 일어서면 금방 회복됩니다."
+  },
+  {
+    "symptom_id": "S060-1",
+    "name": "기억 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기억 상실의 원인이 뇌의 정상적인 노화 관련 변화, 경도 인지 장애, 우울증 또는 조기 치매인지 여부를 결정"
+  },
+  {
+    "symptom_id": "S060-2",
+    "name": "기억 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "일상적인 활동을 하기 어려움, 의식 수준이 동요하고, 주의를 기울이기 어려움, 우울증 증상(식욕 상실, 자살 사고, 수면 장애, 언어 및 일반적인 활동 둔화 등), 두통, 언어 사용 또는 이해 어려움, 게으름, 시력 문제 또는 현기증 등 신경계에 문제가 있음을 암시하는 다른 증상",
+    "action_guide": "즉시 의사에게 보여야 함"
+  },
+  {
+    "symptom_id": "S061-1",
+    "name": "기절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "넘어져서 상처를 입지 않는 한 심각하지 않은 경향이 있습니다."
+  },
+  {
+    "symptom_id": "S061-2",
+    "name": "기절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "운동 도중 기절, 짧은 시간 동안의 몇 가지 에피소드, 어떠한 예고 혹은 분명한 유발인자가 없는 돌발성 기절, 흉통, 심계항진, 또는 숨가쁨 등 가능한 심장 증상에 선행하는 또는 그 이후에 나오는 기절, 고령, 기절의 결과로서 상당한 상처, 예상하지 못한 돌연사, 운동 중 기절 또는 원인이 확인되지 않은 반복적인 기절이나 발작 사례의 가족력",
+    "action_guide": "즉시 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S061-3",
+    "name": "기절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S062-1",
+    "name": "두드러기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 분명하다면 원인을 피하고, 두드러기가 사라질 때까지 필수적이지 않은 의약품 복용을 중단. 찬물로 목욕/샤워, 피부 긁기 피하기, 헐렁한 옷 입기. 경구 복용 항히스타민제 사용."
+  },
+  {
+    "symptom_id": "S062-2",
+    "name": "두드러기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "얼굴, 입술, 인후, 혀, 기도의 부기(혈관 부종), 쌕쌕거림을 포함한 호흡 곤란, 두드러기의 색이 짙으면서 상처가 벌어지거나 48시간 이상 지속, 열, 종창성 림프절, 황달, 체중 감소, 기타 신체적 장애 증상",
+    "action_guide": "호흡 곤란 또는 쌕쌕거림이 보이는 경우, 인후가 막힌 듯한 느낌이 있는 경우 구급차를 부르고, 중증의 증상을 보일 경우, 쇠약함이나 어지러움이 점점 심해지거나 심한 열 또는 오한이 나타날 경우, 구토를 하거나 복통 또는 설사 증상이 있을 경우 가능한 한 빨리 응급실이나 진료실을 찾아야 함. 꿀벌 쏘임으로 두드러기 또는 부종이 유발되는 경우, 열, 관절통, 체중 감소, 종창성 림프절 또는 식은땀 등의 기타 증상이 동반될 경우, 원인에 노출되지 않았는데 두드러기가 재발하는 경우, 2일 이상 증상이 지속될 경우 의사의 진찰을 받아야 함."
+  },
+  {
+    "symptom_id": "S063-1",
+    "name": "두통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S063-10",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "조명 주위에서 적목 현상과 함께 후광이 보임",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-11",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "매우 높은 혈압",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-12",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "50세 이후에 시작되는 두통",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-2",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "감각 또는 시력의 변화, 갑작스런 쇠약, 협응 실조, 발작, 언어로 소통하거나 이해하기 어려움 또는 의식 수준의 변화(예: 졸음 또는 혼돈(뇌장애를 시사))",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-3",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "발열 증세 그리고 턱을 가슴 쪽으로 내리기가 고통스러울 뿐만 아니라 때로는 이러한 움직임조차 불가능할 정도의 경부경직",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-4",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "급성 중증 두통(벼락 두통)",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-5",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "관자놀이 부위의 압통(머리를 빗질할 때처럼 쑤시는 통증) 또는 음식 등을 씹을 때 느껴지는 하악통",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-6",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "암 또는 진행성 HIV 감염과 같이 면역체계를 약화시키는 질환",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-7",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "면역 체계를 억제하는 약물",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-8",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "열 또는 체중 감소와 같이 전신에 영향을 미치는 증상들",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S063-9",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "점진적으로 악화되는 두통(빈도 또는 중증도가 악화)",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S064-1",
+    "name": "딸꾹질",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분의 딸꾹질이 치료 여부에 상관 없이 사라집니다. 많은 민간요법이 단기간 딸꾹질을 치료하는 데 사용되었습니다. 대부분이 효능이 없었거나 아주 약간 효능이 있었습니다. 그러나 이러한 치료법이 일반적으로 안전하고 하기 쉽기 때문에 시도한다고 해서 해로울 것은 없습니다. 많은 방법들이 다음과 같이 혈액 내 이산화탄소 수치를 높이기 위한 방식을 포함합니다: 숨 참기, 종이 봉투(비닐봉지 안 됨) 안으로 깊이 호흡하기. 기타 방법은 미주 신경을 자극하기 위해 이루어지는데, 이는 뇌부터 위까지 작용합니다. 다음은 이 신경을 자극할 수 있는 방법입니다: 빠르게 물 마시기, 뻑뻑한 빵, 알갱이 형태의 설탕 또는 으깬 얼음 삼킴, 천천히 혀 당기기, 구역질 자극(손가락으로 인후 안으로 집어넣는 등), 눈을 부드럽게 문지르기"
+  },
+  {
+    "symptom_id": "S064-2",
+    "name": "딸꾹질",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "신경학적 증상(두통, 쇠약, 무감각, 균형 상실 등)",
+    "action_guide": "딸꾹질과 경고 징후가 있는 환자는 즉시 병원을 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S065-1",
+    "name": "부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "다리를 올리고 앉거나 식단에서 소금의 양을 줄이는 등의 조치"
+  },
+  {
+    "symptom_id": "S065-2",
+    "name": "부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스러운 발병, 한 쪽 다리에만 나타나는 부기, 상당한 통증 또는 압통, 숨가쁨, 객혈",
+    "action_guide": "즉시 의사 방문"
+  },
+  {
+    "symptom_id": "S066-1",
+    "name": "불면증 및 주간 과다 졸림증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "수면을 개선하는 데 도움이 될만한 행동 변화를 시도"
+  },
+  {
+    "symptom_id": "S066-2",
+    "name": "불면증 및 주간 과다 졸림증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "운전 중일 때 혹은 잠재적 위험이 있는 다른 상황에서 졸음, 예고도 없이 자주 졸음, 수면 중 호흡 정지 또는 숨이 가쁘거나 막히는 현상을 동반한 각성, 수면 중 격렬하게 몸을 움직이거나 자신의 몸 또는 다른 동숙자의 몸을 상해, 몽유병, 끊임없이 변동하는(불안정한) 일종의 심폐 질환, 근육 쇠약 발작, 최근에 경험한 뇌졸중",
+    "action_guide": "의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S067-1",
+    "name": "성인에서의 급성 열",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "열이 24~48시간 이상 지속되는 경우 병원 방문, 기타 증상에 관계 없이 발열이 3~4일 이상 지속되면 의사 진료 필요"
+  },
+  {
+    "symptom_id": "S067-2",
+    "name": "성인에서의 급성 열",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "혼돈 등 정신 기능의 변화, 두통, 뻣뻣한 목, 피하 출혈을 나타내는 피부 상의 평평하고 작은 자홍색 점(점상출혈), 저혈압, 빠른 심박수 또는 빠른 호흡, 숨가쁨(호흡곤란), 104°F(40°C)보다 높거나 95°F(35°C)보다 낮은 체온, 말라리아와 같은 심각한 감염성 질환이 흔한 지역으로의 최근 여행, 면역체계를 억제하는 약물(면역억제제)의 최근 사용",
+    "action_guide": "즉시 진료 필요"
+  },
+  {
+    "symptom_id": "S068-1",
+    "name": "성인의 황달",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사의 진찰 및 혈액 검사, 필요에 따라 추가 검사"
+  },
+  {
+    "symptom_id": "S068-2",
+    "name": "성인의 황달",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "중증의 복통 및 압통, 졸음, 초조 또는 혼동 등과 같은 정신 기능 이상, 대변의 혈액 또는 흑갈색의 타르형 대변, 구토 시의 혈액, 열, 아주 작은 반점이나 큰 얼룩점의 자줏빛 발진으로 진행될 수 있는 멍이나 출혈 경향",
+    "action_guide": "가능한 빨리 진찰"
+  },
+  {
+    "symptom_id": "S069-1",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S069-2",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "흡입기 사용"
+  },
+  {
+    "symptom_id": "S069-3",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S069-4",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S069-5",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S069-6",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S069-7",
+    "name": "숨가쁨",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "휴식 상태에서의 숨가쁨, 초조나 혼돈, 저하된 의식 수준, 흉부 불편, 심장이 두근거림, 체중 감소, 야간 발한",
+    "action_guide": "즉시 병원에 방문"
+  },
+  {
+    "symptom_id": "S070-1",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 다양하므로 의사 진찰 후 원인에 따른 치료 필요"
+  },
+  {
+    "symptom_id": "S070-2",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "새로운 두통 발병 또는 중증 두통, 목 통증, 걷기 곤란, 의식 손실(실신), 다른 신경학적 증상들(듣기, 보기, 말하기, 또는 삼키기 곤란이나 팔 또는 다리 움직임의 어려움과 같은)",
+    "action_guide": "증상이 심각하거나 1시간이 넘도록 지속되었으며 구토를 보이는 경우에는 즉시 병원으로 가야 함"
+  },
+  {
+    "symptom_id": "S070-3",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진찰 필요"
+  },
+  {
+    "symptom_id": "S070-4",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진찰 필요"
+  },
+  {
+    "symptom_id": "S070-5",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진찰 필요"
+  },
+  {
+    "symptom_id": "S070-6",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진찰 필요"
+  },
+  {
+    "symptom_id": "S070-7",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진찰 필요"
+  },
+  {
+    "symptom_id": "S070-8",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진찰 필요"
+  },
+  {
+    "symptom_id": "S071-1",
+    "name": "영아 및 소아의 열",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "건강한 소아의 경우에는 열이 나는 것이 불편해도 항상 치료가 필요하지는 않음. 열이 있는 영아는 보통 짜증을 내며 잠을 못 자거나 수유를 잘 안 할 수도 있음. 저연령 소아는 놀이에 흥미를 잃어버림."
+  },
+  {
+    "symptom_id": "S071-2",
+    "name": "영아 및 소아의 열",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "생후 3개월 미만 영아의 모든 발열, 졸음증 또는 무기력함, 아파 보임, 호흡 곤란, 피부의 출혈, 매우 작은 자주색의 점(점상 출혈) 또는 반점(자반)이 나타남, 영아 또는 유아의 지속적인 울음(주체할 수 없는 슬픔), 두통, 목 경직, 혼돈 또는 고연령 소아의 병용",
+    "action_guide": "열이 나는 소아에게 경고 징후가 있거나 생후 3개월 미만인 경우 즉시 의사의 평가를 받아야 함."
+  },
+  {
+    "symptom_id": "S072-1",
+    "name": "인격 및 행동 변화",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "급작스럽게 나타나는 증상, 자신이나 남을 해치려는 시도 또는 그렇게 하겠다는 위협, 혼동 또는 섬망, 열, 심한 두통, 걸음, 균형을 잡는데 어려움을 겪거나 말이나 시각적 문제 등 뇌의 기능 부전을 암시하는 증상, 최근의 두부 손상(수주 내)",
+    "action_guide": "가능한 빨리 의료전문가의 진찰을 받아야 합니다. 환자가 폭력적인 경우 경찰에 연락해야 할 수 있습니다."
+  },
+  {
+    "symptom_id": "S072-2",
+    "name": "인격 및 행동 변화",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-1",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "쇠약이 점진적으로 악화되는 경우(몇 달 또는 몇 년에 걸쳐), 환자는 다음 검진에서 의사와 이 문제에 대해 논의해야 합니다."
+  },
+  {
+    "symptom_id": "S073-10",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-11",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-12",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-13",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-14",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-15",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-16",
+    "name": "전신 쇠약",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "수일 또는 그보다 짧은 시간에 걸쳐 악화되는 쇠약, 호흡 곤란, 누워있는 상태에서 고개 들기 어려움, 씹기, 말하기 또는 삼키기 곤란, 도보 능력 상실",
+    "action_guide": "경고 징후를 보인 환자는 즉시 응급실로 향해야 합니다. 경고 징후를 동반한 쇠약은 증상이 급격히 악화되어 영구 장애 또는 치명적인 상태를 초래할 수 있으므로 즉각적인 치료가 매우 중요합니다."
+  },
+  {
+    "symptom_id": "S073-2",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-3",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-4",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-5",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-6",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "뇌졸중을 시사하는 증상(근쇠약의 일부 원인 및 특징 표 참조)이 있는 경우, 조기에 치료하는 것이 기능 및감각 상실을 제한하는 데 도움이 될 수 있으므로 즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S073-7",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-8",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S073-9",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S074-1",
+    "name": "종창성 림프절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "세균성 감염이 의심되는 경우 부기가 해결되는지 확인하기 위해 항생제를 시험적으로 투여합니다."
+  },
+  {
+    "symptom_id": "S074-2",
+    "name": "종창성 림프절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "지름이 약 2센티미터(거의 1인치)인 림프절, 고름이 나오는 림프절, 단단하게 느껴지는 림프절, HIV 감염의 위험 인자 또는 결핵 위험 인자, 열 또는 원인미상의 체중감소",
+    "action_guide": "경고 징후와 기타 증상에 기초해 얼마나 빨리 진찰이 필요한지를 결정할 것입니다."
+  },
+  {
+    "symptom_id": "S075-1",
+    "name": "타박상과 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S075-2",
+    "name": "타박상과 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "발한, 쇠약, 실신, 어지러움, 극심한 갈증, 임신, 최근 분만, 발열, 오한, 설사, 전신 불편함, 두통, 혼돈, 뇌 또는 신경계 관련 증상",
+    "action_guide": "즉시 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S076-1",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기저 질환 치료, 카페인이나 알코올 섭취량 줄이기, 취침 전 수분 섭취 줄이기"
+  },
+  {
+    "symptom_id": "S076-2",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기저 질환 치료, 커피나 알코올 섭취량을 줄여 과도한 배뇨를 줄일 수 있습니다. 야간에 소변을 보기 위해 잠에서 깨는 것(야뇨증)으로 곤란을 겪는 사람은 취침 전 수분섭취를 줄여야 할 수 있습니다."
+  },
+  {
+    "symptom_id": "S076-3",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "다리 허약",
+    "action_guide": "즉시 병원에 가야 함"
+  },
+  {
+    "symptom_id": "S076-4",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "발열과 요통",
+    "action_guide": "하루 안에 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S076-5",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "야간 발한, 기침, 체중 감소, 폭넓은 흡연력, 정신 건강 질환",
+    "action_guide": "하루 이틀 안에 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S076-6",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S077-1",
+    "name": "발기 장애",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진료를 통해 원인을 파악하고 치료 계획을 세움"
+  },
+  {
+    "symptom_id": "S077-2",
+    "name": "발기 장애",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "밤중에 또는 아침에 일어났을 때 발기가 없는 경우, 엉덩이와 음부 사이 그리고 그 주변의 무감각증, 신체 활동 동안에 일어나지만 쉬면 즉각 사라지는 고통스러운 다리 근육 경련",
+    "action_guide": "즉시 의사에게 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S078-1",
+    "name": "배뇨 시 통증 또는 작열감",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "항생제 치료 고려, 페나조피리딘 투여(심한 고통 시)"
+  },
+  {
+    "symptom_id": "S078-2",
+    "name": "배뇨 시 통증 또는 작열감",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "항생제 치료 고려, 성전파 감염 검사"
+  },
+  {
+    "symptom_id": "S078-3",
+    "name": "배뇨 시 통증 또는 작열감",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "열, 등 또는 옆구리 통증, 메스꺼움 및 구토, 최근 방광 카테터나 다른 장치를 삽입한 이력, 면역체계 장애, (아동기의 작은 감염을 비롯한) 반복 삽화, 알려진 요로 이상",
+    "action_guide": "의사 진찰"
+  },
+  {
+    "symptom_id": "S079-1",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "만성 요실금조차 때때로 성공적으로 치료할 수 있음. 요실금 증상이 골치 아프고 일상활동에 방해가 되거나 사회 활동 범위를 제한하면 의사를 만나야 함."
+  },
+  {
+    "symptom_id": "S079-2",
+    "name": "성인의 요실금",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "다리 힘의 약화 또는 다리나 서혜부 또는 항문 주변의 감각 상실",
+    "action_guide": "즉시 응급실로 가야 함"
+  },
+  {
+    "symptom_id": "S080-1",
+    "name": "소변 정체",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "소변 정체 유발 약물 중단, 전립선 수술/수축 약물 복용, 방광 경부 근육 이완 약물 복용, 정기적 자가 카테터 사용, 영구 카테터 유치, 수술"
+  },
+  {
+    "symptom_id": "S080-2",
+    "name": "소변 정체",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "소변을 전혀 볼 수 없음",
+    "action_guide": "요로 카테터 삽입"
+  },
+  {
+    "symptom_id": "S080-3",
+    "name": "소변 정체",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S080-4",
+    "name": "소변 정체",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S081-1",
+    "name": "소아의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "배뇨 일지에 시점, 빈도, 소변량을 기록하고, 배변 일지에 대변 빈도, 크기, 일관성을 기록하여 증상 추적"
+  },
+  {
+    "symptom_id": "S081-2",
+    "name": "소아의 요실금",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "성적 학대의 징후나 우려, 과도한 갈증, 과도한 소변량, 체중 감소, 6세 이상 소아에서 낮 시간 동안의 실금, 다리 신경 손상의 모든 징후, 척추 이상의 징후, 1년 이상 동안 문제가 없었던 소아에서 새로 발생한 실금",
+    "action_guide": "소아 치료 경험이 있는 의사에게 즉시 데려가야 함"
+  },
+  {
+    "symptom_id": "S082-1",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S082-2",
+    "name": "음낭 부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "고환 또는 고환 일부에 부착된 고형 덩어리, 복부에서 음낭으로 연장하여 밀어넣을 수 없는 풍선 모양 팽창",
+    "action_guide": "복부에서 음낭으로 뻗어가며 다시 밀어넣을 수 없는 풍선 모양 팽창이 있는 남성은 갇히게 되는(감금) 서혜부 탈장을 일으킬 수 있습니다. 이들은 즉시 의사를 찾아야 합니다. 통증이 없던 부종에서 갑자기 통증이 느껴져도 즉시 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S082-3",
+    "name": "음낭 부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "고환 또는 고환 일부에 부착된 고형 덩어리",
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S082-4",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S082-5",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S082-6",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S082-7",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S083-1",
+    "name": "음낭 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "즉시 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S083-2",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S083-3",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S083-4",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S083-5",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S083-6",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S083-7",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S083-8",
+    "name": "음낭 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "즉시 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S083-9",
+    "name": "음낭 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스럽고 심한 통증, 음낭이나 서혜부의 부기 (특히 눌리지 않는 부기 그리고 심한 통증이나 구토가 따르는 부기), 음낭 그리고 음경과 항문 사이 부위의 물집 그리고/또는 검은색 변색, 심한 열, 호흡곤란, 발한, 어지러움 또는 착란 등 심한 병의 증상",
+    "action_guide": "즉시 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S084-1",
+    "name": "지속적 발기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S084-2",
+    "name": "지속적 발기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S084-3",
+    "name": "지속적 발기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S084-4",
+    "name": "지속적 발기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S084-5",
+    "name": "지속적 발기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S084-6",
+    "name": "지속적 발기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S084-7",
+    "name": "지속적 발기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "중증의 통증, 10세 미만의 연령, 최근 음경이나 사타구니에 부상을 입음, 발열 및 야간 발한",
+    "action_guide": "즉시 의사를 찾아 치료를 받아야 합니다."
+  },
+  {
+    "symptom_id": "S085-1",
+    "name": "월경 주기 없음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S085-2",
+    "name": "월경 주기 없음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "사춘기 지연, 과도한 체모 증가, 목소리의 저음화, 근육 크기 증가와 같은 근육적 특징 발달, 시력 문제, 후각 손상, 자연적으로 발생하는 우윳빛 유두 분비물, 체중의 큰 변화",
+    "action_guide": "몇 주 내에 보건의료 전문가의 진찰 필요. 13세까지 사춘기 징후가 명백하지 않거나, 유방 발달 시작 후 3년까지 월경 시작 X, 정상 성장 및 2차 성징이 나타난 소녀에서 15세까지 월경 시작 X, 가임기 소녀/여성에서 월경 주기가 중단되고 3회 월경 주기 생략, 1년 동안 9회 미만의 월경 주기, 월경 주기 패턴의 갑작스러운 변화 발생 시"
+  },
+  {
+    "symptom_id": "S085-3",
+    "name": "월경 주기 없음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S085-4",
+    "name": "월경 주기 없음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S085-5",
+    "name": "월경 주기 없음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S085-6",
+    "name": "월경 주기 없음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S085-7",
+    "name": "월경 주기 없음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S086-1",
+    "name": "월경 중 경련",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "복부에 가하는 습한 열 또는 복부 마사지가 도움이 될 수 있습니다. 충분한 수면과 휴식을 취하고 정기적으로 운동하는 것이 또한 도움이 될 수 있습니다."
+  },
+  {
+    "symptom_id": "S086-2",
+    "name": "월경 중 경련",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기저 질환 치료 (예: 자궁경관 협착증의 경우 수술)"
+  },
+  {
+    "symptom_id": "S086-3",
+    "name": "월경 중 경련",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑자기 시작하거나 새로운 심한 통증, 지속적인 통증, 열, 질에서 나오는 고름 같은 분비물, 복부를 가볍게 만지거나 약간만 움직여도 악화되는 예리한 통증",
+    "action_guide": "가능한 즉시(보통 당일) 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S087-1",
+    "name": "유두 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "월경 한 주기 이상 유두 분비물이 지속되거나 의사의 진찰을 받으십시오."
+  },
+  {
+    "symptom_id": "S087-2",
+    "name": "유두 분비물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "몽우리가 느껴지는 현상과 동반할 때, 피가 섞였거나 분홍색일 때, 한쪽 유방에서만 나올 때, 유두를 짜거나 다른 방식으로 자극하지 않아도 분비물이 발생할 때(저절로 발생할 때), 40세 이상의 여성에게 발생할 때, 어린 남성이나 성인 남성에게 발생할 때",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S087-3",
+    "name": "유두 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S088-1",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "정기 검진을 통해 변화 여부 확인"
+  },
+  {
+    "symptom_id": "S088-2",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "부드럽고 지지해 주는 브라 착용, 아세트아미노펜 또는 비스테로이드성 항염증제 복용"
+  },
+  {
+    "symptom_id": "S088-3",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S088-4",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "배액(흡인)"
+  },
+  {
+    "symptom_id": "S088-5",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S088-6",
+    "name": "유방 몽우리",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "피부나 흉벽에 달라붙은 몽우리, 단단하고 질감이 불규칙한 몽우리, 몽우리 주변의 피부 패임, 유방 위의 비후해진 붉은 피부, 유두로부터의 피가 섞인 분비물, 피부나 흉벽에 들러붙었거나 움직이지 않는 겨드랑이의 림프절",
+    "action_guide": "즉시 의사의 평가를 받아야 함"
+  },
+  {
+    "symptom_id": "S089-1",
+    "name": "임신 초기 골반통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "심각하거나 지속적이지 않은 골반통은 우려할 만한 원인이 아님"
+  },
+  {
+    "symptom_id": "S089-2",
+    "name": "임신 초기 골반통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "질 출혈, 발열과 오한, 특히 배뇨 시 통증, 등 윗부분(옆구리) 통증 또는 고름이 든 질 분비물을 동반하는 경우, 움직이면 더 악화되는 심한 통증, 실신, 현기증 또는 빠른 심박수",
+    "action_guide": "경고 징후가 있는 여성은 즉시 의사의 진찰을 받아야 함. 경고 징후가 없는 여성이 배뇨 중 통증이나 작열감을 느끼거나 일상 생활에 지장을 주는 통증이 있는 경우 하루 이틀 내에 의사의 진찰을 받아 보아야 함."
+  },
+  {
+    "symptom_id": "S090-1",
+    "name": "임신 후반 부종",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "왼쪽으로 눕기, 다리를 높이 올리고 자주 쉬기, 탄력 있는 스타킹 신기, 다리 쪽의 혈류를 방해하지 않는 헐거운 옷 입기"
+  },
+  {
+    "symptom_id": "S090-2",
+    "name": "임신 후반 부종",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "손의 중등도 또는 중증 부종(손이 눈에 띄게 부어 보이고 또한/또는 손가락에서 반지를 뺄 수 없음), 신체 어느 부위에서든 갑자기 증가하는 부종, 한쪽 다리나 종아리에만 부종(특히 이 부위에 온기가 있거나 빨갛거나 아프거나 또는 열이 있는 경우), 140/90mm Hg 이상인 혈압, 중증의 지속적인 두통, 시력 변화, 혼돈, 중증 상복부 통증 또는 호흡 곤란, 흉통 또는 호흡 곤란",
+    "action_guide": "즉시 병원 방문"
+  },
+  {
+    "symptom_id": "S091-1",
+    "name": "목 덩이",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "덩이가 치료 없이 사라지는지 주의 깊게 관찰합니다."
+  },
+  {
+    "symptom_id": "S091-2",
+    "name": "목 덩이",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "매우 단단하거나 매우 큰 덩어리, 궤양 또는 구강 내 성장, 삼키기 어려움 및/또는 목쉼, 고령의 사람에게서 새로운 덩이 또는 덩이들",
+    "action_guide": "며칠 이상 덩이를 갖고 있는 사람은 의사를 보러 가야 합니다. 다른 증상(발열 등)이 있는 사람은 가능한 한 빨리 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S092-1",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S092-2",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S092-3",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S092-4",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S092-5",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "관절 부기, 온감, 발적, 새로운 피부 발진, 반점, 보라색 얼룩 또는 손발톱 오목, 구강, 코 또는 생식기 궤양, 흉통, 숨가쁨 또는 새로운 혹은 중증의 기침, 복통, 발열, 땀, 체중 감소 또는 오한, 눈 충혈 또는 통증",
+    "action_guide": "즉시 의사를 보러 가야 합니다."
+  },
+  {
+    "symptom_id": "S093-1",
+    "name": "관절통: 단일 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경고 징후가 없는 환자, 특히 통증의 원인이 알려져 있고 증상이 경증인 환자는 의사 진찰을 받기 전 며칠 기다려서 증상이 해결되는지 볼 수 있습니다."
+  },
+  {
+    "symptom_id": "S093-2",
+    "name": "관절통: 단일 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경고 징후가 없는 환자, 특히 통증의 원인이 알려져 있고 증상이 경증인 환자는 의사 진찰을 받기 전 며칠 기다려서 증상이 해결되는지 볼 수 있습니다."
+  },
+  {
+    "symptom_id": "S093-3",
+    "name": "관절통: 단일 관절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "급성 또는 중증의 통증, 관절 발적, 온감, 부기 또는 운동 제한, 열, 관절 부근의 찢어지거나 불그스름하거나 아픈 피부, 출혈 질환 존재, 항응고제 사용, 비정상 혈액 헤모글로빈, 관절통 이외의 급성 질환 징후, 성병 가능성",
+    "action_guide": "경고 징후가 있는 사람들은 즉시 의사를 보러 가야 합니다."
+  },
+  {
+    "symptom_id": "S094-1",
+    "name": "허리 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S094-2",
+    "name": "허리 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "방광 조절 (요실금) 또는 장 조절 (대변실금)을 상실",
+    "action_guide": "즉시 의사 진료"
+  },
+  {
+    "symptom_id": "S095-1",
+    "name": "목 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "아세트아미노펜 또는 NSAID와 같은 일반 의약품 진통제 복용, 얼음찜질 또는 열찜질"
+  },
+  {
+    "symptom_id": "S095-2",
+    "name": "목 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "팔다리의 힘 또는 감각 상실, 열, 야간 발한, 두통, 졸음증 또는 혼돈, 흉부 불편, 갑작스러운 발한 또는 호흡 곤란, 운동에 의해 유발되거나 운동하는 동안 악화되는 통증, 삼키기 어려움 또는 삼킬 때 통증",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S096-1",
+    "name": "다모증, 남성형 다모증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "미용적인 이유로 털을 최소화하거나 제거하고자 하지 않는 한 과다한 모발에 대한 치료는 필요하지 않음. 남성 호르몬 수치의 증가가 원인이라면 물리적 방법과 더불어 호르몬 치료가 필요함"
+  },
+  {
+    "symptom_id": "S096-2",
+    "name": "다모증, 남성형 다모증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "물리적 방법을 사용하여 모발을 제거"
+  },
+  {
+    "symptom_id": "S096-3",
+    "name": "다모증, 남성형 다모증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "저음, 근육 크기 증가, 대머리, 월경 주기가 불규칙하거나 결여되는 증상, 여드름 발생",
+    "action_guide": "의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S096-4",
+    "name": "다모증, 남성형 다모증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "복부 또는 골반의 성장",
+    "action_guide": "의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S097-1",
+    "name": "두드러기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 분명하다면 원인을 피하고, 두드러기가 사라질 때까지 필수적이지 않은 의약품 복용을 중단. 찬물로 목욕/샤워, 피부 긁기 피하기, 헐렁한 옷 입기. 경구 복용 항히스타민제 사용."
+  },
+  {
+    "symptom_id": "S097-2",
+    "name": "두드러기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "얼굴, 입술, 인후, 혀, 기도의 부기(혈관 부종), 쌕쌕거림을 포함한 호흡 곤란, 두드러기의 색이 짙으면서 상처가 벌어지거나 48시간 이상 지속, 열, 종창성 림프절, 황달, 체중 감소, 기타 신체적 장애 증상",
+    "action_guide": "호흡 곤란 또는 쌕쌕거림이 보이는 경우, 인후가 막힌 듯한 느낌이 있는 경우 구급차를 부르고, 중증의 증상을 보일 경우, 쇠약함이나 어지러움이 점점 심해지거나 심한 열 또는 오한이 나타날 경우, 구토를 하거나 복통 또는 설사 증상이 있을 경우 가능한 한 빨리 응급실이나 진료실을 찾아야 함. 꿀벌 쏘임으로 두드러기 또는 부종이 유발되는 경우, 열, 관절통, 체중 감소, 종창성 림프절 또는 식은땀 등의 기타 증상이 동반될 경우, 원인에 노출되지 않았는데 두드러기가 재발하는 경우, 2일 이상 증상이 지속될 경우 의사의 진찰을 받아야 함."
+  },
+  {
+    "symptom_id": "S098-1",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-10",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-11",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-2",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-3",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-4",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-5",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-6",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-7",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-8",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S098-9",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "피부가 벗겨지고 건조해지며 점차 그 범위가 넓어짐, 두피 표면에서 끊어져 검은 점처럼 보일 수 있음",
+    "action_guide": "특히 감염이 치료되지 않으면 영구적인 탈모가 발생할 수 있음"
+  },
+  {
+    "symptom_id": "S099-1",
+    "name": "목 덩이",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "덩이가 치료 없이 사라지는지 주의 깊게 관찰합니다."
+  },
+  {
+    "symptom_id": "S099-2",
+    "name": "목 덩이",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "매우 단단하거나 매우 큰 덩어리, 궤양 또는 구강 내 성장, 삼키기 어려움 및/또는 목쉼, 고령의 사람에게서 새로운 덩이 또는 덩이들",
+    "action_guide": "며칠 이상 덩이를 갖고 있는 사람, 특히 경고 징후를 보이는 사람은 의사를 보러 가야 합니다. 다른 증상(발열 등)이 있는 사람은 가능한 한 빨리 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S100-1",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S100-2",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S100-3",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S100-4",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S100-5",
+    "name": "관절통: 다수 관절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "관절 부기, 온감, 발적, 새로운 피부 발진, 반점, 보라색 얼룩 또는 손발톱 오목, 구강, 코 또는 생식기 궤양, 흉통, 숨가쁨 또는 새로운 혹은 중증의 기침, 복통, 발열, 땀, 체중 감소 또는 오한, 눈 충혈 또는 통증",
+    "action_guide": "즉시 의사를 보러 가야 합니다."
+  },
+  {
+    "symptom_id": "S101-1",
+    "name": "관절통: 단일 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경고 징후가 없는 환자, 특히 통증의 원인이 알려져 있고 증상이 경증인 환자는 의사 진찰을 받기 전 며칠 기다려서 증상이 해결되는지 볼 수 있습니다."
+  },
+  {
+    "symptom_id": "S101-2",
+    "name": "관절통: 단일 관절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경고 징후가 없는 환자, 특히 통증의 원인이 알려져 있고 증상이 경증인 환자는 의사 진찰을 받기 전 며칠 기다려서 증상이 해결되는지 볼 수 있습니다."
+  },
+  {
+    "symptom_id": "S101-3",
+    "name": "관절통: 단일 관절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "급성 또는 중증의 통증, 관절 발적, 온감, 부기 또는 운동 제한, 열, 관절 부근의 찢어지거나 불그스름하거나 아픈 피부, 출혈 질환 존재, 항응고제 사용, 비정상 혈액 헤모글로빈, 관절통 이외의 급성 질환 징후, 성병 가능성",
+    "action_guide": "경고 징후가 있는 사람들은 즉시 의사를 보러 가야 합니다."
+  },
+  {
+    "symptom_id": "S102-1",
+    "name": "허리 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S102-2",
+    "name": "허리 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "방광 조절 (요실금) 또는 장 조절 (대변실금)을 상실",
+    "action_guide": "즉시 의사 진료"
+  },
+  {
+    "symptom_id": "S103-1",
+    "name": "귀 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "상태가 확인되기 전까지 귀에 물이 닿지 않도록 합니다."
+  },
+  {
+    "symptom_id": "S103-2",
+    "name": "귀 분비물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "최근의 큰 두부 손상, 모든 신경학적 증상(현기증 또는 보기, 소리내기, 삼키기 및/또는 말하기의 어려움), 감염된 귀의 청력 상실, 열, 귀 또는 귀 주변 부위의 붉어짐 및/또는 부기, 당뇨병 또는 약화된 면역체계",
+    "action_guide": "즉시 의사를 보러 가야 합니다."
+  },
+  {
+    "symptom_id": "S104-1",
+    "name": "귀 울림 또는 윙윙거림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "청력 상실 교정 (보청기 사용), 스트레스 및 정신 건강 문제 치료, 카페인 및 자극제 피하기, 배경 음악 활용, 이명 차폐기 사용, 이명 전문 클리닉 치료"
+  },
+  {
+    "symptom_id": "S104-2",
+    "name": "귀 울림 또는 윙윙거림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "한쪽 귀의 이명, 청력 상실을 제외한 모든 신경학적 증상 (특히 균형 잡기나 걷기의 어려움, 현기증, 보기, 소리내기, 삼키기 및/또는 말하기의 어려움)",
+    "action_guide": "즉시 의사 진찰"
+  },
+  {
+    "symptom_id": "S104-3",
+    "name": "귀 울림 또는 윙윙거림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사에게 연락하여 진찰 필요"
+  },
+  {
+    "symptom_id": "S104-4",
+    "name": "귀 울림 또는 윙윙거림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인 불명인 경우가 많으나, 종양, 두부 손상, 다발 경화증 등 확인 필요"
+  },
+  {
+    "symptom_id": "S105-1",
+    "name": "귀통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "통증 완화 약물(비스테로이드성 항염증제 또는 아세트아미노펜)을 복용할 수 있습니다. 심각한 외이염의 경우 의사는 이도에서 고름이나 다른 분비물을 빨아내고 항생제 및/또는 코르티코스테로이드 점이제로 적신 심지를 넣을 수 있습니다."
+  },
+  {
+    "symptom_id": "S105-2",
+    "name": "귀통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "당뇨병, 약화된 면역체계, 또는 만성 신장 질환, 귀 뒤쪽의 붉어짐 및 부기, 이도 입구의 심한 부기, 귀에서 흘러나오는 체액, 열, 특히 다른 머리/목의 증상들(목쉼, 삼키기 어려움, 비폐색과 같은)을 가진 사람에서의 만성 통증, 수면 중에 깨어나게 하는 통증",
+    "action_guide": "경고 징후가 나타나거나 귀 분비물이 있는 경우, 만성 통증이 아니라면 최대한 빨리 의사를 만나야 합니다. 급성 통증의 경우 며칠 내에 의사를 만나야 하며, 통증이 심하면 더 빨리 진료를 받아야 합니다."
+  },
+  {
+    "symptom_id": "S106-1",
+    "name": "인후염",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "전형적인 감기 증상과 경증에서 보통의 불편함을 가진 사람들에게는 집에 머무른 채로 일반 의약품(OTC)을 사용하여 증상을 치료하도록 조언합니다."
+  },
+  {
+    "symptom_id": "S106-2",
+    "name": "인후염",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "숨을 들이쉴 때 끽 소리가 남(협착음), 호흡 곤란의 징후, 침흘림, 잘 들리지 않는 \"뜨거운 감자\" 목소리, 눈으로 확인 가능한 인후 뒤쪽의 돌출",
+    "action_guide": "경고 징후를 보이는 사람들은 즉시 병원으로 가야 합니다."
+  },
+  {
+    "symptom_id": "S107-1",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S107-2",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "85데시벨(db)보다 시끄러운 소음에 충분히 길게 지속해서 노출될 경우 청력 상실이 나타날 수 있습니다."
+  },
+  {
+    "symptom_id": "S107-3",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S107-4",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분의 소아들은 귀 감염이 해결된 후 3주에서 4주 내에 정상 청력을 되찾지만, 일부는 지속적인 청력 상실을 겪습니다."
+  },
+  {
+    "symptom_id": "S107-5",
+    "name": "청력 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S107-6",
+    "name": "청력 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "한쪽 귀의 청력 상실, 모든 신경학적 이상(씹거나 말하기의 어려움, 얼굴의 무감각, 어지러움, 또는 균형 장애)",
+    "action_guide": "경고 징후가 있는 사람들은 즉시 의사를 보러 가야 합니다."
+  },
+  {
+    "symptom_id": "S108-1",
+    "name": "청력 상실: 돌발성 난청",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 알려지지 않은 경우, 코르티코스테로이드 투여 시도. 단순 헤르페스에 효과적인 항바이러스제 처방 가능"
+  },
+  {
+    "symptom_id": "S108-2",
+    "name": "청력 상실: 돌발성 난청",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "돌발성 청력 상실 자체가 경고 징후",
+    "action_guide": "즉시 의사의 진찰을 받아야 함. 청력 상실 이외의 다른 신경계 기능이상 증상이 존재하는 경우, 청력 상실은 신경 또는 뇌 기능이상의 증상일 수 있음"
+  },
+  {
+    "symptom_id": "S109-1",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "가정용 가습기(예: 쿨미스트 기화기 또는 가습기)와 비강 식염수 스프레이를 사용한 후, 많은 부작용을 야기하지 않는 항히스타민제(예: 세티리진 또는 펙소페나딘)를 필요할 때마다 사용하여 관리합니다."
+  },
+  {
+    "symptom_id": "S109-2",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "항히스타민제로 치료합니다. 코르티코스테로이드 점비 스프레이(예: 플루티카손)도 증상 완화에 도움이 됩니다."
+  },
+  {
+    "symptom_id": "S109-3",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S109-4",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S109-5",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "충혈 완화제는 일시적으로 완화할 수 있더라도 사용을 피해야 합니다."
+  },
+  {
+    "symptom_id": "S109-6",
+    "name": "코 충혈 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S109-7",
+    "name": "코 충혈 분비물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "한쪽 코에서 분비물, 특히 고름이나 혈액이 섞여 있는 경우, 얼굴 통증, 압통, 또는 둘 다",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S109-8",
+    "name": "코 충혈 분비물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S110-1",
+    "name": "코골기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "코골기를 줄이는 데 도움이 될만한 일반 조치들을 시도"
+  },
+  {
+    "symptom_id": "S110-2",
+    "name": "코골기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "수면 중 무호흡 또는 숨막힘 에피소드(잠자리를 같이 하는 파트너가 목격), 아침에 잠에서 깰 때 두통 호소, 낮 시간에 졸음, 비만, 매우 시끄럽고 지속적인 코골기, 고혈압",
+    "action_guide": "검사를 받을 필요가 있기 때문에 머지않아 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S111-1",
+    "name": "후각 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인 치료 (부비동염의 경우 증기 흡입, 점비약, 항생제, 수술 등), 금연, 음식에 농축된 감미료 첨가, 연기 탐지기 설치, 음식 보관 및 가스 사용 주의"
+  },
+  {
+    "symptom_id": "S111-2",
+    "name": "후각 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "쇠약, 균형 장애, 보기, 말하기, 삼키기의 어려움과 같은 신경계 기능 이상 증상, 증상의 급성 출현",
+    "action_guide": "즉시 의사 방문"
+  },
+  {
+    "symptom_id": "S112-1",
+    "name": "근경련",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경련이 발생할 경우, 발생 근육에 스트레칭을 하면 경련이 완화될 수 있습니다. 마사지는 일부 유형의 경련을 일시적으로 완화할 수 있습니다. 경련 재발을 방지하기 위해 처방된 약물 또는 보충제(칼슘 보충제, 탄산마그네슘 보충제, 디아제팜과 같은 벤조다이아제핀 포함)의 대부분은 효과가 있는 것으로 밝혀지지 않았으며, 부작용이 있을 수 있습니다. 퀴닌은 이상 심장 박동, 구토, 시력 문제, 이명, 두통과 같은 부작용으로 인해 근경련에 대한 치료로 더 이상 권장되지 않습니다."
+  },
+  {
+    "symptom_id": "S112-2",
+    "name": "근경련",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "팔 또는 몸통 경련, 근육 수축, 다량의 알코올 섭취력, 거미 정맥, 붉은 손바닥과 같은 알코올 사용 장애 징후, 쇠약, 체액 손실(탈수증) 또는 이뇨제 사용 이후 발생하는 경련, 경련과 동시에 발생하지 않는 통증 또는 감각 상실",
+    "action_guide": "알코올 사용 장애, 갑작스러운 쇠약 또는 감각 상실, 심각한 증상이 있는 경우, 또는 체액 손실(예: 구토, 설사, 과도한 땀흘림)이 있는 경우에는 가능한 빨리 의사와 상의해야 합니다."
+  },
+  {
+    "symptom_id": "S113-1",
+    "name": "기립시의 현기증 또는 경미한 두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "대변 속의 혈액 또는 검은 타리 변, 걷기 곤란 및/또는 조절능력 불량 또는 균형 불량 등의 신경계 증상, 낙상 또는 기절(실신), 흉부 통증 또는 불편감",
+    "action_guide": "경고 증상이 있는 사람은 즉시 응급실 진료를 받아야 합니다. 기립하는 동안 현기증 사례가 자주 있거나 또는 진행중인 다른 사람들은 가능한 한 빨리 의사에게 가야 합니다. 가끔씩 기립 시 현기증 사례가 발생하는 사람들은 의사에게 문의하여야 합니다."
+  },
+  {
+    "symptom_id": "S113-2",
+    "name": "기립시의 현기증 또는 경미한 두통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기립 시 현기증이 있거나 경미한 두통이 있는 사람들은 종종 앉았다가 다시 천천히 일어서면 금방 회복됩니다."
+  },
+  {
+    "symptom_id": "S114-1",
+    "name": "기억 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기억 상실의 원인이 뇌의 정상적인 노화 관련 변화, 경도 인지 장애, 우울증 또는 조기 치매인지 여부를 결정"
+  },
+  {
+    "symptom_id": "S114-2",
+    "name": "기억 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "일상적인 활동을 하기 어려움, 의식 수준이 동요하고, 주의를 기울이기 어려움, 우울증 증상(식욕 상실, 자살 사고, 수면 장애, 언어 및 일반적인 활동 둔화 등), 두통, 언어 사용 또는 이해 어려움, 게으름, 시력 문제 또는 현기증 등 신경계에 문제가 있음을 암시하는 다른 증상",
+    "action_guide": "즉시 의사에게 보여야 함"
+  },
+  {
+    "symptom_id": "S115-1",
+    "name": "기절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "넘어져서 상처를 입지 않는 한 심각하지 않은 경향이 있습니다."
+  },
+  {
+    "symptom_id": "S115-2",
+    "name": "기절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "운동 도중 기절, 짧은 시간 동안의 몇 가지 에피소드, 어떠한 예고 혹은 분명한 유발인자가 없는 돌발성 기절, 흉통, 심계항진, 또는 숨가쁨 등 가능한 심장 증상에 선행하는 또는 그 이후에 나오는 기절, 고령, 기절의 결과로서 상당한 상처, 예상하지 못한 돌연사, 운동 중 기절 또는 원인이 확인되지 않은 반복적인 기절이나 발작 사례의 가족력",
+    "action_guide": "즉시 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S115-3",
+    "name": "기절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S116-1",
+    "name": "무감각",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "무감각 환자는 불편감을 덜 느끼는 경향이 있으므로, 부상을 방지하기 위한 주의사항이 필요합니다. 감각이 없는 경우, 특히, 순환 장애가 있는 경우, 환자는 잘 맞는 양말과 신발을 신고, 신발을 신기 전에 자갈이나 이물질이 들어가 있지 않은지 확인해야 합니다. 환자는 붉어짐 등 발에 상처나 감염 징후가 있는지 매일 발을 검사해야 합니다."
+  },
+  {
+    "symptom_id": "S116-2",
+    "name": "무감각",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑자기 시작된(몇 분 또는 몇 시간 이내) 무감각, 무감각을 동반하고 갑자기 또는 빠르게(몇 시간 또는 며칠 이내) 시작된 쇠약, 신체 위 또는 아래로 급속히 퍼져 더 많은 신체 부위가 수반되는 무감각 또는 쇠약, 호흡 곤란, 허벅지, 엉덩이, 생식기 및 그 사이 영역(안장 부위), 방광 및 장 제어력 상실(실금) 무감각, 신체 특정 수준(가슴 중간 부분 이하 등) 이하에서 양측 무감각, 다리 또는 팔 전체 무감각, 얼굴 및 몸통 감각 상실",
+    "action_guide": "경고 징후가 있는 환자는 즉시 병원에 가야 합니다. 경고 징후가 없는 사람도 의사를 찾아야 합니다. 의사는 징후에 따라 얼마나 신속하게 병원에 와야 하는지 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S117-1",
+    "name": "불면증 및 주간 과다 졸림증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "수면을 개선하는 데 도움이 될만한 행동 변화를 시도"
+  },
+  {
+    "symptom_id": "S117-2",
+    "name": "불면증 및 주간 과다 졸림증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "운전 중일 때 혹은 잠재적 위험이 있는 다른 상황에서 졸음, 예고도 없이 자주 졸음, 수면 중 호흡 정지 또는 숨이 가쁘거나 막히는 현상을 동반한 각성, 수면 중 격렬하게 몸을 움직이거나 자신의 몸 또는 다른 동숙자의 몸을 상해, 몽유병, 끊임없이 변동하는(불안정한) 일종의 심폐 질환, 근육 쇠약 발작(허탈발작), 최근에 경험한 뇌졸중",
+    "action_guide": "의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S118-1",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 심각한 장애에서 기인하는 경우가 적으므로, 증상이 사라지는지 지켜볼 수 있음. 필요시 의사 진찰."
+  },
+  {
+    "symptom_id": "S118-2",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진찰"
+  },
+  {
+    "symptom_id": "S118-3",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "새로운 두통 발병 또는 중증 두통, 목통증, 걷기 곤란, 의식 손실(실신), 다른 신경학적 증상들(듣기, 보기, 말하기, 또는 삼키기 곤란이나 팔 또는 다리 움직임의 어려움과 같은)",
+    "action_guide": "즉시 병원으로 가야 함"
+  },
+  {
+    "symptom_id": "S118-4",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진찰"
+  },
+  {
+    "symptom_id": "S119-1",
+    "name": "급성 시력 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "안과의를 만나거나 즉시 응급실로 가야 함"
+  },
+  {
+    "symptom_id": "S119-2",
+    "name": "급성 시력 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "안과의를 만나거나 즉시 응급실로 가야 함"
+  },
+  {
+    "symptom_id": "S119-3",
+    "name": "급성 시력 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "안과의를 만나거나 즉시 응급실로 가야 함"
+  },
+  {
+    "symptom_id": "S120-1",
+    "name": "눈꺼풀 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "부기를 유발하는 장애 치료. 부기에 대한 특정 치료법은 없음"
+  },
+  {
+    "symptom_id": "S120-2",
+    "name": "눈꺼풀 부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "열, 시력 상실, 복시, 안구 돌출증",
+    "action_guide": "경고 징후가 있는 경우 즉시 의사 진찰. 통증 시작 시 1~2일 이내 의사 진찰"
+  },
+  {
+    "symptom_id": "S121-1",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "근원이 되는 장애를 치료 (예: 알레르기성 비염의 경우 점비 스테로이드 투여)"
+  },
+  {
+    "symptom_id": "S121-2",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "인공 눈물 사용 권장"
+  },
+  {
+    "symptom_id": "S121-3",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "수술을 통해 새로운 눈물 배액 통로를 만들 수 있음"
+  },
+  {
+    "symptom_id": "S121-4",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S121-5",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "충혈된 눈물 어린 눈의 반복적이며 원인을 알 수 없는 증상의 발현",
+    "action_guide": "일주일 정도 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S121-6",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "누관 내 또는 근처의 단단한 종괴",
+    "action_guide": "일주일 정도 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S121-7",
+    "name": "눈물이 어린 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S122-1",
+    "name": "눈의 충혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈의 충혈 자체는 치료가 필요 없습니다. 눈의 충혈은 대개 원인이 해결되면서 저절로 낫습니다(예를 들어, 감염성 결막염의 경우 며칠, 결막하 출혈의 경우 2~3주). 가려움이 특히 문제인 경우 차가운 수건 또는 인공 눈물을 적용할 수 있습니다."
+  },
+  {
+    "symptom_id": "S122-10",
+    "name": "눈의 충혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 급성 통증과 구토, 얼굴 특히 눈 주변 또는 코끝의 발진, 시야의 선명도(시력) 저하, 각막의 개방성 통증, 눈의 심부 통증",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S122-2",
+    "name": "눈의 충혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈의 충혈 자체는 치료가 필요 없습니다. 눈의 충혈은 대개 원인이 해결되면서 저절로 낫습니다(예를 들어, 감염성 결막염의 경우 며칠, 결막하 출혈의 경우 2~3주). 가려움이 특히 문제인 경우 차가운 수건 또는 인공 눈물을 적용할 수 있습니다."
+  },
+  {
+    "symptom_id": "S122-3",
+    "name": "눈의 충혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈의 충혈 자체는 치료가 필요 없습니다. 눈의 충혈은 대개 원인이 해결되면서 저절로 낫습니다(예를 들어, 감염성 결막염의 경우 며칠, 결막하 출혈의 경우 2~3주). 가려움이 특히 문제인 경우 차가운 수건 또는 인공 눈물을 적용할 수 있습니다."
+  },
+  {
+    "symptom_id": "S122-4",
+    "name": "눈의 충혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈의 충혈 자체는 치료가 필요 없습니다. 눈의 충혈은 대개 원인이 해결되면서 저절로 낫습니다(예를 들어, 감염성 결막염의 경우 며칠, 결막하 출혈의 경우 2~3주). 가려움이 특히 문제인 경우 차가운 수건 또는 인공 눈물을 적용할 수 있습니다."
+  },
+  {
+    "symptom_id": "S122-5",
+    "name": "눈의 충혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 급성 통증과 구토, 얼굴 특히 눈 주변 또는 코끝의 발진, 시야의 선명도(시력) 저하, 각막의 개방성 통증, 눈의 심부 통증",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S122-6",
+    "name": "눈의 충혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 급성 통증과 구토, 얼굴 특히 눈 주변 또는 코끝의 발진, 시야의 선명도(시력) 저하, 각막의 개방성 통증, 눈의 심부 통증",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S122-7",
+    "name": "눈의 충혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 급성 통증과 구토, 얼굴 특히 눈 주변 또는 코끝의 발진, 시야의 선명도(시력) 저하, 각막의 개방성 통증, 눈의 심부 통증",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S122-8",
+    "name": "눈의 충혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 급성 통증과 구토, 얼굴 특히 눈 주변 또는 코끝의 발진, 시야의 선명도(시력) 저하, 각막의 개방성 통증, 눈의 심부 통증",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S122-9",
+    "name": "눈의 충혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 급성 통증과 구토, 얼굴 특히 눈 주변 또는 코끝의 발진, 시야의 선명도(시력) 저하, 각막의 개방성 통증, 눈의 심부 통증",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S123-1",
+    "name": "눈의 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "통증이 경미하고 눈의 충혈 또는 경고 증상이 없는 사람은 불편함이 사라질 경우 만나는 것을 하루 또는 이틀 정도 늦출 수 있습니다."
+  },
+  {
+    "symptom_id": "S123-2",
+    "name": "눈의 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "구토, 빛 주변의 후광, 열, 오한, 피로, 또는 근육통, 시야의 선명도(시력) 저하, 한쪽 눈 또는 양쪽 눈의 돌출(안구 돌출증), 모든 방향으로 눈의 이동 불가(상/하/좌/우 등)",
+    "action_guide": "심각한 통증, 눈의 충혈, 경고 증상이 있는 사람은 즉시 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S124-1",
+    "name": "돌출 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "돌출 눈이 심한 건성안으로 이어지는 경우 각막(홍채와 동공 앞쪽의 투명층)을 보호하기 위해 인공 눈물을 사용한 윤활이 필요합니다. 때때로 윤활이 부족한 경우 눈 표면에 보호를 제공하거나 돌출을 감소시키는 수술이 필요할 수 있습니다."
+  },
+  {
+    "symptom_id": "S124-2",
+    "name": "돌출 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "감염의 경우 항생제를 투여합니다."
+  },
+  {
+    "symptom_id": "S124-3",
+    "name": "돌출 눈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "종양은 수술로 제거해야 합니다."
+  },
+  {
+    "symptom_id": "S124-4",
+    "name": "돌출 눈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "시력 상실 또는 시력 감소, 복시, 눈의 통증 또는 출혈, 두통, 열, 돌출 안구 박동, 신생아 또는 소아의 돌출 안구",
+    "action_guide": "경고 증상이 있는 사람은 돌출 눈이 발생한지 며칠 이내에 가능한 빨리 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S125-1",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대개 치료가 필요하지 않음"
+  },
+  {
+    "symptom_id": "S125-2",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": "눈의 심한 통증",
+    "action_guide": "원인이 되는 장애에 대한 치료가 필요할 수 있음"
+  },
+  {
+    "symptom_id": "S125-3",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "처진 눈꺼풀(안검하수), 복시, 시력 상실, 두통 또는 경부통, 눈의 통증, 최근에 발생한 두부 손상 또는 눈 손상",
+    "action_guide": "즉시 의사를 보러 가야 함"
+  },
+  {
+    "symptom_id": "S125-4",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "수축된 동공, 처진 눈꺼풀, 영향을 받는 눈 주위에 땀이 나지 않는 무한증",
+    "action_guide": "즉시 의사를 보러 가야 함"
+  },
+  {
+    "symptom_id": "S125-5",
+    "name": "동공부동증, 부등 동공",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 되는 약물 중단 고려"
+  },
+  {
+    "symptom_id": "S126-1",
+    "name": "복시",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "신경계 기능 장애(무력증 또는 마비, 감각 상실, 말 또는 언어 문제, 삼킴 또는 걷기 곤란, 현기증, 두통, 실금 또는 둔함)를 나타낼 수 있는 복시 이외의 일체의 증상, 눈의 통증, 눈의 돌출(안구 돌출), 최근 눈 또는 머리에 부상 여부",
+    "action_guide": "복시를 가진 사람은 주로 응급실에서 의사가 즉시 평가해야 함. 복시가 있는 모든 사람은 복시가 해결되어도 며칠 이내의 편한 시간에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S126-2",
+    "name": "복시",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "며칠 이내의 편한 시간에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S127-1",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분 유해하지 않음"
+  },
+  {
+    "symptom_id": "S127-2",
+    "name": "부유물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "부유물의 갑작스러운 증가, 반복되며 종종 번개 같은 섬광, 완전한 또는 부분적인 시력 상실, 최근의 눈 수술 또는 눈 손상, 눈의 통증",
+    "action_guide": "안과 의사를 즉시 만나야 함"
+  },
+  {
+    "symptom_id": "S127-3",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S127-4",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S127-5",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S127-6",
+    "name": "부유물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": "시력 상실, 눈의 통증, 눈 충혈",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S128-1",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈 검사 및 교정 렌즈 처방"
+  },
+  {
+    "symptom_id": "S128-10",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "눈의 통증",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S128-11",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "시야 결손",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S128-12",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "면역체계에 영향을 미치는 상태",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S128-13",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "현실적으로 가능한 빠르게 (며칠 이내) 안과 의사 진료"
+  },
+  {
+    "symptom_id": "S128-2",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈 검사 및 치료"
+  },
+  {
+    "symptom_id": "S128-3",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈 검사 및 수술 고려"
+  },
+  {
+    "symptom_id": "S128-4",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "눈 검사 및 당뇨병 관리"
+  },
+  {
+    "symptom_id": "S128-5",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "안압 측정 및 치료"
+  },
+  {
+    "symptom_id": "S128-6",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "유전자 검사 및 전문의 상담"
+  },
+  {
+    "symptom_id": "S128-7",
+    "name": "시야가 흐림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "비타민 A 보충"
+  },
+  {
+    "symptom_id": "S128-8",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스러운 시력 변화",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S128-9",
+    "name": "시야가 흐림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 시력 저하",
+    "action_guide": "즉시 응급실 방문"
+  },
+  {
+    "symptom_id": "S129-1",
+    "name": "가려움, 항문",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "배변 후 따뜻한 물 또는 치핵 전용 화학 세정제를 적신 탈지면 또는 부드러운 무지 티슈로 닦기, 비누 및 물티슈 사용하지 않기, 비의료용 옥수수 전분을 자주 뿌려주기, 코르티코스테로이드 연고(예: 1% 하이드로코티손) 단기간 사용, 헐렁한 의복 착용, 가벼운 침구 사용"
+  },
+  {
+    "symptom_id": "S129-2",
+    "name": "가려움, 항문",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "항문 또는 항문 주위에서 배출되는 고름(배출성 누공), 혈액성 설사, 불거져 나왔거나 돌출된 치핵, 배설물로 더럽혀진 항문 주변 피부, 칙칙하거나 두꺼워진 항문 주변 피부",
+    "action_guide": "가능한 한 빨리 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S130-1",
+    "name": "가스",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "트림을 줄이기 위해 공기 삼키는 양을 줄이기 (껌 씹기 피하기, 편안한 환경에서 천천히 식사하기), 식사 일지 작성, 특정 음식 섭취 줄이기 (유제품, 과당, 솔비톨 등), 소화 효소 보충제 섭취 고려"
+  },
+  {
+    "symptom_id": "S130-2",
+    "name": "가스",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "체중 감량(고의성 없음), 대변 내 혈액, 흉통 또는 흉부의 배부품",
+    "action_guide": "즉시 병원 방문"
+  },
+  {
+    "symptom_id": "S131-1",
+    "name": "딸꾹질",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분이 효능이 없었거나 아주 약간 효능이 있었지만, 혈액 내 이산화탄소 수치를 높이기 위한 방식(숨 참기, 종이 봉투 안으로 깊이 호흡하기) 시도, 미주 신경을 자극하기 위해 빠르게 물 마시기, 뻑뻑한 빵, 알갱이 형태의 설탕 또는 으깬 얼음 삼킴, 천천히 혀 당기기, 구역질 자극, 눈을 부드럽게 문지르기"
+  },
+  {
+    "symptom_id": "S131-2",
+    "name": "딸꾹질",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "신경학적 증상(두통, 쇠약, 무감각, 균형 상실 등)",
+    "action_guide": "즉시 병원을 방문"
+  },
+  {
+    "symptom_id": "S132-1",
+    "name": "복통, 만성",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인 및 증상에 따라 치료, 젖당 불내성이 있는 경우 젖당이 없는 식사, 변비에 걸릴 경우 설사제를 사용하고 식이에 섬유 음식을 추가"
+  },
+  {
+    "symptom_id": "S132-2",
+    "name": "복통, 만성",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "열, 식욕 부진 및 체중 감소, 수면 중에 깨어나게 하는 통증, 구토, 배변 또는 소변 내 혈액, 심하고 빈번한 구토, 황달(피부와 눈 흰자위가 노랗게 됨), 복부 및/또는 다리의 부기",
+    "action_guide": "경고 징후가 식욕 부진, 황달 및/또는 부기가 아니라면 즉시 병원을 방문해야 합니다. 식욕 부진, 황달 및/또는 부기나 통증 악화를 겪는 환자는 며칠 내에 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S133-1",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 함. 약간의 구토를 했지만 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 함."
+  },
+  {
+    "symptom_id": "S133-10",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갈증, 구강 건조, 소변 양이 적거나 없음, 쇠약해지고 피곤해지는 느낌",
+    "action_guide": "즉시 병원을 방문해야 함"
+  },
+  {
+    "symptom_id": "S133-11",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "두통, 목 뻣뻣해짐, 혼돈 또는 주의력 감소",
+    "action_guide": "즉시 병원을 방문해야 함"
+  },
+  {
+    "symptom_id": "S133-12",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "지속적인 복통",
+    "action_guide": "즉시 병원을 방문해야 함"
+  },
+  {
+    "symptom_id": "S133-13",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "복부를 만졌을 때 압통 발생",
+    "action_guide": "즉시 병원을 방문해야 함"
+  },
+  {
+    "symptom_id": "S133-14",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "팽창된(부가) 복부",
+    "action_guide": "즉시 병원을 방문해야 함"
+  },
+  {
+    "symptom_id": "S133-15",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "최근 두부 손상",
+    "action_guide": "즉시 병원을 방문해야 함"
+  },
+  {
+    "symptom_id": "S133-16",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "피를 토함",
+    "action_guide": "즉시 병원을 방문해야 함"
+  },
+  {
+    "symptom_id": "S133-2",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 함. 약간의 구토를 했지만 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 함."
+  },
+  {
+    "symptom_id": "S133-3",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "구토가 24-48시간 이상 지속되거나 약간의 액체도 마시지 못할 경우 병원을 방문해야 함. 약간의 구토를 했지만 최소한 섭취해야 할 액체도 마시지 못하는 환자는 의사에게 연락해야 함."
+  },
+  {
+    "symptom_id": "S133-4",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S133-5",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S133-6",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S133-7",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S133-8",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S133-9",
+    "name": "성인의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S134-1",
+    "name": "성인의 변비",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "더 많은 과일, 채소, 섬유, 곡물을 섭취하여 증상을 완화. 위장 기능에 영향을 미치는 음식 확인."
+  },
+  {
+    "symptom_id": "S134-2",
+    "name": "성인의 변비",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "팽창, 부어 오른 복부, 구토, 대변 내 혈액, 체중 감소, 노인에게 중증의 변비 악화/새롭게 생김",
+    "action_guide": "경고 징후가 있는 환자는 즉시 병원을 방문해야 함. 노인에서 체중 감량이 유일한 경고 징후이거나 새로운 변비에 걸리는 경우, 며칠에서 일주일 늦게 의사를 만나도 괜찮음."
+  },
+  {
+    "symptom_id": "S135-1",
+    "name": "성인의 설사",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경고 징후가 없는 환자는 설사가 72시간 이상 지속되었을 경우 병원을 방문해야 합니다. 기타 증상, 연령, 병력에 따라 의사는 검사를 받거나 집에서 해결하고 또는 일반 의약품 치료를 권장합니다"
+  },
+  {
+    "symptom_id": "S135-2",
+    "name": "성인의 설사",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경고 징후가 없는 환자는 설사가 72시간 이상 지속되었을 경우 병원을 방문해야 합니다. 기타 증상, 연령, 병력에 따라 의사는 검사를 받거나 집에서 해결하고 또는 일반 의약품 치료를 권장합니다"
+  },
+  {
+    "symptom_id": "S135-3",
+    "name": "성인의 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "대변 내 혈액 또는 농궤, 열, 탈수 징후(배뇨 감소, 무기력 또는 노곤함, 극심한 갈증, 구강 건조 등), 만성 설사, 수면 중 설사, 체중 감소",
+    "action_guide": "대변 내의 혈액 또는 농궤, 열 또는 탈수라는 경고 징후가 있는 환자는 즉시 병원을 방문해야 하며 상당한 복통을 겪는 사람도 마찬가지입니다."
+  },
+  {
+    "symptom_id": "S136-1",
+    "name": "소아 변비",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "자두, 배, 사과 주스 섭취, 물 섭취량 증가, 과일, 야채, 고섬유질 시리얼 섭취, 변비 유발 음식 섭취 줄이기, 배변 훈련 격려 및 보상"
+  },
+  {
+    "symptom_id": "S136-2",
+    "name": "소아 변비",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "출생 후 첫 24~48시간 동안 배변 활동 없음, 체중 감소 또는 발육 부진, 식욕 감퇴, 혈변, 열, 구토, 복부 팽만, 복통, 영아의 근긴장 손실 및 흡입력 감소, 고연령 소아의 비자발적인 소변 배출, 요통, 다리 무력증 또는 보행 문제",
+    "action_guide": "즉시 의사에게 진찰"
+  },
+  {
+    "symptom_id": "S136-3",
+    "name": "소아 변비",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S137-1",
+    "name": "소아 설사",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경미한 경우 일반적으로 의사 방문 불필요, 2일 이상 지속되거나 하루 6~8회 이상 설사 시 의사에게 문의"
+  },
+  {
+    "symptom_id": "S137-2",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "탈수 징후",
+    "action_guide": "즉시 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S137-3",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "고열",
+    "action_guide": "즉시 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S137-4",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "대변 내 혈액",
+    "action_guide": "즉시 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S137-5",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "복부 통증 및 만졌을 때 극심한 압통",
+    "action_guide": "즉시 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S137-6",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "피부의 출혈(매우 작은 자주색의 점[점상출혈] 또는 반점[자반])",
+    "action_guide": "즉시 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S137-7",
+    "name": "소아 설사",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "음료를 마시지 못하거나 거의 마실 수 없는 경우",
+    "action_guide": "즉시 의사 평가 필요"
+  },
+  {
+    "symptom_id": "S138-1",
+    "name": "소화가 되지 않음, 소화불량",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "식별 가능 장애가 없는 환자를 시간이 흐르면서 관찰하고 안심시킵니다."
+  },
+  {
+    "symptom_id": "S138-2",
+    "name": "소화가 되지 않음, 소화불량",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "특정 장애가 있는 것으로 나타난 환자의 경우, 의사는 종종 산성 차단제(양성자 펌프 억제제 또는 히스타민-2[H2] 차단제 등) 또는 위의 점액 양을 증가시켜 궤양과 싸우는 약물(세포 보호제)로 치료합니다. 그 대신 의사는 소화관 근육의 움직임을 자극하도록 도움을 주는 약물(프로키네틱 약물-메토클로프라미드 및 에리스로마이신 등)을 제공할 수 있습니다. 의사는 일부 환자에게 항우울제를 처방할 수 있습니다."
+  },
+  {
+    "symptom_id": "S138-3",
+    "name": "소화가 되지 않음, 소화불량",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "소화불량과 함께 동반되는 숨가쁨, 땀흘림 또는 빠른 심박수, 식욕 부진(식욕 감퇴), 메스꺼움 또는 구토, 체중 감소, 대변 내 혈액, 삼키기 어려움(삼킴곤란) 또는 삼키면서 통증 발생(연하통), 양성자 펌프 억제제(PPI) 등의 약물 치료에도 불구하고 지속되는 소화불량",
+    "action_guide": "일회성의 급성 소화불량을 겪는 환자는 특히 증상이 숨가쁨, 땀흘림 또는 빠른 심박수가 동반된 경우 즉시 병원을 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S138-4",
+    "name": "소화가 되지 않음, 소화불량",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "힘을 주면 발생하지만 휴식으로 완화되는 만성 소화불량을 겪는 환자는 앙기나가 있을 수 있으며 며칠 내로 병원을 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S139-1",
+    "name": "연하 곤란, 삼킴 곤란, 삼키기 어려움",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음식을 조금씩 먹고 철저하게 씹기. 뇌졸중으로 인해 삼킴곤란을 겪는 환자는 재활 전문가의 치료를 받기. 먹을 때 두부 위치 변경, 삼킴 근육의 재훈련, 구강에서 음식의 덩이를 수용할 수 있는 능력을 향상시키는 운동, 또는 혀의 강화 및 협동 운동을 포함. 숨막힘 위험 없이 삼킬 수 없는 환자는 식사를 멈추고 복부 벽부터 위 또는 소장으로 이어지는 영양보급관으로 먹어야 할 수도 있음"
+  },
+  {
+    "symptom_id": "S139-2",
+    "name": "연하 곤란, 삼킴 곤란, 삼키기 어려움",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "완전한 신체 폐색 증상(침흘림 또는 아무 것도 삼킬 수 없음 등), 삼킴곤란으로 체중 감량, 통증이 생기는 삼킴(연하통), 신경, 척수 또는 뇌 기능의 새로운 문제, 특히 쇠약, 재발성 흡인 폐렴(구강 분비물, 위 내용물이나 둘 다를 흡인하여 유발되는 폐 감염)",
+    "action_guide": "경고 징후가 있는 환자는 즉시 병원을 방문해야 함. 먹거나 마실 때마다 기침을 하거나 숨이 막히는 환자는 곧바로 평가를 받아야 함"
+  },
+  {
+    "symptom_id": "S140-1",
+    "name": "영아 및 소아의 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "소아가 충분한 체액을 공급받자마자 구토를 하지 않는 경우, 나이에 맞는 식이요법을 해야 함. 영아는 모유 또는 이유식을 공급받을 수 있음."
+  },
+  {
+    "symptom_id": "S140-2",
+    "name": "영아 및 소아의 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "졸음증 및 무기력함, 영아의 경우 주체할 수 없는 슬픔이나 성마름 및 천문의 돌출, 고연령 소아의 경우 심각한 두통, 턱을 가슴 아래로 내리는 것이 어려운 경직된 목, 빛에 민감함 및 발열, 복통, 부종, 성장이나 발육이 부진한 영아의 지속적인 구토, 혈변, 밝은 녹색 또는 혈액성 구토",
+    "action_guide": "경고 징후가 있는 소아는 즉시 의사의 평가를 받아야 함"
+  },
+  {
+    "symptom_id": "S141-1",
+    "name": "인후의 덩이, 종류감",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "특정한 분위기에서 일어나는 식도 이물감을 이해하는 것이 환자에게 필요할 수 있음. 내재된 우울증, 불안감 또는 기타 행동적 장애가 환자에게 증상에 대한 불안감을 심어주는 것으로 보일 때 의사는 항우울제를 제공하거나 심리상담사 또는 정신과의사에게 환자를 의뢰할 수 있음."
+  },
+  {
+    "symptom_id": "S141-2",
+    "name": "인후의 덩이, 종류감",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "목 또는 인후 통증, 체중 감소, 갑작스러운 발생, 통증, 숨막힘 또는 삼킴 곤란(삼킴곤란), 음식 구토(역류), 근쇠약, 육안으로 보이거나 느낄 수 있는 목 종괴, 증상의 지속적인 악화",
+    "action_guide": "경고 징후가 있는 환자는 며칠에서 일주일 내에 병원을 방문해야 함. 경고 징후가 없는 환자는 의사에게 연락하십시오. 감각의 심한 정도 및 종류에 따라 의사는 증상이 어떻게 발달하는지 확인하도록 기다리게 하거나 모두에게 편한 시간을 제시함."
+  },
+  {
+    "symptom_id": "S142-1",
+    "name": "임신 초기 메스꺼움 및 구토",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "적게 자주 먹거나 마시기(하루 5~6회 소량 식사), 배 고프기 전에 먹기, 맛이 강하지 않은 음식만 먹기(바나나, 쌀, 사과 소스, 버터를 바르지 않은 구운 빵), 잠자리 옆에 크래커를 두고 아침에 일어나기 전 1~2개를 먹기, 탄산 음료 마시기, 생강 섭취, 침술, 차멀미 밴드, 최면 시도, 산전 비타민을 엽산이 함유된 어린이용 씹어 먹는 비타민으로 바꾸기"
+  },
+  {
+    "symptom_id": "S142-2",
+    "name": "임신 초기 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "지속되는 또는 악화되는 구토, 복통, 배뇨 감소, 땀흘림 감소, 갈증 증가, 구강 건조, 빠른 심박수, 기립 시 어지러움과 같은 탈수 징후, 열, 임신 24주 이상인 경우 태동 없음, 혼돈, 신체 한쪽의 쇠약 또는 무감각, 언어 또는 시력 문제, 또는 게으름",
+    "action_guide": "수액을 정맥 내로 투여, 필요한 보충제가 든 수액을 계속하여 투여, 경구, 주사 또는 좌약으로 항구토제 투여"
+  },
+  {
+    "symptom_id": "S142-3",
+    "name": "임신 초기 메스꺼움 및 구토",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "지속되는 또는 악화되는 구토, 복통, 배뇨 감소, 땀흘림 감소, 갈증 증가, 구강 건조, 빠른 심박수, 기립 시 어지러움과 같은 탈수 징후, 열, 임신 24주 이상인 경우 태동 없음, 혼돈, 신체 한쪽의 쇠약 또는 무감각, 언어 또는 시력 문제, 또는 게으름",
+    "action_guide": "해당 질환 치료"
+  },
+  {
+    "symptom_id": "S143-1",
+    "name": "월경 주기 없음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S143-2",
+    "name": "월경 주기 없음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "사춘기 지연, 과도한 체모 증가, 목소리의 저음화, 근육 크기 증가와 같은 근육적 특징 발달, 시력 문제, 후각 손상, 자연적으로 발생하는 우윳빛 유두 분비물, 체중의 큰 변화",
+    "action_guide": "몇 주 내에 보건의료 전문가의 진찰 필요. 13세까지 사춘기 징후가 명백하지 않거나, 유방 발달 시작 후 3년까지 월경이 시작되지 않거나, 정상적으로 성장하고 2차 성징이 나타난 소녀에서 15세까지 월경이 시작되지 않은 경우. 가임기 소녀 또는 여성에서 월경 주기가 중단되고 3회 월경 주기 생략, 1년 동안 9회 미만의 월경 주기, 월경 주기 패턴의 갑작스러운 변화가 있는 경우."
+  },
+  {
+    "symptom_id": "S143-3",
+    "name": "월경 주기 없음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S143-4",
+    "name": "월경 주기 없음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S144-1",
+    "name": "월경 중 경련",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "복부에 가하는 습한 열 또는 복부 마사지가 도움이 될 수 있습니다. 충분한 수면과 휴식을 취하고 정기적으로 운동하는 것이 또한 도움이 될 수 있습니다."
+  },
+  {
+    "symptom_id": "S144-2",
+    "name": "월경 중 경련",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기저 질환 치료 (예: 자궁경관 협착증의 경우 수술)"
+  },
+  {
+    "symptom_id": "S144-3",
+    "name": "월경 중 경련",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑자기 시작하거나 새로운 심한 통증, 지속적인 통증, 열, 질에서 나오는 고름 같은 분비물, 복부를 가볍게 만지거나 약간만 움직여도 악화되는 예리한 통증",
+    "action_guide": "가능한 즉시(보통 당일) 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S145-1",
+    "name": "유두 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "월경 한 주기 이상 유두 분비물이 지속되거나 의사의 진찰을 받으십시오."
+  },
+  {
+    "symptom_id": "S145-2",
+    "name": "유두 분비물",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "몽우리가 느껴지는 현상과 동반할 때, 피가 섞였거나 분홍색일 때, 한쪽 유방에서만 나올 때, 유두를 짜거나 다른 방식으로 자극하지 않아도 분비물이 발생할 때(저절로 발생할 때), 40세 이상의 여성에게 발생할 때, 어린 남성이나 성인 남성에게 발생할 때",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S145-3",
+    "name": "유두 분비물",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S146-1",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "정기 검진을 통해 변화 여부 확인"
+  },
+  {
+    "symptom_id": "S146-2",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "부드럽고 지지해 주는 브라 착용, 아세트아미노펜 또는 비스테로이드성 항염증제 복용"
+  },
+  {
+    "symptom_id": "S146-3",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S146-4",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "배액(흡인)"
+  },
+  {
+    "symptom_id": "S146-5",
+    "name": "유방 몽우리",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S146-6",
+    "name": "유방 몽우리",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "피부나 흉벽에 달라붙은 몽우리, 단단하고 질감이 불규칙한 몽우리, 몽우리 주변의 피부 패임, 유방 위의 비후해진 붉은 피부, 유두로부터의 피가 섞인 분비물, 피부나 흉벽에 들러붙었거나 움직이지 않는 겨드랑이의 림프절",
+    "action_guide": "즉시 의사의 평가를 받아야 함"
+  },
+  {
+    "symptom_id": "S147-1",
+    "name": "임신 초기 골반통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "심각하거나 지속적이지 않은 골반통은 우려할 만한 원인이 아님"
+  },
+  {
+    "symptom_id": "S147-2",
+    "name": "임신 초기 골반통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "질 출혈, 발열과 오한, 특히 배뇨 시 통증, 등 윗부분(옆구리) 통증 또는 고름이 든 질 분비물을 동반하는 경우, 움직이면 더 악화되는 심한 통증, 실신, 현기증 또는 빠른 심박수",
+    "action_guide": "경고 징후가 있는 여성은 즉시 의사의 진찰을 받아야 함. 경고 징후가 없는 여성이 배뇨 중 통증이나 작열감을 느끼거나 일상 생활에 지장을 주는 통증이 있는 경우 하루 이틀 내에 의사의 진찰을 받아 보아야 함."
+  },
+  {
+    "symptom_id": "S148-1",
+    "name": "임신 후반 부종",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "왼쪽으로 눕기, 다리를 높이 올리고 자주 쉬기, 탄력 있는 스타킹 신기, 다리 쪽의 혈류를 방해하지 않는 헐거운 옷 입기"
+  },
+  {
+    "symptom_id": "S148-2",
+    "name": "임신 후반 부종",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "손의 중등도 또는 중증 부종, 신체 어느 부위에서든 갑자기 증가하는 부종, 한쪽 다리나 종아리에만 부종(특히 이 부위에 온기가 있거나 빨갛거나 아프거나 또는 열이 있는 경우), 140/90mm Hg 이상인 혈압, 중증의 지속적인 두통, 시력 변화, 혼돈, 중증 상복부 통증 또는 호흡 곤란, 흉통 또는 호흡 곤란",
+    "action_guide": "즉시 병원 방문"
+  },
+  {
+    "symptom_id": "S149-1",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기저 질환 치료, 카페인이나 알코올 섭취량 줄이기, 취침 전 수분 섭취 줄이기"
+  },
+  {
+    "symptom_id": "S149-2",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기저 질환 치료, 당뇨병 관리 (식이 조절, 운동, 인슐린 주사, 경구 약물)"
+  },
+  {
+    "symptom_id": "S149-3",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "다리 허약",
+    "action_guide": "즉시 병원 방문"
+  },
+  {
+    "symptom_id": "S149-4",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "발열과 요통",
+    "action_guide": "하루 안에 의사 진찰"
+  },
+  {
+    "symptom_id": "S149-5",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "야간 발한, 기침, 체중 감소, 폭넓은 흡연력, 정신 건강 질환",
+    "action_guide": "하루 이틀 안에 의사 진찰"
+  },
+  {
+    "symptom_id": "S149-6",
+    "name": "과도한 혹은 잦은 배뇨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S150-1",
+    "name": "발기 장애",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진료를 통해 원인을 파악하고 치료 계획을 세움"
+  },
+  {
+    "symptom_id": "S150-2",
+    "name": "발기 장애",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "밤중에 또는 아침에 일어났을 때 발기가 없는 경우, 엉덩이와 음부 사이 그리고 그 주변의 무감각증, 신체 활동 동안에 일어나지만 쉬면 즉각 사라지는 고통스러운 다리 근육 경련",
+    "action_guide": "즉시 의사에게 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S151-1",
+    "name": "배뇨 시 통증 또는 작열감",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 감염인 경우 항생제가 증상을 완화시켜 줄 수 있습니다. 고통이 심하면 의사가 페나조피리딘을 투여하여 불쾌감을 줄여줄 수 있습니다."
+  },
+  {
+    "symptom_id": "S151-2",
+    "name": "배뇨 시 통증 또는 작열감",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "열, 등 또는 옆구리 통증, 메스꺼움 및 구토, 최근 방광 카테터나 다른 장치를 삽입한 이력, 면역체계 장애, (아동기의 작은 감염을 비롯한) 반복 삽화, 알려진 요로 이상",
+    "action_guide": "면역계 질환이 있는 사람들 그리고 경고 징후가 있는 임신 여성의 경우 요로 감염 합병증이 심할 수 있기 때문에 즉시 의사를 찾아야 합니다. 경고 징후가 있는 다른 사람들의 경우 증상이 특히 골치 아프면 하루 이틀 안에 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S152-1",
+    "name": "성인의 요실금",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "다리 힘의 약화 또는 다리나 서혜부 또는 항문 주변의 감각 상실",
+    "action_guide": "즉시 응급실로 가야 함"
+  },
+  {
+    "symptom_id": "S152-10",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-11",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-12",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-13",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-14",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-15",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-16",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-17",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-18",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-2",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "요실금 증상이 골치 아프고 일상활동에 방해가 되거나 사회 활동 범위를 제한하면 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S152-3",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-4",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-5",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-6",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-7",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-8",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S152-9",
+    "name": "성인의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S153-1",
+    "name": "소변 정체",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "카테터 삽입, 원인 치료, 약물 중단, 전립선 수술/약물 복용, 정기적 자가 카테터 사용, 영구 카테터 유치, 수술"
+  },
+  {
+    "symptom_id": "S153-2",
+    "name": "소변 정체",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "소변을 전혀 볼 수 없음",
+    "action_guide": "즉시 의사 진료 및 카테터 삽입"
+  },
+  {
+    "symptom_id": "S153-3",
+    "name": "소변 정체",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S154-1",
+    "name": "소아의 요실금",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "배뇨 일지에 시점, 빈도, 소변량을 기록하고, 배변 일지에 대변 빈도, 크기, 일관성을 기록합니다. 소변을 눌 때의 자세와 소변 줄기의 세기에 대해 상의합니다."
+  },
+  {
+    "symptom_id": "S154-2",
+    "name": "소아의 요실금",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "성적 학대의 징후나 우려, 과도한 갈증, 과도한 소변량, 체중 감소, 6세 이상 소아에서 낮 시간 동안의 실금, 다리 신경 손상의 모든 징후, 척추 이상의 징후, 1년 이상 동안 문제가 없었던 소아에서 새로 발생한 실금",
+    "action_guide": "즉시 소아 치료에 경험이 있는 의사에게 데려가야 합니다."
+  },
+  {
+    "symptom_id": "S155-1",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S155-10",
+    "name": "음낭 부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "통증이 없던 부종에서 갑자기 통증",
+    "action_guide": "즉시 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S155-2",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S155-3",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S155-4",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S155-5",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S155-6",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S155-7",
+    "name": "음낭 부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S155-8",
+    "name": "음낭 부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "고환 또는 고환 일부에 부착된 고형 덩어리",
+    "action_guide": "음낭부종이 있는 남성과 소년은 통증을 느끼지 않더라도 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S155-9",
+    "name": "음낭 부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "복부에서 음낭으로 연장하여 밀어넣을 수 없는 풍선 모양 팽창",
+    "action_guide": "즉시 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S156-1",
+    "name": "음낭 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "즉시 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S156-10",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S156-2",
+    "name": "음낭 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "즉시 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S156-3",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S156-4",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S156-5",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S156-6",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S156-7",
+    "name": "음낭 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "하루 이틀 이내에 의사를 만나야 함"
+  },
+  {
+    "symptom_id": "S156-8",
+    "name": "음낭 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스럽고 심한 통증, 음낭이나 서혜부의 부기, 특히 눌리지 않는 부기 그리고 심한 통증이나 구토가 따르는 부기, 음낭 그리고 음경과 항문 사이 부위의 물집 그리고/또는 검은색 변색, 심한 열, 호흡곤란, 발한, 어지러움 또는 착란 등 심한 병의 증상",
+    "action_guide": "즉시 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S156-9",
+    "name": "음낭 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스럽고 심한 통증, 음낭이나 서혜부의 부기, 특히 눌리지 않는 부기 그리고 심한 통증이나 구토가 따르는 부기, 음낭 그리고 음경과 항문 사이 부위의 물집 그리고/또는 검은색 변색, 심한 열, 호흡곤란, 발한, 어지러움 또는 착란 등 심한 병의 증상",
+    "action_guide": "즉시 의사를 찾아야 함"
+  },
+  {
+    "symptom_id": "S157-1",
+    "name": "지속적 발기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "지속발기증은 응급상황이므로 가능하면 빨리 치료를 시작해야 하며 응급실에서 비뇨기과 전문의에게 진료를 받는 것이 좋습니다."
+  },
+  {
+    "symptom_id": "S157-2",
+    "name": "지속적 발기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "지속발기증은 응급상황이므로 가능하면 빨리 치료를 시작해야 하며 응급실에서 비뇨기과 전문의에게 진료를 받는 것이 좋습니다."
+  },
+  {
+    "symptom_id": "S157-3",
+    "name": "지속적 발기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "지속발기증은 응급상황이므로 가능하면 빨리 치료를 시작해야 하며 응급실에서 비뇨기과 전문의에게 진료를 받는 것이 좋습니다."
+  },
+  {
+    "symptom_id": "S157-4",
+    "name": "지속적 발기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "중증의 통증, 10세 미만의 연령, 최근 음경이나 사타구니에 부상을 입음, 발열 및 야간 발한",
+    "action_guide": "지속발기증이 있는 남자 아이와 남성은 즉시 의사를 찾아 치료를 받아야 합니다."
+  },
+  {
+    "symptom_id": "S158-1",
+    "name": "소아 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "습윤 공기를 마시게 하고 수분을 보충"
+  },
+  {
+    "symptom_id": "S158-2",
+    "name": "소아 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S158-3",
+    "name": "소아 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S158-4",
+    "name": "소아 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S158-5",
+    "name": "소아 기침",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "입술 및/또는 피부가 푸른 빛을 띰(청색증), 소아가 숨을 들이 마실 때 크게 끼익하는 소리(협착음), 호흡 곤란, 아파 보임, 통제할 수 없는 연축, 반복적인 기침 후에 높은 음을 내면서 공기를 흡입(쌕쌕거리는 소리와 비슷)",
+    "action_guide": "즉시 의사 또는 응급실로 데려가야 함"
+  },
+  {
+    "symptom_id": "S159-1",
+    "name": "울음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "필요성을 충족 (수유, 트림, 기저귀 교체, 안아주기)"
+  },
+  {
+    "symptom_id": "S159-2",
+    "name": "울음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "스스로 진정하게끔 하기, 정해진 시간에 아기 침대에 눕혀 자고 일어나게 하기"
+  },
+  {
+    "symptom_id": "S159-3",
+    "name": "울음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "해당 장애 치료 (모발 지혈대 제거, 항생제 연고로 각막 찰과상 치료)"
+  },
+  {
+    "symptom_id": "S159-4",
+    "name": "울음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "호흡 곤란, 두부 또는 신체 다른 부분에 멍이나 부종, 신체 부분의 비정상적인 움직임이나 단일수축, 극심한 성마름, 지속적인 울음 (특히 열 동반), 음낭 발적 및/또는 부종",
+    "action_guide": "즉시 의사에게 평가"
+  },
+  {
+    "symptom_id": "S159-5",
+    "name": "울음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S160-1",
+    "name": "가려움",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "가려움증이 건성 피부로 인해 발생하는 경우, 기본적인 피부 관리 변경이 종종 매우 효과적입니다. 덜 빈번하게 목욕하거나 씻기, 뜨거운 물 대신 미지근한 물 사용하기, 비누 적게 사용하기 등이 포함됩니다. 건성 피부를 과도하게 문지르는 것을 피하고, 목욕 또는 씻은 후 보습 크림을 발라야 합니다."
+  },
+  {
+    "symptom_id": "S160-2",
+    "name": "가려움",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "체중 감소, 피로, 야간 발한, 쇠약, 마비 또는 저림, 복통 또는 피부와 눈이 누렇게 변색되는 것(황달), 심한 갈증, 비정상적인 빈뇨, 체중 감소",
+    "action_guide": "체중 감소, 피로 또는 야간 발한이 있는 사람은 가능한 즉시 의사의 진찰을 받아야 합니다. 다른 경고 징후 또는 중증의 가려움증이 나타나는 경우, 아마도 즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S161-1",
+    "name": "기립시의 현기증 또는 경미한 두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "대변 속의 혈액 또는 검은 타리 변(tarry stool), 걷기 곤란 및/또는 조절능력 불량 또는 균형 불량 등의 신경계 증상, 낙상 또는 기절(실신), 흉부 통증 또는 불편감",
+    "action_guide": "경고 증상이 있는 사람은 즉시 응급실 진료를 받아야 합니다."
+  },
+  {
+    "symptom_id": "S161-2",
+    "name": "기립시의 현기증 또는 경미한 두통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "앉았다가 다시 천천히 일어서면 금방 회복됩니다. 의사는 다른 증상들과 병력에 따라서 해당 환자를 만날지 여부와 얼마나 빨리 만날지를 결정할 것입니다."
+  },
+  {
+    "symptom_id": "S162-1",
+    "name": "기억 상실",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "기억 상실의 원인이 뇌의 정상적인 노화 관련 변화, 경도 인지 장애, 우울증 또는 조기 치매인지 여부를 결정"
+  },
+  {
+    "symptom_id": "S162-2",
+    "name": "기억 상실",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "일상적인 활동을 하기 어려움, 의식 수준이 동요하고, 주의를 기울이기 어려움, 우울증 증상(식욕 상실, 자살 사고, 수면 장애, 언어 및 일반적인 활동 둔화 등), 두통, 언어 사용 또는 이해 어려움, 게으름, 시력 문제 또는 현기증 등 신경계에 문제가 있음을 암시하는 다른 증상",
+    "action_guide": "즉시 의사에게 보여야 함"
+  },
+  {
+    "symptom_id": "S163-1",
+    "name": "기절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "넘어져서 상처를 입지 않는 한 심각하지 않은 경향이 있습니다."
+  },
+  {
+    "symptom_id": "S163-2",
+    "name": "기절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "운동 도중 기절, 짧은 시간 동안의 몇 가지 에피소드, 어떠한 예고 혹은 분명한 유발인자가 없는 돌발성 기절, 흉통, 심계항진, 또는 숨가쁨 등 가능한 심장 증상에 선행하는 또는 그 이후에 나오는 기절, 고령, 기절의 결과로서 상당한 상처, 예상하지 못한 돌연사, 운동 중 기절 또는 원인이 확인되지 않은 반복적인 기절이나 발작 사례의 가족력",
+    "action_guide": "즉시 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S163-3",
+    "name": "기절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S164-1",
+    "name": "두드러기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 분명하다면 가능한 한 원인을 피하고, 두드러기가 사라질 때까지 필수적이지 않은 모든 의약품의 복용을 중단합니다. 찬물로 목욕/샤워하고, 피부를 긁지 않으며, 헐렁한 옷을 입는 것이 증상 완화에 도움이 될 수 있습니다. 경구 복용 항히스타민제를 사용합니다."
+  },
+  {
+    "symptom_id": "S164-2",
+    "name": "두드러기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "얼굴, 입술, 인후, 혀, 기도의 부기(혈관 부종), 쌕쌕거림을 포함한 호흡 곤란, 두드러기의 색이 짙으면서 상처가 벌어지거나 48시간 이상 지속, 열, 종창성 림프절, 황달, 체중 감소, 기타 신체적(전신적) 장애 증상",
+    "action_guide": "호흡 곤란 또는 쌕쌕거림을 보이는 경우, 인후가 막힌 듯한 느낌이 있는 경우 구급차를 불러야 합니다. 중증의 증상을 보일 경우, 쇠약함이나 어지러움이 점점 심해지거나 심한 열 또는 오한이 나타날 경우, 구토를 하거나 복통 또는 설사 증상이 있을 경우 가능한 한 빨리 응급실이나 진료실을 찾아야 합니다. 꿀벌 쏘임으로 두드러기 또는 부종이 유발되는 경우, 열, 관절통, 체중 감소, 종창성 림프절 또는 식은땀 등의 기타 증상이 동반될 경우, 원인에 노출되지 않았는데 두드러기가 재발하는 경우, 2일 이상 증상이 지속될 경우 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-1",
+    "name": "두통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S165-10",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "조명 주위에서 적목 현상과 함께 후광이 보임",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-11",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "매우 높은 혈압",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-12",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "50세 이후에 시작되는 두통",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-2",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "감각 또는 시력의 변화, 갑작스런 쇠약, 협응 실조, 발작, 언어로 소통하거나 이해하기 어려움 또는 의식 수준의 변화(예: 졸음 또는 혼돈(뇌장애를 시사))",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-3",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "발열 증세 그리고 턱을 가슴 쪽으로 내리기가 고통스러울 뿐만 아니라 때로는 이러한 움직임조차 불가능할 정도의 경부경직",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-4",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "급성 중증 두통(벼락 두통)",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-5",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "관자놀이 부위의 압통(머리를 빗질할 때처럼 쑤시는 통증) 또는 음식 등을 씹을 때 느껴지는 하악통",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-6",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "암 또는 진행성 HIV 감염과 같이 면역체계를 약화시키는 질환(면역결핍 질환) 존재",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-7",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "면역 체계를 억제하는 약물(면역 억제제)을 사용하는 경우",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-8",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "열 또는 체중 감소와 같이 전신에 영향을 미치는 증상들",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S165-9",
+    "name": "두통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "점진적으로 악화되는 두통(빈도 또는 중증도가 악화)",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S166-1",
+    "name": "딸꾹질",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분의 딸꾹질이 치료 여부에 상관 없이 사라집니다. 많은 민간요법이 단기간 딸꾹질을 치료하는 데 사용되었습니다. 대부분이 효능이 없었거나 아주 약간 효능이 있었습니다. 그러나 이러한 치료법이 일반적으로 안전하고 하기 쉽기 때문에 시도한다고 해서 해로울 것은 없습니다. 많은 방법들이 다음과 같이 혈액 내 이산화탄소 수치를 높이기 위한 방식을 포함합니다: 숨 참기, 종이 봉투(비닐봉지 안 됨) 안으로 깊이 호흡하기. 기타 방법은 미주 신경을 자극하기 위해 이루어지는데, 이는 뇌부터 위까지 작용합니다. 다음은 이 신경을 자극할 수 있는 방법입니다: 빠르게 물 마시기, 뻑뻑한 빵, 알갱이 형태의 설탕 또는 으깬 얼음 삼킴, 천천히 혀 당기기, 구역질 자극(손가락으로 인후 안으로 집어넣는 등), 눈을 부드럽게 문지르기"
+  },
+  {
+    "symptom_id": "S166-2",
+    "name": "딸꾹질",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "신경학적 증상(두통, 쇠약, 무감각, 균형 상실 등)",
+    "action_guide": "딸꾹질과 경고 징후가 있는 환자는 즉시 병원을 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S167-1",
+    "name": "부기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "다리를 올리고 앉거나 식단에서 소금의 양을 줄이는 등의 조치들은 부기를 완화하는데 도움을 줍니다."
+  },
+  {
+    "symptom_id": "S167-2",
+    "name": "부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스러운 발병, 한 쪽 다리에만 나타나는 부기, 상당한 통증 또는 압통, 숨가쁨, 객혈",
+    "action_guide": "경고 징후가 있는 이들은 즉시 의사를 방문해야 합니다. 심장, 폐, 또는 신장 질환의 병력은 있고 경고 징후가 없는 사람, 또는 임신한 사람은 즉시 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S167-3",
+    "name": "부기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "즉시 의사를 만나야 합니다."
+  },
+  {
+    "symptom_id": "S168-1",
+    "name": "불면증 및 주간 과다 졸림증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "수면을 개선하는 데 도움이 될만한 행동 변화를 시도"
+  },
+  {
+    "symptom_id": "S168-2",
+    "name": "불면증 및 주간 과다 졸림증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "운전 중 졸음, 예고 없이 자주 졸음, 수면 중 호흡 정지, 격렬한 몸 움직임, 몽유병, 불안정한 심폐 질환, 근육 쇠약 발작, 최근 뇌졸중",
+    "action_guide": "의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S169-1",
+    "name": "성인에서의 급성 열",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "열이 24~48시간 이상 지속되는 경우 병원 방문, 일반적으로 기타 증상에 관계 없이 발열이 3~4일 이상 지속되면 의사의 진료를 받아야 함"
+  },
+  {
+    "symptom_id": "S169-2",
+    "name": "성인에서의 급성 열",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "혼돈 등 정신 기능의 변화, 두통, 뻣뻣한 목, 피하 출혈을 나타내는 피부 상의 평평하고 작은 자홍색 점(점상출혈), 저혈압, 빠른 심박수 또는 빠른 호흡, 숨가쁨(호흡곤란), 104°F(40°C)보다 높거나 95°F(35°C)보다 낮은 체온, 말라리아와 같은 심각한 감염성 질환이 흔한 지역으로의 최근 여행, 면역체계를 억제하는 약물(면역억제제)의 최근 사용",
+    "action_guide": "즉시 진료를 받아야 함"
+  },
+  {
+    "symptom_id": "S170-1",
+    "name": "성인의 황달",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사의 진찰 및 혈액 검사, 필요에 따라 추가 검사"
+  },
+  {
+    "symptom_id": "S170-2",
+    "name": "성인의 황달",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "중증의 복통 및 압통, 졸음, 초조 또는 혼동 등과 같은 정신 기능 이상, 대변의 혈액 또는 흑갈색의 타르형 대변, 구토 시의 혈액, 열, 아주 작은 반점이나 큰 얼룩점의 자줏빛 발진으로 진행될 수 있는 멍이나 출혈 경향",
+    "action_guide": "가능한 빨리 진찰"
+  },
+  {
+    "symptom_id": "S171-1",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S171-2",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "흡입기 사용"
+  },
+  {
+    "symptom_id": "S171-3",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S171-4",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S171-5",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S171-6",
+    "name": "숨가쁨",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S171-7",
+    "name": "숨가쁨",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "휴식 상태에서의 숨가쁨, 초조나 혼돈 또는 저하된 의식 수준, 흉부 불편 또는 심장이 두근거리거나 요동치거나 울렁거리는 느낌(두근거림), 체중 감소, 야간 발한",
+    "action_guide": "즉시 병원에 가야 함"
+  },
+  {
+    "symptom_id": "S172-1",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사의 진찰을 받아야 하지만, 다른 증상들 없이 단일의 짧고(1분 미만) 경미한 어지러움과 현기증을 겪은 사람의 경우 추가적인 에피소드가 나타나는지 기다리는 것을 선택할 수 있습니다."
+  },
+  {
+    "symptom_id": "S172-2",
+    "name": "어지러움 및 현기증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "새로운 두통 발병 또는 중증 두통, 목통증, 걷기 곤란, 의식 손실(실신), 다른 신경학적 증상들(듣기, 보기, 말하기, 또는 삼키기 곤란이나 팔 또는 다리 움직임의 어려움과 같은)",
+    "action_guide": "증상이 심각하거나 1시간이 넘도록 지속되었으며 구토를 보이는 경우에는 즉시 병원으로 가야 합니다."
+  },
+  {
+    "symptom_id": "S173-1",
+    "name": "영아 및 소아의 열",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "건강한 소아의 경우에는 열이 나는 것이 불편해도 항상 치료가 필요하지는 않음. 열이 있는 영아는 보통 짜증을 내며 잠을 못 자거나 수유를 잘 안 할 수도 있음. 저연령 소아는 놀이에 흥미를 잃어버림."
+  },
+  {
+    "symptom_id": "S173-2",
+    "name": "영아 및 소아의 열",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "생후 3개월 미만 영아의 모든 발열, 졸음증 또는 무기력함, 아파 보임, 호흡 곤란, 피부의 출혈, 매우 작은 자주색의 점(점상 출혈) 또는 반점(자반)이 나타남, 영아 또는 유아의 지속적인 울음(주체할 수 없는 슬픔), 두통, 목 경직, 혼돈 또는 고연령 소아의 병용",
+    "action_guide": "열이 나는 소아에게 경고 징후가 있거나 생후 3개월 미만인 경우 즉시 의사의 평가를 받아야 함."
+  },
+  {
+    "symptom_id": "S174-1",
+    "name": "인격 및 행동 변화",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "급작스럽게 나타나는 증상, 자신이나 남을 해치려는 시도 또는 위협, 혼동 또는 섬망, 열, 심한 두통, 걸음, 균형을 잡는데 어려움을 겪거나 말이나 시각적 문제 등 뇌의 기능 부전을 암시하는 증상, 최근의 두부 손상",
+    "action_guide": "가능한 빨리 의료전문가의 진찰을 받아야 함. 환자가 폭력적인 경우 경찰에 연락"
+  },
+  {
+    "symptom_id": "S174-2",
+    "name": "인격 및 행동 변화",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-1",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "쇠약이 점진적으로 악화되는 경우(몇 달 또는 몇 년에 걸쳐), 환자는 다음 검진에서 의사와 이 문제에 대해 논의해야 합니다."
+  },
+  {
+    "symptom_id": "S175-10",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-11",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-12",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-13",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-14",
+    "name": "전신 쇠약",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "수일 또는 그보다 짧은 시간에 걸쳐 악화되는 쇠약",
+    "action_guide": "경고 징후를 보인 환자는 즉시 응급실로 향해야 합니다. 경고 징후를 동반한 쇠약은 증상이 급격히 악화되어 영구 장애 또는 치명적인 상태를 초래할 수 있으므로 즉각적인 치료가 매우 중요합니다."
+  },
+  {
+    "symptom_id": "S175-15",
+    "name": "전신 쇠약",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "호흡 곤란",
+    "action_guide": "경고 징후를 보인 환자는 즉시 응급실로 향해야 합니다. 경고 징후를 동반한 쇠약은 증상이 급격히 악화되어 영구 장애 또는 치명적인 상태를 초래할 수 있으므로 즉각적인 치료가 매우 중요합니다."
+  },
+  {
+    "symptom_id": "S175-16",
+    "name": "전신 쇠약",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "누워있는 상태에서 고개 들기 어려움",
+    "action_guide": "경고 징후를 보인 환자는 즉시 응급실로 향해야 합니다. 경고 징후를 동반한 쇠약은 증상이 급격히 악화되어 영구 장애 또는 치명적인 상태를 초래할 수 있으므로 즉각적인 치료가 매우 중요합니다."
+  },
+  {
+    "symptom_id": "S175-17",
+    "name": "전신 쇠약",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "씹기, 말하기 또는 삼키기 곤란",
+    "action_guide": "경고 징후를 보인 환자는 즉시 응급실로 향해야 합니다. 경고 징후를 동반한 쇠약은 증상이 급격히 악화되어 영구 장애 또는 치명적인 상태를 초래할 수 있으므로 즉각적인 치료가 매우 중요합니다."
+  },
+  {
+    "symptom_id": "S175-18",
+    "name": "전신 쇠약",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "도보 능력 상실",
+    "action_guide": "경고 징후를 보인 환자는 즉시 응급실로 향해야 합니다. 경고 징후를 동반한 쇠약은 증상이 급격히 악화되어 영구 장애 또는 치명적인 상태를 초래할 수 있으므로 즉각적인 치료가 매우 중요합니다."
+  },
+  {
+    "symptom_id": "S175-2",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-3",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-4",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-5",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-6",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "뇌졸중을 시사하는 증상(근쇠약의 일부 원인 및 특징 표 참조)이 있는 경우, 조기에 치료하는 것이 기능 및감각 상실을 제한하는 데 도움이 될 수 있으므로 즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S175-7",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-8",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S175-9",
+    "name": "전신 쇠약",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S176-1",
+    "name": "종창성 림프절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S176-2",
+    "name": "종창성 림프절",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "부기는 아무 해를 유발하지 않고 저절로 사라집니다."
+  },
+  {
+    "symptom_id": "S176-3",
+    "name": "종창성 림프절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "지름이 약 2센티미터(거의 1인치)인 림프절, 고름이 나오는 림프절, 단단하게 느껴지는 림프절, 열 또는 원인미상의 체중감소",
+    "action_guide": "의사의 진찰이 필요"
+  },
+  {
+    "symptom_id": "S176-4",
+    "name": "종창성 림프절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "HIV 감염의 위험 인자(예: 다른 사람이 사용한 바늘에 찔리거나 고위험 성 생활을 하는 등)",
+    "action_guide": "의사의 진찰이 필요"
+  },
+  {
+    "symptom_id": "S176-5",
+    "name": "종창성 림프절",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "결핵 위험 인자(예: 결핵이 있는 사람이나 결핵이 만연한 지역에서 최근 이사 온 사람과 함께 생활하거나 근무)",
+    "action_guide": "의사의 진찰이 필요"
+  },
+  {
+    "symptom_id": "S177-1",
+    "name": "타박상과 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S177-2",
+    "name": "타박상과 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S177-3",
+    "name": "타박상과 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S177-4",
+    "name": "타박상과 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S177-5",
+    "name": "타박상과 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S177-6",
+    "name": "타박상과 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S177-7",
+    "name": "타박상과 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "발한, 쇠약, 실신, 어지러움, 극심한 갈증, 발열, 오한, 설사, 전신의 불편함, 두통, 혼돈, 뇌 또는 신경계와 관련된 갑작스러운 증상",
+    "action_guide": "즉시 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S178-1",
+    "name": "객혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "피가 섞인 가래만 나오는 경우, 의사의 평가는 중요하지 않을 수 있음. 증상, 병력과 다른 요소에 기반하여 얼마나 빨리 찾아야 하는지 여부를 판단할 수 있는 의사에게 문의."
+  },
+  {
+    "symptom_id": "S178-2",
+    "name": "객혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "심각한 장애 위험 요인이 있고 피가 섞인 가래 이상이 있음에도 불구하고 경고 징후가 없는 사람은 하루 이틀 내에 병원을 찾아야 함"
+  },
+  {
+    "symptom_id": "S178-3",
+    "name": "객혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "기침으로 뱉어낸 대량의 혈액, 숨가쁨, 상당한 실혈의 징후(쇠약, 서 있을 때 어지러움, 땀흘림과 빠른 심박수), 쇠약 또는 피로, 허리 통증, 기관절개술 받기",
+    "action_guide": "경고 징후가 있는 사람은 즉시 병원을 찾아야 함"
+  },
+  {
+    "symptom_id": "S179-1",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-10",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-11",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-12",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-13",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-14",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-15",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-16",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-17",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-18",
+    "name": "소변 내 혈액",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "소변에 다량의 혈액",
+    "action_guide": "즉시 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S179-19",
+    "name": "소변 내 혈액",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "50세 이상",
+    "action_guide": "의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S179-2",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-20",
+    "name": "소변 내 혈액",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "발이나 다리의 부종과 함께 고혈압",
+    "action_guide": "의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S179-21",
+    "name": "소변 내 혈액",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "소변을 볼 수 없는 사람들",
+    "action_guide": "즉시 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S179-22",
+    "name": "소변 내 혈액",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 통증이 있는 사람들",
+    "action_guide": "즉시 의사를 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S179-3",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-4",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-5",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-6",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-7",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-8",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S179-9",
+    "name": "소변 내 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사는 먼저 환자의 증상들과 병력에 대해 묻고 난 후에 신체 검사를 합니다."
+  },
+  {
+    "symptom_id": "S180-1",
+    "name": "위장 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "경미한 출혈은 지켜볼 수 있지만, 지속될 경우 의사 진료 필요"
+  },
+  {
+    "symptom_id": "S180-2",
+    "name": "위장 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "기절, 중증 또는 장기간 땀흘림, 빠른 심박수, 대변 또는 구토로 혈액이 1컵(250밀리리터) 이상 배출",
+    "action_guide": "즉시 병원 방문"
+  },
+  {
+    "symptom_id": "S180-3",
+    "name": "위장 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사 진료 필요"
+  },
+  {
+    "symptom_id": "S180-4",
+    "name": "위장 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "즉시 병원 방문"
+  },
+  {
+    "symptom_id": "S181-1",
+    "name": "임신 초기 질 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "유산이 진행되고 있음을 의심하는 여성은 의사에게 연락해야 합니다. 때때로 가정에서 유산을 경험할 수 있으나, 통증 또는 출혈이 중증인 경우 또는 임신 조직이 완전히 배출되지 않는 경우, 여성이 안전하고 임신이 완전히 배출되도록 보장하기 위해 약물 또는 절차로 치료받아야 합니다."
+  },
+  {
+    "symptom_id": "S181-2",
+    "name": "임신 초기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "실신, 현기증 또는 빠른 심박수, 혈액, 또는 조직이나 혈전이 포함된 혈액의 과다 손실, 여성이 움직이거나 자세를 바꿀 때 악화되는 심각한 복통, 열, 오한 및 피가 섞인 고름이 든 질 분비물",
+    "action_guide": "경고 징후가 있는 여성은 즉시 의사의 진찰을 받아야 합니다. 경고 징후가 없는 여성도 48~72시간 내에 의사의 진단을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S182-1",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S182-2",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "임신 후기의 모든 질 출혈",
+    "action_guide": "임신 후기 동안 질 출혈이 있는 여성은 즉시 병원을 방문해야 합니다. 그러나 출혈이 이슬인 것 같으면 먼저 의사를 부를 수 있습니다. 의사는 출혈량과 기간 및 분만 징후의 존재에 따라 진찰받을 시기를 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S182-3",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "임신 후기의 모든 질 출혈",
+    "action_guide": "임신 후기 동안 질 출혈이 있는 여성은 즉시 병원을 방문해야 합니다. 그러나 출혈이 이슬인 것 같으면 먼저 의사를 부를 수 있습니다. 의사는 출혈량과 기간 및 분만 징후의 존재에 따라 진찰받을 시기를 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S182-4",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "임신 후기의 모든 질 출혈",
+    "action_guide": "임신 후기 동안 질 출혈이 있는 여성은 즉시 병원을 방문해야 합니다. 그러나 출혈이 이슬인 것 같으면 먼저 의사를 부를 수 있습니다. 의사는 출혈량과 기간 및 분만 징후의 존재에 따라 진찰받을 시기를 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S182-5",
+    "name": "임신 후기 질 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "임신 후기의 모든 질 출혈",
+    "action_guide": "임신 후기 동안 질 출혈이 있는 여성은 즉시 병원을 방문해야 합니다. 그러나 출혈이 이슬인 것 같으면 먼저 의사를 부를 수 있습니다. 의사는 출혈량과 기간 및 분만 징후의 존재에 따라 진찰받을 시기를 결정할 수 있습니다."
+  },
+  {
+    "symptom_id": "S183-1",
+    "name": "정액 안의 혈액",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분의 경우 심각한 문제가 아니며 자연히 해결되므로 즉시 의학적 평가가 필요하지 않음. 35세 미만이고 다른 증상이 없다면 의사 진찰을 받지 않아도 됨. 35세가 넘었다면 몇 주 안에 의사를 찾아야 함."
+  },
+  {
+    "symptom_id": "S183-2",
+    "name": "정액 안의 혈액",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "1개월 넘게 지속되는 출혈(최근 전립선 생검을 받지 않았다면), 음낭에서 만져 느낄 수 있는 덩어리, 주혈흡충증이 유행하는 곳에 여행을 감",
+    "action_guide": "경고 징후가 있는 경우 의사를 찾아야 함. 시기는 결정적 요소가 아니며 1주 정도 지체해도 해롭지 않음."
+  },
+  {
+    "symptom_id": "S184-1",
+    "name": "코피",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "똑바로 앉은 채 콧구멍을 10분 정도 쥐기. 멈추지 않으면 10분 더 반복. 그래도 안되면 의사 진료."
+  },
+  {
+    "symptom_id": "S184-2",
+    "name": "코피",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "과다출혈 징후(쇠약, 실신, 어지러움), 혈액 응고 방해 약물 사용, 출혈 장애 징후, 쉽게 멈추지 않는 출혈, 최근 잦은 코피",
+    "action_guide": "즉시 병원 방문"
+  },
+  {
+    "symptom_id": "S184-3",
+    "name": "코피",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "즉시 병원으로 가야 함"
+  },
+  {
+    "symptom_id": "S185-1",
+    "name": "타박상과 출혈",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분의 쉬운 타박상이나 과다 타박상은 피부나 혈관이 취약하기 때문에 발생하며 심각하지 않으므로 치료가 필요하지 않습니다."
+  },
+  {
+    "symptom_id": "S185-2",
+    "name": "타박상과 출혈",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "발한, 쇠약, 실신 또는 어지러움 또는 극심한 갈증 등 심각한 혈액 손실 증상, 임신 또는 최근 분만, 발열, 오한, 설사 또는 전신의 불편함 등 감염의 징후, 두통, 혼돈 또는 뇌 또는 신경계와 관련된 그 밖의 갑작스러운 증상",
+    "action_guide": "경고 징후가 있는 사람은 즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S186-1",
+    "name": "목 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "아세트아미노펜 또는 NSAID와 같은 일반 의약품 진통제 복용, 얼음찜질 또는 열찜질"
+  },
+  {
+    "symptom_id": "S186-2",
+    "name": "목 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "팔다리의 힘 또는 감각 상실, 열, 야간 발한, 두통, 졸음증 또는 혼돈, 흉부 불편, 갑작스러운 발한 또는 호흡 곤란, 운동에 의해 유발되거나 운동하는 동안 악화되는 통증, 삼키기 어려움 또는 삼킬 때 통증",
+    "action_guide": "즉시 의사의 진찰을 받아야 합니다."
+  },
+  {
+    "symptom_id": "S187-1",
+    "name": "다모증, 남성형 다모증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "미용적인 이유로 털을 최소화하거나 제거하고자 하지 않는 한 과다한 모발에 대한 치료는 필요하지 않음. 남성 호르몬 수치의 증가가 원인이라면 물리적 방법과 더불어 호르몬 치료가 필요함"
+  },
+  {
+    "symptom_id": "S187-2",
+    "name": "다모증, 남성형 다모증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "물리적 방법을 사용하여 모발을 제거"
+  },
+  {
+    "symptom_id": "S187-3",
+    "name": "다모증, 남성형 다모증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "저음, 근육 크기 증가, 대머리, 월경 주기가 불규칙하거나 결여되는 증상, 여드름 발생",
+    "action_guide": "의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S187-4",
+    "name": "다모증, 남성형 다모증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스러운 과다한 모발의 빠른 성장(수주에서 수개월 사이)",
+    "action_guide": "의사의 진찰을 받아야 함. 암을 시사하는 것일 수도 있음"
+  },
+  {
+    "symptom_id": "S188-1",
+    "name": "두드러기",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 분명하다면 가능한 한 원인을 피하고, 두드러기가 사라질 때까지 필수적이지 않은 모든 의약품의 복용을 중단합니다. 찬물로 목욕/샤워하고, 피부를 긁지 않으며, 헐렁한 옷을 입는 것이 증상 완화에 도움이 될 수 있습니다. 경구 복용 항히스타민제를 사용합니다."
+  },
+  {
+    "symptom_id": "S188-2",
+    "name": "두드러기",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "얼굴, 입술, 인후, 혀, 기도의 부기(혈관 부종), 쌕쌕거림을 포함한 호흡 곤란, 두드러기의 색이 짙으면서 상처가 벌어지거나 48시간 이상 지속, 열, 종창성 림프절, 황달, 체중 감소, 기타 신체적 장애 증상",
+    "action_guide": "호흡 곤란 또는 쌕쌕거림을 보이는 경우, 인후가 막힌 듯한 느낌이 있는 경우 구급차를 불러야 합니다. 중증의 증상을 보일 경우, 쇠약함이나 어지러움이 점점 심해지거나 심한 열 또는 오한이 나타날 경우, 구토를 하거나 복통 또는 설사 증상이 있을 경우 가능한 한 빨리 응급실이나 진료실을 찾아야 합니다."
+  },
+  {
+    "symptom_id": "S189-1",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-10",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-11",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-2",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-3",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-4",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-5",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-6",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-7",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-8",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S189-9",
+    "name": "털빠짐증, 탈모",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "피부가 벗겨지고 건조해지며 점차 그 범위가 넓어짐, 모발이 보통 두피 표면에서 끊어져 검은 점처럼 보일 수 있음",
+    "action_guide": "특히 감염이 치료되지 않으면 영구적인 탈모가 발생할 수 있음"
+  },
+  {
+    "symptom_id": "S190-1",
+    "name": "사지 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "아세트아미노펜과 같은 진통제와 비스테로이드계 소염제는 통증을 완화하는데 도움이 됩니다. 때때로 아편유사제도 필요합니다."
+  },
+  {
+    "symptom_id": "S190-2",
+    "name": "사지 통증",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S190-3",
+    "name": "사지 통증",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "갑작스럽고 심한 통증, 만졌을 때 차갑거나 창백한 사지, 흉통, 발한, 숨가쁨, 또는 심계항진, 심각한 질병의 징후(예를 들면 혼란, 열, 또는 허탈 등), 갑자기 붓거나 수포가 생기거나 검은 반점이 생긴 사지, 최근의 수술, 장기 요양, 또는 다리 깁스와 같은 심부 정맥 혈전증의 위험 요인, 영향을 받은 사지의 쇠약 또는 마비와 같은 새로운 신경 결핍",
+    "action_guide": "경고 징후가 있는 이들은 즉시 의사를 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S191-1",
+    "name": "성인의 기침",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "코막힘 또는 인후통 증상도 함께 보이는 경우에 기침이 멈추는지 또는 덜 심해지는지 며칠 동안 기다리면서 살펴보아야 합니다."
+  },
+  {
+    "symptom_id": "S191-2",
+    "name": "성인의 기침",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "숨가쁨, 객혈, 체중 감소, 1주일 이상 지속되는 열, 결핵에 노출, 인체 면역결핍 바이러스(HIV) 감염, 스테로이드 투약, 고위험 성적 활동, 주사를 통한 불법 약물 사용",
+    "action_guide": "즉시 병원을 방문해야 합니다. 이물질을 흡입한 사람도 즉시 의사의 진료를 받아야 합니다."
+  },
+  {
+    "symptom_id": "S192-1",
+    "name": "심계항진",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "대부분 심각한 심장 장애를 나타내는 것은 아님. 심장 질환이 없는 사람들에게도 발생 가능"
+  },
+  {
+    "symptom_id": "S192-2",
+    "name": "심계항진",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "현기증, 기절, 흉통, 흉부 압박, 숨가쁨, 분당 120회를 초과하거나 분당 45회 미만인 맥박수, 심장 질환, 돌연사 가족력, 재발성 기절, 설명되지 않는 발작 장애, 운동 중 의식 손실",
+    "action_guide": "즉시 응급실 방문. 기절, 흉통, 숨가쁨 시 응급 서비스 연락"
+  },
+  {
+    "symptom_id": "S193-1",
+    "name": "쌕쌕거림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "흡입된 알부테롤과 같은 기관지확장제 사용"
+  },
+  {
+    "symptom_id": "S193-2",
+    "name": "쌕쌕거림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "고통스러운 호흡, 호흡 노력 약화, 저하된 의식 수준, 얼굴과 혀의 부기",
+    "action_guide": "앰뷸런스로 병원의 응급실로 이송"
+  },
+  {
+    "symptom_id": "S193-3",
+    "name": "쌕쌕거림",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "가능한 한 빨리 의사에게 연락"
+  },
+  {
+    "symptom_id": "S193-4",
+    "name": "쌕쌕거림",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사의 평가 및 검사 필요"
+  },
+  {
+    "symptom_id": "S194-1",
+    "name": "유방통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "아세트아미노펜 혹은 비스테로이드 항염증약(NSAID) 복용, 고정되고 지지해 주는 브라 착용, 피임약 사용 또는 내분비 요법 중단, 영양 보충제 달맞이유 섭취"
+  },
+  {
+    "symptom_id": "S194-2",
+    "name": "유방통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "낭종에서 액체를 빼내는 시술"
+  },
+  {
+    "symptom_id": "S194-3",
+    "name": "유방통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "심한 통증, 붉어짐, 부종, 몽우리, 함몰 유두 또는 피부의 특정 변화",
+    "action_guide": "하루 또는 이틀 내에 의사의 진찰을 받아야 함"
+  },
+  {
+    "symptom_id": "S194-4",
+    "name": "유방통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "의사의 평가를 받아야 함"
+  },
+  {
+    "symptom_id": "S195-1",
+    "name": "협착음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "원인이 확인되고 환자의 호흡이 안정되면, 치료는 협착음을 유발한 장애에 초점을 맞춤"
+  },
+  {
+    "symptom_id": "S195-2",
+    "name": "협착음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "휴식을 취할 때 숨가쁨을 야기하는 협착음, 협착음과 중증의 숨가쁨",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S195-3",
+    "name": "협착음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S195-4",
+    "name": "협착음",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "가벼운 활동만으로도 호흡 곤란과 숨을 쉴 때마다 거친 고음의 소리(협착음)",
+    "action_guide": NaN
+  },
+  {
+    "symptom_id": "S195-5",
+    "name": "협착음",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "흡입한 이물질이 가능한 원인이고 환자가 병원 밖에 있는 경우, (교육을 받았다면) 다른 사람이 때때로 이물질을 배출하도록 도와줄 수 있음. 예를 들어, 성인의 경우, 다른 사람이 복부 밀어내기(이전에는 하임리히 구명법이라고 함)를 사용할 수 있음"
+  },
+  {
+    "symptom_id": "S196-1",
+    "name": "흉통",
+    "is_red_flag": false,
+    "urgency": null,
+    "context": NaN,
+    "action_guide": "오랜 시간 동안 흉통을 앓았던 사람들(일주일 이상)은 가능한 한 빨리 의사를 방문해야 합니다."
+  },
+  {
+    "symptom_id": "S196-2",
+    "name": "흉통",
+    "is_red_flag": true,
+    "urgency": null,
+    "context": "짓눌리는 또는 쥐어짜는 듯한 통증, 숨가쁨, 발한, 메스꺼움 또는 구토, 등, 목, 턱, 상복부, 또는 어깨나 팔 중 한 곳의 통증, 현기증 또는 기절, 빠르거나 불규칙한 심박동의 느낌",
+    "action_guide": "새로운 흉통이 있는 여성, 경고 징후가 있는 환자, 심장마비가 일어나고 있는 것으로 의심되는 환자의 경우 즉시 응급실 의사의 진찰을 받아야 합니다. 이러한 사람들은 최대한 빨리 응급 서비스(911)를 부르거나 응급실로 가야 합니다. 이러한 사람들은 병원에 직접 운전을 해서 가려고 해서는 안 됩니다."
   }
 ]

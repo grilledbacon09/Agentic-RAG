@@ -3,8 +3,9 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List
 
-from agents.models import Symptom, UserInput
-from agents.safety import check_symptom_red_flags
+from models import Symptom, UserInput
+from safety import check_symptom_red_flags
+from symptom_utils import user_describes_explicit_red_flag
 
 
 DEFAULT_RED_FLAG_KEYWORDS = {
@@ -29,20 +30,31 @@ class RedFlagCheck:
     action: str = ""
 
 
-def detect_red_flags(user_input: UserInput, symptom_db: List[Symptom]) -> RedFlagCheck:
-    """증상 DB + 기본 keyword rule을 함께 사용해 red flag를 탐지한다."""
+def detect_red_flags(
+    user_input: UserInput,
+    symptom_db: List[Symptom],
+    *,
+    user_text: str = "",
+) -> RedFlagCheck:
+    """사용자 발화에 응급 징후가 있을 때만 red flag로 처리합니다."""
 
-    safety_result = check_symptom_red_flags(user_input, symptom_db)
+    combined_text = f"{user_text} {' '.join(user_input.symptoms)}".strip()
+    safety_result = check_symptom_red_flags(
+        user_input,
+        symptom_db,
+        user_text=combined_text,
+    )
     matched = list(safety_result.red_flag_symptoms)
     reasons = list(safety_result.general_warnings)
 
-    symptom_text = " ".join(user_input.symptoms)
     for keyword, reason in DEFAULT_RED_FLAG_KEYWORDS.items():
-        if keyword in symptom_text and keyword not in matched:
+        if keyword in combined_text and keyword not in matched:
             matched.append(keyword)
             reasons.append(f"'{keyword}' 감지: {reason}")
 
-    has_red_flag = bool(matched)
+    has_red_flag = bool(matched) or user_describes_explicit_red_flag(combined_text)
+    if has_red_flag and not matched:
+        matched = [s for s in user_input.symptoms if s] or ["응급 징후"]
     action = "약 추천보다 의료기관/약사 상담을 우선 권고합니다." if has_red_flag else "일반 OTC 추천 흐름 진행 가능"
 
     return RedFlagCheck(has_red_flag=has_red_flag, matched=matched, reasons=reasons, action=action)

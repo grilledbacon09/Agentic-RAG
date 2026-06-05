@@ -1,18 +1,19 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
-from agents.agent_trace import AgentStep, format_agent_trace
-from agents.clarification_agent import generate_clarifying_questions
-from agents.generator import build_emergency_response
-from agents.models import Drug, Symptom, UserInput
-from agents.query_agent import analyze_user_input
-from agents.red_flag import detect_red_flags
-from agents.recommendation_agent import decide_recommendations
-from agents.reranker import rerank_results
-from agents.retriever import retrieve_top_k
-from agents.safety import check_symptom_red_flags, evaluate_drug_safety
-from agents.validator import validate_decision
+from agent_trace import AgentStep, format_agent_trace
+from clarification_agent import generate_clarifying_questions
+from config import AppConfig, load_config
+from generator import build_emergency_response
+from models import ChromaEvidence, Drug, PipelineResult, Symptom, UserInput
+from query_agent import analyze_user_input
+from red_flag import detect_red_flags
+from recommendation_agent import decide_recommendations
+from reranker import rerank_results
+from retriever import retrieve_symptom_context, retrieve_top_k
+from safety import check_symptom_red_flags, evaluate_drug_safety
+from validator import validate_decision
 
 
 def _format_enhanced_response(
@@ -20,6 +21,7 @@ def _format_enhanced_response(
     decision,
     validation,
     trace_steps: List[AgentStep],
+    use_chroma: bool = True,
 ) -> str:
     lines: List[str] = []
     lines.append(format_agent_trace(trace_steps))
@@ -44,6 +46,12 @@ def _format_enhanced_response(
         lines.append(f"   - 복용법: {drug.dosage}")
         lines.append(f"   - 매칭 증상: {', '.join(result.matched_symptoms) if result.matched_symptoms else '없음'}")
         lines.append(f"   - 근거: {'; '.join(item.rerank_reasons)}")
+        if result.chroma_evidence:
+            top_hit = max(result.chroma_evidence, key=lambda x: x.relevance)
+            lines.append(
+                f"   - ChromaDB: {top_hit.chunk_id} "
+                f"(유사도 {top_hit.relevance:.2f})"
+            )
 
     lines.append("\n[반대 추천 / 제외 후보]")
     if not decision.rejected:
@@ -63,13 +71,28 @@ def _format_enhanced_response(
         lines.append(f"  ✘ {error}")
 
     lines.append("\n[주의]")
-    lines.append("- 현재 결과는 Vector DB 도입 전 JSON 기반 정적 RAG + rule-based agent 결과입니다.")
+    if use_chroma:
+        lines.append("- Retrieval은 규칙 기반 + ChromaDB(medical_knowledge) 하이브리드입니다.")
+    else:
+        lines.append("- Retrieval은 JSON 규칙 기반만 사용했습니다.")
     lines.append("- 실제 복약 판단은 의사/약사 상담이 우선입니다.")
     return "\n".join(lines)
 
 
-def run_enhanced_pipeline(user_input: UserInput, drugs: List[Drug], symptoms: List[Symptom], top_k: int = 3) -> str:
+def run_enhanced_pipeline_core(
+    user_input: UserInput,
+    drugs: List[Drug],
+    symptoms: List[Symptom],
+    top_k: int = 3,
+    config: Optional[AppConfig] = None,
+    *,
+    context_text: str = "",
+) -> PipelineResult:
+    """Agentic RAG 파이프라인을 실행하고 구조화된 결과를 반환합니다."""
+    cfg = config or load_config()
+    top_k = top_k or cfg.top_k
     trace_steps: List[AgentStep] = []
+    symptom_context: List[ChromaEvidence] = []
 
     query_analysis = analyze_user_input(user_input, drugs, symptoms)
     trace_steps.append(AgentStep("Query Agent", "입력 분석 완료", query_analysis.messages))
@@ -80,29 +103,74 @@ def run_enhanced_pipeline(user_input: UserInput, drugs: List[Drug], symptoms: Li
             AgentStep(
                 "Clarification Agent",
                 "추가 확인 필요",
-                [f"Q. {q}" for q in clarification.questions[:3]] + [f"Reason: {r}" for r in clarification.reasons[:2]],
+                [f"Q. {q}" for q in clarification.questions[:3]]
+                + [f"Reason: {r}" for r in clarification.reasons[:2]],
             )
         )
     else:
-        trace_steps.append(AgentStep("Clarification Agent", "추가 질문 불필요", ["추천에 필요한 기본 정보가 입력되었습니다."]))
+        trace_steps.append(
+            AgentStep(
+                "Clarification Agent",
+                "추가 질문 불필요",
+                ["추천에 필요한 기본 정보가 입력되었습니다."],
+            )
+        )
 
-    red_flag = detect_red_flags(user_input, symptoms)
-    trace_steps.append(AgentStep("Safety Agent", "red flag 검사 완료", red_flag.reasons or [red_flag.action]))
+    red_flag = detect_red_flags(user_input, symptoms, user_text=context_text)
+    trace_steps.append(
+        AgentStep("Safety Agent", "red flag 검사 완료", red_flag.reasons or [red_flag.action])
+    )
     if red_flag.has_red_flag:
-        global_safety = check_symptom_red_flags(user_input, symptoms)
+        global_safety = check_symptom_red_flags(
+            user_input, symptoms, user_text=context_text
+        )
         emergency = build_emergency_response(user_input, global_safety)
-        return format_agent_trace(trace_steps) + "\n\n" + emergency
+        return PipelineResult(
+            user_input=user_input,
+            trace_steps=trace_steps,
+            decision=decide_recommendations([]),
+            validation=validate_decision(decide_recommendations([]), drugs),
+            is_emergency=True,
+            emergency_message=emergency,
+        )
 
-    retrieved = retrieve_top_k(user_input, drugs, top_k=top_k)
+    if cfg.use_chroma:
+        symptom_context = retrieve_symptom_context(
+            user_input,
+            top_n=2,
+            user_text=context_text,
+        )
+        if symptom_context:
+            trace_steps.append(
+                AgentStep(
+                    "ChromaDB",
+                    "증상 참고 청크 검색",
+                    [f"{item.chunk_id}: {item.document[:80]}..." for item in symptom_context],
+                )
+            )
+
+    retrieved = retrieve_top_k(
+        user_input,
+        drugs,
+        top_k=top_k,
+        use_chroma=cfg.use_chroma,
+        chroma_top_n=cfg.chroma_top_n,
+        chroma_weight=cfg.chroma_score_weight,
+        min_score=cfg.min_retrieval_score,
+    )
     trace_steps.append(
         AgentStep(
             "Retrieval Agent",
-            f"후보 {len(retrieved)}개 검색 완료",
-            [f"{item.drug.name_ko}: score={item.score:.1f}" for item in retrieved] or ["관련 후보 없음"],
+            f"후보 {len(retrieved)}개 검색 완료 ({'hybrid' if cfg.use_chroma else 'rule-only'})",
+            [
+                f"{item.drug.name_ko}: score={item.score:.1f}"
+                + (f", chroma={len(item.chroma_evidence)}" if item.chroma_evidence else "")
+                for item in retrieved
+            ]
+            or ["관련 후보 없음"],
         )
     )
 
-    # 기존 safety.py와의 호환성 유지: per-drug safety도 한 번 수행한다.
     _ = [evaluate_drug_safety(user_input, result.drug) for result in retrieved]
 
     reranked = rerank_results(user_input, retrieved, drugs)
@@ -110,13 +178,18 @@ def run_enhanced_pipeline(user_input: UserInput, drugs: List[Drug], symptoms: Li
         AgentStep(
             "Reranker",
             "관련도 + 안전성 기반 재정렬 완료",
-            [f"{item.retrieval.drug.name_ko}: final={item.final_score:.1f}, risk={item.risk_level}" for item in reranked]
+            [
+                f"{item.retrieval.drug.name_ko}: final={item.final_score:.1f}, risk={item.risk_level}"
+                for item in reranked
+            ]
             or ["재정렬할 후보 없음"],
         )
     )
 
     decision = decide_recommendations(reranked, max_recommendations=top_k)
-    trace_steps.append(AgentStep("Recommendation Agent", "추천/비추천 판단 완료", decision.messages))
+    trace_steps.append(
+        AgentStep("Recommendation Agent", "추천/비추천 판단 완료", decision.messages)
+    )
 
     validation = validate_decision(decision, drugs)
     trace_steps.append(
@@ -127,4 +200,33 @@ def run_enhanced_pipeline(user_input: UserInput, drugs: List[Drug], symptoms: Li
         )
     )
 
-    return _format_enhanced_response(user_input, decision, validation, trace_steps)
+    return PipelineResult(
+        user_input=user_input,
+        trace_steps=trace_steps,
+        decision=decision,
+        validation=validation,
+        symptom_context=symptom_context,
+    )
+
+
+def run_enhanced_pipeline(
+    user_input: UserInput,
+    drugs: List[Drug],
+    symptoms: List[Symptom],
+    top_k: int = 3,
+    config: Optional[AppConfig] = None,
+) -> str:
+    """기존 단답형 CLI용 문자열 응답 (하위 호환)."""
+    cfg = config or load_config()
+    result = run_enhanced_pipeline_core(user_input, drugs, symptoms, top_k=top_k, config=cfg)
+
+    if result.is_emergency:
+        return format_agent_trace(result.trace_steps) + "\n\n" + result.emergency_message
+
+    return _format_enhanced_response(
+        result.user_input,
+        result.decision,
+        result.validation,
+        result.trace_steps,
+        use_chroma=cfg.use_chroma,
+    )

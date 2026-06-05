@@ -1,20 +1,23 @@
 # html에서 텍스트 추출
-from datetime import datetime
-import json
 import random
-import time
-import requests
-from bs4 import BeautifulSoup
-from pathlib import Path
-import pandas as pd
 import re
+import time
 
+import sys
+from pathlib import Path
+
+_SRC = Path(__file__).resolve().parent.parent
+if str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
+
+import bootstrap  # noqa: E402
+import pandas as pd
+import requests
 import set_client
+from bs4 import BeautifulSoup
+from paths import MSD_LINKS_CSV, ensure_data_dirs
 
-# 설정
-current_file = Path(__file__).resolve()
-BASE_DIR = current_file.parent.parent
-LINKS_FILE = BASE_DIR / "data" / "msd_source" / "links.csv"
+LINKS_FILE = MSD_LINKS_CSV
 
 # 섹션 추출을 위한 헬퍼 함수
 # 헬퍼 함수 A: TopicFHead (원인, 요점 등 큰 섹션)
@@ -213,8 +216,11 @@ def save_results_to_db(data_list: list[dict]):
 
 
 if __name__ == "__main__":
+    ensure_data_dirs()
     if not LINKS_FILE.exists():
         print(f"파일을 찾을 수 없습니다: {LINKS_FILE}")
+        print("  → MSD 증상 목록을 수집하려면: python src/collector/msd_link_collector.py")
+        print("  → 또는 개발용 시드: python src/extractor/seed_dev_data.py")
     else:
         links_df = pd.read_csv(LINKS_FILE)
         total_count = len(links_df)

@@ -2,12 +2,21 @@ from __future__ import annotations
 
 from typing import Dict, List
 
-from agents.models import Drug, SafetyResult, Symptom, UserInput
+from models import Drug, SafetyResult, Symptom, UserInput
+from symptom_utils import (
+    group_symptoms_by_name,
+    pick_canonical_symptom,
+    user_describes_explicit_red_flag,
+)
 
 
-def check_symptom_red_flags(user_input: UserInput, symptom_db: List[Symptom]) -> SafetyResult:
-    symptom_map: Dict[str, Symptom] = {s.name.strip(): s for s in symptom_db}
-
+def check_symptom_red_flags(
+    user_input: UserInput,
+    symptom_db: List[Symptom],
+    *,
+    user_text: str = "",
+) -> SafetyResult:
+    grouped = group_symptoms_by_name(symptom_db)
     red_flag_symptoms: List[str] = []
     general_warnings: List[str] = []
 
@@ -16,18 +25,34 @@ def check_symptom_red_flags(user_input: UserInput, symptom_db: List[Symptom]) ->
         if not symptom:
             continue
 
-        symptom_info = symptom_map.get(symptom)
-        if symptom_info is None:
+        group = grouped.get(symptom, [])
+        if not group:
             continue
 
-        if symptom_info.is_red_flag is True:
+        canonical = pick_canonical_symptom(group)
+        if canonical is None:
+            continue
+
+        if user_describes_explicit_red_flag(user_text):
             red_flag_symptoms.append(symptom)
 
-        if symptom_info.urgency:
-            general_warnings.append(f"증상 '{symptom}'의 시급도 정보: {symptom_info.urgency}")
+        if canonical.urgency:
+            general_warnings.append(
+                f"증상 '{symptom}'의 시급도 정보: {canonical.urgency}"
+            )
 
-        if symptom_info.action_guide:
-            general_warnings.append(f"증상 '{symptom}' 대응 가이드: {symptom_info.action_guide}")
+        context = str(canonical.context or "").strip()
+        if context and context.lower() != "nan":
+            general_warnings.append(
+                f"증상 '{symptom}' 주의 참고: {context[:180]}"
+            )
+
+        guide = str(canonical.action_guide or "").strip()
+        if guide and guide.lower() != "nan":
+            if "즉시 의사" not in guide:
+                general_warnings.append(
+                    f"증상 '{symptom}' 대응 가이드: {guide}"
+                )
 
     return SafetyResult(
         has_red_flag=len(red_flag_symptoms) > 0,
@@ -62,10 +87,31 @@ def evaluate_drug_safety(user_input: UserInput, drug: Drug) -> SafetyResult:
                 f"{drug.name_ko} 경고문에 알레르기 관련 정보 '{allergy}'가 포함되어 있습니다."
             )
 
+    forbidden_conditions: set[str] = set()
+    for chunk in drug.child_chunks:
+        for item in chunk.metadata.get("forbidden_conditions", []) or []:
+            forbidden_conditions.add((item or "").strip())
+
     for condition in conditions:
-        if condition and condition != "없음" and condition in warning_text:
+        if not condition or condition == "없음":
+            continue
+        condition_norm = condition.strip()
+        hard_match = any(
+            condition_norm in fc or fc in condition_norm
+            for fc in forbidden_conditions
+            if fc and not (condition_norm == "음주" and fc == "음주")
+        )
+        if hard_match:
             contraindication_warnings.append(
-                f"{drug.name_ko} 경고문에 사용자 상태 '{condition}' 관련 주의 문구가 있습니다."
+                f"{drug.name_ko}은(는) 사용자 상태 '{condition}'에 주의가 필요합니다."
+            )
+        elif condition_norm == "음주" and "음주" in forbidden_conditions:
+            general_warnings.append(
+                f"{drug.name_ko}: 음주 시 복용 전 약사 상담을 권장합니다."
+            )
+        elif condition in warning_text:
+            general_warnings.append(
+                f"{drug.name_ko}: '{condition}' 관련 주의 문구가 있어 약사 상담을 권장합니다."
             )
 
     for current_name in current_drug_names:

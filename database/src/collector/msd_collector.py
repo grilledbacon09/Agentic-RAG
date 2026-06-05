@@ -12,17 +12,23 @@ from openai import OpenAI
 import json
 import time
 import random
+import sys
+from pathlib import Path
+
+_SRC = Path(__file__).resolve().parent.parent
+if str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
+
+import bootstrap  # noqa: E402
 import set_client
 import re
+from paths import DATA_DIR, MSD_LINKS_CSV
 from pydantic import BaseModel, Field, ValidationError, field_validator
 from typing import List, Optional
 
-# 설정
-current_file = Path(__file__).resolve()
-BASE_DIR = current_file.parent.parent
-LINKS_FILE = BASE_DIR / "data" / "msd_source" / "links.csv"
-RAW_DATA_FILE = BASE_DIR / "data" / "msd_source" / "symptoms.csv"
-EXTRACTED_DATA_FILE = BASE_DIR / "data" / "msd_source" / "silver_data.csv"
+LINKS_FILE = MSD_LINKS_CSV
+RAW_DATA_FILE = DATA_DIR / "msd_source" / "symptoms.csv"
+EXTRACTED_DATA_FILE = DATA_DIR / "msd_source" / "silver_data.csv"
 
 load_dotenv()
 # api key

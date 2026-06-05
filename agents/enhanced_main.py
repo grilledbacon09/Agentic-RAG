@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 from config import load_config
+from enhanced_pipeline import run_enhanced_pipeline
 from loader import load_drugs, load_symptoms
 from query_agent import analyze_query
-from enhanced_pipeline import run_enhanced_pipeline
 
 
 def main() -> None:
@@ -11,8 +11,10 @@ def main() -> None:
     drugs = load_drugs(config.data_dir / "drugs.json")
     symptoms = load_symptoms(config.data_dir / "symptoms.json")
 
-    print("=== 확장 Agentic RAG 약 정보 응답 데모 ===")
-    print("Vector DB 도입 전: JSON + rule-based multi-agent pipeline")
+    print("=== 확장 Agentic RAG 단답형 데모 (레거시) ===")
+    print("ChatGPT형 대화 UI: python chat_web.py")
+    print(f"데이터: {config.data_dir}")
+    print(f"ChromaDB hybrid retrieval: {'ON' if config.use_chroma else 'OFF'}")
     print("쉼표(,)로 여러 값을 입력할 수 있습니다.\n")
 
     analysis = analyze_query(
@@ -25,7 +27,13 @@ def main() -> None:
         symptoms=symptoms,
     )
 
-    result = run_enhanced_pipeline(analysis.user_input, drugs, symptoms, top_k=config.top_k)
+    result = run_enhanced_pipeline(
+        analysis.user_input,
+        drugs,
+        symptoms,
+        top_k=config.top_k,
+        config=config,
+    )
 
     print("\n" + "=" * 70)
     print(result)
