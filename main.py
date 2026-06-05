@@ -17,7 +17,11 @@ app = FastAPI(title="의약품 통합 헬스케어 서버")
 # CORS 허용 (React 포트 통신용)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:3000", 
+        "http://localhost:5173",
+        "https://agentic-rag-demo-87et.onrender.com"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
