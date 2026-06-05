@@ -21,7 +21,7 @@ app.add_middleware(
         "http://localhost:3000", 
         "http://localhost:5173",
         "https://agentic-rag-demo-87et.onrender.com",
-        "https://graduation-pj-front.vercel.app/"
+        "https://graduation-pj-front.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
