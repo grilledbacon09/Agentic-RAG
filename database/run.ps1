@@ -3,7 +3,7 @@
 
 param(
     [Parameter(Position = 0)]
-    [ValidateSet("seed", "import", "vectorize", "export", "test", "full")]
+    [ValidateSet("seed", "import", "json", "vectorize", "export", "test", "full")]
     [string]$Step = "seed",
     [string]$Query = "두통"
 )
@@ -27,6 +27,9 @@ switch ($Step) {
     }
     "import" {
         & (Join-Path $DeRoot "run_import_team_data.ps1")
+    }
+    "json" {
+        & (Join-Path $DeRoot "run_export_no_docker.ps1")
     }
     "vectorize" {
         & $venvPython src/vectordb/vectorizer.py

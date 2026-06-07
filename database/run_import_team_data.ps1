@@ -20,15 +20,19 @@ if (-not (Test-Path $venvPython)) { $venvPython = "python" }
 
 $csv = Join-Path $DeRoot "data\msd_source\silver_data.csv"
 $drugRoot = Join-Path $DeRoot "data\minio\bronze\drug_info"
+$tabooRoot = Join-Path $DeRoot "data\minio\bronze\taboo_info"
 
 if (-not (Test-Path $csv)) {
     Write-Host "[!] $csv 가 없습니다." -ForegroundColor Red
-    Write-Host "    data.zip을 DE\data\ 에 풀었는지 확인하세요." -ForegroundColor Yellow
+    Write-Host "    data.zip을 database\data\ 에 풀었는지 확인하세요." -ForegroundColor Yellow
     exit 1
 }
 if (-not (Test-Path $drugRoot)) {
     Write-Host "[!] $drugRoot 가 없습니다." -ForegroundColor Red
     exit 1
+}
+if (-not (Test-Path $tabooRoot)) {
+    Write-Host "[!] $tabooRoot 가 없습니다. DUR 병용금기 import가 생략됩니다." -ForegroundColor Yellow
 }
 
 Write-Host "========== Import team data -> Silver ==========" -ForegroundColor Cyan
@@ -53,4 +57,4 @@ if (-not $SkipVectorize) {
 
 Write-Host ""
 Write-Host "[DONE] 팀 데이터 연동 완료" -ForegroundColor Green
-Write-Host "AI: cd ..\AI; ..\venv\Scripts\python.exe chat_main.py"
+Write-Host "AI: cd ..\agents; ..\venv\Scripts\python.exe chat_main.py"

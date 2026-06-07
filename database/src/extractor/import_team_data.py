@@ -23,8 +23,8 @@ if str(_SRC) not in sys.path:
 import bootstrap  # noqa: E402
 import pandas as pd
 import set_client
-from minio_part import extract_items_from_part, find_latest_part
-from paths import DATA_DIR, MSD_SOURCE_DIR
+from minio_part import extract_items_from_part, find_latest_part, iter_taboo_items_from_part
+from paths import DATA_DIR, MSD_SOURCE_DIR, TEAM_TABOO_INFO_ROOT
 
 PROCESSED_DIR = DATA_DIR / "processed"
 SILVER_CSV = MSD_SOURCE_DIR / "silver_data.csv"
@@ -32,6 +32,8 @@ DRUG_INFO_ROOT = DATA_DIR / "minio" / "bronze" / "drug_info"
 SYMPTOM_JSON_ROOT = DATA_DIR / "minio" / "silver" / "symptoms"
 
 OTC_ONLY = os.getenv("SILVER_OTC_ONLY", "false").lower() in {"1", "true", "yes"}
+SKIP_TABOO = os.getenv("SKIP_TABOO", "false").lower() in {"1", "true", "yes"}
+TABOO_BATCH_SIZE = int(os.getenv("TABOO_BATCH_SIZE", "5000"))
 
 
 def _clean_text(value) -> str:
@@ -224,6 +226,68 @@ def import_drugs_from_part(part_path: Path) -> int:
     return len(payload)
 
 
+def _taboo_row(item: dict) -> dict | None:
+    drug_a_id = _clean_text(item.get("ITEM_SEQ", item.get("itemSeq")))
+    drug_b_id = _clean_text(item.get("MIXTURE_ITEM_SEQ", item.get("mixtureItemSeq")))
+    if not drug_a_id or not drug_b_id:
+        return None
+    drug_b_ingr = _clean_text(
+        item.get("MIXTURE_INGR_KOR_NAME", item.get("mixtureIngrKorName"))
+    )
+    return {
+        "drug_id": drug_a_id,
+        "drug_name": _clean_text(item.get("ITEM_NAME", item.get("itemName"))) or None,
+        "mixture_drug_id": drug_b_id,
+        "mixture_drug_name": _clean_text(
+            item.get("MIXTURE_ITEM_NAME", item.get("mixtureItemName"))
+        ) or None,
+        "mixture_ingr_name": drug_b_ingr or None,
+        "prohibited_content": _clean_text(
+            item.get("PROHBT_CONTENT", item.get("prohbtContent"))
+        ) or None,
+    }
+
+
+def import_taboo_from_part(part_path: Path) -> int:
+    upsert = """
+        INSERT INTO silver_taboo_info (
+            drug_id, drug_name, mixture_drug_id, mixture_drug_name,
+            mixture_ingr_name, prohibited_content
+        ) VALUES (
+            %(drug_id)s, %(drug_name)s, %(mixture_drug_id)s, %(mixture_drug_name)s,
+            %(mixture_ingr_name)s, %(prohibited_content)s
+        );
+    """
+    print(f"[+] taboo_info 스트리밍 import 시작: {part_path}", flush=True)
+
+    conn = set_client.get_db_conn()
+    inserted = 0
+    batch: list[dict] = []
+    try:
+        with conn.cursor() as cur:
+            cur.execute("TRUNCATE TABLE silver_taboo_info RESTART IDENTITY;")
+            for item in iter_taboo_items_from_part(part_path):
+                row = _taboo_row(item)
+                if not row:
+                    continue
+                batch.append(row)
+                if len(batch) >= TABOO_BATCH_SIZE:
+                    cur.executemany(upsert, batch)
+                    inserted += len(batch)
+                    batch.clear()
+                    if inserted % 50000 == 0:
+                        print(f"    ... taboo {inserted:,}건", flush=True)
+            if batch:
+                cur.executemany(upsert, batch)
+                inserted += len(batch)
+        conn.commit()
+    finally:
+        conn.close()
+
+    print(f"[+] silver_taboo_info 적재: {inserted:,}건", flush=True)
+    return inserted
+
+
 def print_summary() -> None:
     conn = set_client.get_db_conn()
     try:
@@ -232,10 +296,12 @@ def print_summary() -> None:
             sym = cur.fetchone()[0]
             cur.execute("SELECT COUNT(*) FROM silver_drug_info")
             drug = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM silver_taboo_info")
+            taboo = cur.fetchone()[0]
             cur.execute("SELECT COUNT(*) FROM silver_drug_integration")
             integrated = cur.fetchone()[0]
         print(
-            f"[+] Silver 요약: symptom={sym}, drug_info={drug}, "
+            f"[+] Silver 요약: symptom={sym}, drug_info={drug}, taboo={taboo}, "
             f"integration_view={integrated}",
             flush=True,
         )
@@ -248,6 +314,16 @@ def main() -> None:
     csv_path, drug_part = _require_paths()
     import_symptoms_from_csv(csv_path)
     import_drugs_from_part(drug_part)
+
+    if SKIP_TABOO:
+        print("[*] SKIP_TABOO=true — taboo import 생략", flush=True)
+    else:
+        taboo_part = find_latest_part(TEAM_TABOO_INFO_ROOT)
+        if taboo_part is None:
+            print("[!] taboo_info part.1 없음 — taboo import 생략", flush=True)
+        else:
+            import_taboo_from_part(taboo_part)
+
     print_summary()
     print("[+] 팀 데이터 Silver 적재 완료", flush=True)
     print("    다음: python src/vectordb/vectorizer.py", flush=True)

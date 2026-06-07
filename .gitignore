@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 # local data / backups
 DE/data/
+database/data/
 data/*.bak
 
 # env
