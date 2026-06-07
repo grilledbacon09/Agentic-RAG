@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Iterable, List
 
-from agents.models import Drug, Symptom, UserInput
+from models import Drug, Symptom, UserInput
 
 
 def _normalize(text: str) -> str:

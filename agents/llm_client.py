@@ -12,7 +12,7 @@ from prompts import CONVERSATION_SYSTEM_PROMPT
 
 _PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 load_dotenv(os.path.join(_PROJECT_ROOT, ".env"))
-load_dotenv(os.path.join(_PROJECT_ROOT, "DE", ".env"))
+load_dotenv(os.path.join(_PROJECT_ROOT, "database", ".env"))
 
 
 def get_api_key() -> str:

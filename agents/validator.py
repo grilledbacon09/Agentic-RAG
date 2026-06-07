@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List
 
-from agents.models import Drug
-from agents.recommendation_agent import RecommendationDecision
+from models import Drug
+from recommendation_agent import RecommendationDecision
 
 
 @dataclass

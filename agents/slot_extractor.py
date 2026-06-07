@@ -21,6 +21,11 @@ SYMPTOM_ALIASES: dict[str, str] = {
     "허리": "요통",
     "허리아픔": "요통",
     "생리통": "생리통",
+    "어깨": "사지 통증",
+    "어깨가뻐근": "사지 통증",
+    "어깨뻐근": "사지 통증",
+    "어깨가아파": "사지 통증",
+    "어깨아파": "사지 통증",
     "인후염": "인후염",
     "목아픔": "목 통증",
     "목아파": "목 통증",
@@ -46,6 +51,12 @@ SYMPTOM_ALIASES: dict[str, str] = {
     "속아파": "통증",
     "속이아파": "통증",
     "속이아픔": "통증",
+    "속이안좋": "소화가 되지 않음, 소화불량",
+    "속안좋": "소화가 되지 않음, 소화불량",
+    "소화불량": "소화가 되지 않음, 소화불량",
+    "소화": "소화가 되지 않음, 소화불량",
+    "메스꺼": "성인의 메스꺼움 및 구토",
+    "구역": "성인의 메스꺼움 및 구토",
     "복부": "통증",
 }
 
@@ -55,20 +66,30 @@ SYMPTOM_SPECIFICITY: dict[str, int] = {
     "발열": 9,
     "요통": 9,
     "허리 통증": 9,
+    "사지 통증": 9,
     "생리통": 9,
     "인후염": 10,
     "목 통증": 11,
     "귀통증": 10,
+    "소화가 되지 않음, 소화불량": 10,
+    "성인의 메스꺼움 및 구토": 10,
 }
 
 NEGATIVE_PATTERNS = (
-    "없", "안 ", "아니", "모르", "해당없", "해당 없", "딱히", "특별히",
+    "없음", "없어요", "없어", "아니요", "아닙니다", "아님", "모르겠", "모름",
+    "해당없", "딱히", "특별히",
 )
 
+NEGATIVE_EXACT = {
+    "없", "없음", "없어", "없어요", "없습니다", "아니", "아니요", "아닙니다",
+    "no", "nope", "모름", "모르겠어", "모르겠어요", "모르겠습니다",
+}
+
+SYMPTOM_HINTS = ("아파", "아프", "아픈", "안좋", "불편", "통증", "메스꺼", "구토", "열")
+
 CONDITION_KEYWORDS: dict[str, str] = {
-    "간": "간 질환",
     "간염": "간 질환",
-    "위": "위장 질환",
+    "간": "간 질환",
     "위장": "위장 질환",
     "위염": "위장 질환",
     "임신": "임신",
@@ -80,7 +101,18 @@ CONDITION_KEYWORDS: dict[str, str] = {
     "신장": "신장 질환",
     "신부전": "신장 질환",
     "심장": "심혈관계 질환",
+    "기관지염": "기관지염",
+    "기관지": "기관지염",
+    "천식": "천식",
+    "폐": "폐 질환",
 }
+
+CURRENT_MED_CUES = ("먹", "복용", "드시", "투여", "처방", "먹고있", "복용중")
+
+INGREDIENT_NAMES = (
+    "이부프로펜", "아세트아미노펜", "타이레놀", "나프록센", "덱시부프로펜",
+    "케토프로펜", "아스피린", "판콜", "콜대원",
+)
 
 ALLERGY_KEYWORDS = (
     "페니실린", "아스피린", "이부프로펜", "아세트아미노펜", "항생제", "약 알레르기",
@@ -105,7 +137,13 @@ def _normalize(text: str) -> str:
 
 def _is_negative(text: str) -> bool:
     norm = _normalize(text)
-    return any(p.replace(" ", "") in norm for p in NEGATIVE_PATTERNS)
+    if any(h in norm for h in SYMPTOM_HINTS):
+        return False
+    if norm in NEGATIVE_EXACT:
+        return True
+    if len(norm) <= 10:
+        return norm.startswith("없") or norm.startswith("아니") or norm.startswith("모르")
+    return any(p.replace(" ", "") == norm for p in NEGATIVE_PATTERNS)
 
 
 def _unique(items: Iterable[str]) -> List[str]:
@@ -136,6 +174,10 @@ def _extract_symptoms(text: str, symptoms: List[Symptom]) -> List[str]:
         if "목 통증" not in found:
             found.append("목 통증")
 
+    if re.search(r"3[89](?:\.\d+)?\s*도|40\s*도", text):
+        if "발열" not in found:
+            found.append("발열")
+
     return _unique(found)
 
 
@@ -153,8 +195,9 @@ def pick_primary_symptoms(symptoms: List[str], user_text: str = "") -> List[str]
             if preferred in found:
                 return [preferred]
     if any(k in norm for k in ("배", "복", "속")):
-        if "통증" in found:
-            return ["통증"]
+        for preferred in ("소화가 되지 않음, 소화불량", "성인의 메스꺼움 및 구토", "통증"):
+            if preferred in found:
+                return [preferred]
 
     best = max(found, key=lambda s: SYMPTOM_SPECIFICITY.get(s, 5))
     return [best]
@@ -171,10 +214,18 @@ def _extract_drugs(text: str, drugs: List[Drug]) -> tuple[List[str], List[str]]:
         if drug.name_ko and _normalize(drug.name_ko) in norm:
             names.append(drug.name_ko)
 
+    if any(cue in norm for cue in CURRENT_MED_CUES):
+        for ing in INGREDIENT_NAMES:
+            if ing in text and ing not in names:
+                names.append(ing)
+
     return _unique(ids), _unique(names)
 
 
 def _extract_allergies(text: str) -> List[str]:
+    norm = _normalize(text)
+    if any(cue in norm for cue in CURRENT_MED_CUES):
+        return []
     found = [kw for kw in ALLERGY_KEYWORDS if kw in text]
     if "알레르기" in text and not found and not _is_negative(text):
         snippet = text.split("알레르기", 1)[-1].strip(" :은는이가")
@@ -185,7 +236,7 @@ def _extract_allergies(text: str) -> List[str]:
 
 def _extract_conditions(text: str) -> List[str]:
     found: List[str] = []
-    for key, label in CONDITION_KEYWORDS.items():
+    for key, label in sorted(CONDITION_KEYWORDS.items(), key=lambda x: len(x[0]), reverse=True):
         if key in text:
             found.append(label)
     return _unique(found)
@@ -256,6 +307,9 @@ def extract_slots_from_message(
     if drug_ids or drug_names:
         patch.current_drug_ids = drug_ids
         patch.current_drug_names = drug_names
+    elif pending_slot == "current_meds" and not negative and len(text) >= 2:
+        if any(cue in _normalize(text) for cue in CURRENT_MED_CUES) or extracted_symptoms:
+            patch.current_drug_names = [text[:80]]
 
     if extracted_allergies:
         patch.allergies = extracted_allergies
@@ -266,6 +320,8 @@ def extract_slots_from_message(
         patch.conditions = extracted_conditions
     elif pending_slot == "conditions" and negative:
         patch.conditions = ["없음"]
+    elif pending_slot == "conditions" and not negative and len(text) >= 2:
+        patch.conditions = [text[:80]]
 
     if pending_slot == "current_meds" and negative:
         patch.current_drug_ids = ["없음"]

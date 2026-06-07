@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List
 
-from agents.contraindication import check_drug_contraindication
-from agents.models import Drug, RetrievalResult, UserInput
+from contraindication import check_drug_contraindication
+from models import Drug, RetrievalResult, UserInput
 
 
 @dataclass

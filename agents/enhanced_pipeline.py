@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Callable, List, Optional
 
 from agent_trace import AgentStep, format_agent_trace
 from clarification_agent import generate_clarifying_questions
@@ -87,6 +87,7 @@ def run_enhanced_pipeline_core(
     config: Optional[AppConfig] = None,
     *,
     context_text: str = "",
+    on_step: Optional[Callable[[AgentStep], None]] = None,
 ) -> PipelineResult:
     """Agentic RAG 파이프라인을 실행하고 구조화된 결과를 반환합니다."""
     cfg = config or load_config()
@@ -94,12 +95,17 @@ def run_enhanced_pipeline_core(
     trace_steps: List[AgentStep] = []
     symptom_context: List[ChromaEvidence] = []
 
+    def emit(step: AgentStep) -> None:
+        trace_steps.append(step)
+        if on_step:
+            on_step(step)
+
     query_analysis = analyze_user_input(user_input, drugs, symptoms)
-    trace_steps.append(AgentStep("Query Agent", "입력 분석 완료", query_analysis.messages))
+    emit(AgentStep("Query Agent", "입력 분석 완료", query_analysis.messages))
 
     clarification = generate_clarifying_questions(user_input)
     if clarification.needs_clarification:
-        trace_steps.append(
+        emit(
             AgentStep(
                 "Clarification Agent",
                 "추가 확인 필요",
@@ -108,7 +114,7 @@ def run_enhanced_pipeline_core(
             )
         )
     else:
-        trace_steps.append(
+        emit(
             AgentStep(
                 "Clarification Agent",
                 "추가 질문 불필요",
@@ -117,9 +123,7 @@ def run_enhanced_pipeline_core(
         )
 
     red_flag = detect_red_flags(user_input, symptoms, user_text=context_text)
-    trace_steps.append(
-        AgentStep("Safety Agent", "red flag 검사 완료", red_flag.reasons or [red_flag.action])
-    )
+    emit(AgentStep("Safety Agent", "red flag 검사 완료", red_flag.reasons or [red_flag.action]))
     if red_flag.has_red_flag:
         global_safety = check_symptom_red_flags(
             user_input, symptoms, user_text=context_text
@@ -141,7 +145,7 @@ def run_enhanced_pipeline_core(
             user_text=context_text,
         )
         if symptom_context:
-            trace_steps.append(
+            emit(
                 AgentStep(
                     "ChromaDB",
                     "증상 참고 청크 검색",
@@ -158,7 +162,7 @@ def run_enhanced_pipeline_core(
         chroma_weight=cfg.chroma_score_weight,
         min_score=cfg.min_retrieval_score,
     )
-    trace_steps.append(
+    emit(
         AgentStep(
             "Retrieval Agent",
             f"후보 {len(retrieved)}개 검색 완료 ({'hybrid' if cfg.use_chroma else 'rule-only'})",
@@ -174,7 +178,7 @@ def run_enhanced_pipeline_core(
     _ = [evaluate_drug_safety(user_input, result.drug) for result in retrieved]
 
     reranked = rerank_results(user_input, retrieved, drugs)
-    trace_steps.append(
+    emit(
         AgentStep(
             "Reranker",
             "관련도 + 안전성 기반 재정렬 완료",
@@ -187,12 +191,10 @@ def run_enhanced_pipeline_core(
     )
 
     decision = decide_recommendations(reranked, max_recommendations=top_k)
-    trace_steps.append(
-        AgentStep("Recommendation Agent", "추천/비추천 판단 완료", decision.messages)
-    )
+    emit(AgentStep("Recommendation Agent", "추천/비추천 판단 완료", decision.messages))
 
     validation = validate_decision(decision, drugs)
-    trace_steps.append(
+    emit(
         AgentStep(
             "Validator",
             "출력 검증 완료" if validation.passed else "출력 검증 실패",

@@ -18,6 +18,12 @@ def main() -> None:
     print("💬 Agentic-RAG 대화형 복약 상담 (터미널)")
     print("ChatGPT형 웹 UI: python chat_web.py")
     print(f"ChromaDB: {'ON' if config.use_chroma else 'OFF'}")
+    print(f"Reasoning trace: {'ON' if config.show_reasoning else 'OFF'} (SHOW_REASONING=false 로 끄기)")
+    from llm_client import is_llm_enabled
+    from conversation_agent import _use_llm_orchestrator
+    llm_on = is_llm_enabled()
+    print(f"LLM: {'ON' if llm_on else 'OFF (OPENAI_API_KEY 필요)'}")
+    print(f"LLM orchestrator: {'ON' if _use_llm_orchestrator() else 'OFF'}")
     print("=" * 70)
     print()
     print(f"Assistant: {welcome}")
@@ -39,11 +45,11 @@ def main() -> None:
             continue
 
         bundle, reply, trace = send_message(bundle, user_text)
-        print(f"\nAssistant: {reply}")
 
         if trace and config.enable_agent_trace:
-            print(f"\n--- [Debug] ---\n{trace}")
-        print()
+            print(f"\n--- [Debug] ---\n{trace}\n")
+
+        print(f"Assistant: {reply}\n")
 
     print("=" * 70)
 

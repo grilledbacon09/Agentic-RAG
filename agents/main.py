@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from config import load_config
 from loader import load_drugs, load_symptoms
-from agents.models import UserInput
+from models import UserInput
 from pipeline import run_pipeline
 
 

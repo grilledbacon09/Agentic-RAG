@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List
 
-from agents.reranker import RerankedResult
+from reranker import RerankedResult
 
 
 @dataclass
@@ -29,11 +29,15 @@ def _is_symptom_relevant(item: RerankedResult) -> bool:
     retrieval = item.retrieval
     if retrieval.matched_symptoms:
         return True
-    if retrieval.score >= 2.0:
+    if retrieval.score >= 1.5:
         return True
     if retrieval.chroma_evidence:
         max_rel = max(ev.relevance for ev in retrieval.chroma_evidence)
-        if max_rel >= 0.45 and retrieval.score >= 1.5:
+        if max_rel >= 0.40 and retrieval.score >= 1.0:
+            return True
+    indications = (retrieval.drug.indications or "").lower()
+    for symptom in retrieval.matched_symptoms:
+        if symptom.lower() in indications:
             return True
     return False
 

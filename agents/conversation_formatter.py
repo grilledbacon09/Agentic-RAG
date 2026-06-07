@@ -68,23 +68,45 @@ def _summarize_collected(user_input: UserInput) -> str:
 
 
 def format_slot_ack(session: ConversationSession, slot: str) -> str:
+    """확정된 슬롯에 대해서만 확인 멘트를 반환합니다."""
+    if slot not in session.confirmed_slots:
+        return ""
+
     ui = session.user_input
     if slot == "symptoms" and ui.symptoms:
-        return f"아, {ui.symptoms[0]} 증상이시군요. 말씀해 주셔서 감사해요."
+        return f"아, {', '.join(ui.symptoms)} 증상이시군요. 말씀해 주셔서 감사해요."
     if slot == "current_meds":
         if ui.current_drug_names or ui.current_drug_ids:
             meds = ", ".join(ui.current_drug_names + ui.current_drug_ids)
             return f"네, {meds} 복용 중이시군요. 참고할게요."
-        return "네, 현재 복용 중인 약은 없으시군요."
+        if ui.current_drug_ids == ["없음"] or ui.current_drug_names == ["없음"]:
+            return "네, 현재 복용 중인 약은 없으시군요."
+        return ""
     if slot == "allergies":
         if ui.allergies and ui.allergies != ["없음"]:
             return f"알레르기({', '.join(ui.allergies)})도 기억해 둘게요."
-        return "알레르기 이력은 없으시군요. 확인했어요."
+        if ui.allergies == ["없음"]:
+            return "알레르기 이력은 없으시군요. 확인했어요."
+        return ""
     if slot == "conditions":
         if ui.conditions and ui.conditions != ["없음"]:
             return f"네, {', '.join(ui.conditions)} 상태도 반영할게요."
-        return "특별히 참고할 기저질환은 없으시군요."
+        if ui.conditions:
+            return "특별히 참고할 기저질환은 없으시군요."
+        return ""
     return "네, 알겠습니다."
+
+
+def format_symptom_addon_ack(new_symptoms: List[str]) -> str:
+    if not new_symptoms:
+        return ""
+    return f"네, **{', '.join(new_symptoms)}** 도 함께 불편하시군요. 기억해 둘게요."
+
+
+def format_first_symptom_ack(symptoms: List[str]) -> str:
+    if not symptoms:
+        return ""
+    return f"아, **{', '.join(symptoms)}** 증상이시군요. 말씀해 주셔서 감사해요."
 
 
 def format_topic_change_ack(old_symptoms: List[str], new_symptoms: List[str]) -> str:
@@ -156,18 +178,58 @@ def format_recommendation_message(
     return "\n".join(lines)
 
 
-def format_follow_up_why(result: PipelineResult) -> str:
+def format_follow_up_why(result: PipelineResult, user_message: str = "") -> str:
     if not result.decision.recommended:
         return "아직 추천된 약이 없어 근거를 설명드리기 어렵습니다."
     top = result.decision.recommended[0]
     drug = top.retrieval.drug
     reasons = top.rerank_reasons or top.retrieval.reasons
+    msg = (user_message or "").lower()
     lines = [f"**{drug.name_ko}** 을(를) 1순위로 본 핵심 이유는 아래와 같아요.", ""]
     for reason in reasons[:4]:
         lines.append(f"• {reason}")
     if top.retrieval.chroma_evidence:
         hit = max(top.retrieval.chroma_evidence, key=lambda x: x.relevance)
         lines.append(f"• 의료 지식 DB에서도 관련 근거를 찾았어요 ({hit.chunk_id})")
+    if "이부프로펜" in msg:
+        lines.append("")
+        lines.append(
+            "**이부프로펜** 계열은 해열·통증에도 쓰이지만, "
+            "위장·신장·심혈관·음주 시 주의가 필요해 "
+            "현재 상태 기준 1순위가 아닐 수 있습니다."
+        )
+    return "\n".join(lines)
+
+
+def format_follow_up_why_empty(result: PipelineResult, user_message: str = "") -> str:
+    """추천 약이 없었을 때 '왜 추천 안 했어요?' 질문."""
+    msg = (user_message or "").lower()
+    lines = [
+        "직전 검토에서는 **안전·관련성 기준을 통과한 추천 약이 없었어요.**",
+        "",
+    ]
+    conditions = " ".join(result.user_input.conditions)
+    if "음주" in conditions or "술" in msg:
+        lines.append(
+            "• **음주** 이력이 있으면 NSAID(이부프로펜 등)·아세트아미노펜 모두 "
+            "간·위장 쪽 주의가 필요해 자동 추천을 보수적으로 잡았습니다."
+        )
+    if "이부프로펜" in msg:
+        lines.append(
+            "• **이부프로펜**은 통증·발열에 쓰이지만, 위장 출혈·신장·심혈관·음주 시 "
+            "주의가 필요합니다."
+        )
+    rejected = result.decision.rejected[:3]
+    if rejected:
+        lines.append("")
+        lines.append("검토됐지만 우선순위에서 밀린 후보 예시:")
+        for item in rejected:
+            drug = item.retrieval.drug
+            lines.append(
+                f"• {drug.name_ko} (점수 {item.final_score:.1f}, 위험 {item.risk_level})"
+            )
+    lines.append("")
+    lines.append("증상·음주·복용약을 알려주시면 다시 좁혀볼 수 있어요.")
     return "\n".join(lines)
 
 
@@ -206,3 +268,92 @@ def format_follow_up_safety(result: PipelineResult) -> str:
         "현재 복용 중인 약, 알레르기, 기저질환과의 상호작용도 함께 고려해야 합니다.",
     ]
     return "\n".join(lines)
+
+
+def format_follow_up_advisory(result: PipelineResult, user_message: str) -> str:
+    """추천 이후 '타이레놀 먹어도 될까요?' 같은 상담형 질문."""
+    msg = (user_message or "").lower()
+    lines: List[str] = []
+    recs = result.decision.recommended
+    top = recs[0].retrieval.drug if recs else None
+
+    if "타이레놀" in msg or "아세트아미노펜" in msg:
+        if any(k in msg for k in ("열", "발열", "38", "39", "40")):
+            lines.append(
+                "열이 있을 때 **타이레놀(아세트아미노펜)** 은 흔히 쓰는 해열·진통제입니다."
+            )
+            lines.append(
+                "성인 기준 1회 1~2정, 1일 최대 4g 이내·최단 기간만 복용하는 것이 원칙입니다."
+            )
+        else:
+            lines.append("**타이레놀(아세트아미노펜)** 은 해열·진통에 많이 쓰이는 일반의약품입니다.")
+
+    if any(k in msg for k in ("술", "음주")) and any(
+        k in msg for k in ("타이레놀", "아세트아미노펜", "위험", "먹")
+    ):
+        lines.append(
+            "**중요:** 음주 당일·과음 시 간 손상 위험이 커질 수 있어 "
+            "타이레놀 복용은 피하거나 약사·의료진 상담이 필요합니다."
+        )
+        if "2정" in msg or "두" in msg:
+            lines.append(
+                "이미 복용하셨다면 황달·극심한 복통·구토 등 이상 증상이 있으면 "
+                "즉시 의료기관을 방문하세요."
+            )
+
+    if "음주" in " ".join(result.user_input.conditions) and "타이레놀" in msg:
+        lines.append("입력해 주신 **음주** 이력도 있어 간 부담을 고려해야 합니다.")
+
+    if "이부프로펜" in msg and any(k in msg for k in ("왜", "추천")):
+        lines.append(
+            "이부프로펜 계열은 해열·통증에도 쓰이지만, "
+            "위장·신장·심혈관 쪽 주의가 필요할 수 있습니다."
+        )
+        if top:
+            lines.append(
+                f"현재 증상·상태 기준 1순위는 **{top.name_ko}** 입니다. "
+                "이부프로펜 후보는 \"다른 약은요?\"로 확인해 보세요."
+            )
+
+    if not lines:
+        if top:
+            lines.append(f"현재 추천드린 **{top.name_ko}** 기준으로 답변드릴게요.")
+            lines.append(f"· 적응증: {top.indications}")
+            if top.warnings:
+                lines.append(f"· 주의: {top.warnings[:220]}")
+        else:
+            lines.append("증상·복용 상태를 함께 봐야 정확히 답할 수 있어요.")
+
+    lines.append("")
+    lines.append("_※ 개인별 금기·용량은 다를 수 있어, 실제 복용 전 약사·의료진 상담이 우선입니다._")
+    return "\n".join(lines)
+
+
+def format_early_advisory(user_message: str) -> str:
+    """슬롯 수집 중 상담형 질문에 대한 짧은 답."""
+    msg = (user_message or "").lower()
+    if ("타이레놀" in msg or "아세트아미노펜" in msg) and any(
+        k in msg for k in ("열", "발열", "38", "39", "40", "먹", "복용", "괜찮", "될까")
+    ):
+        return (
+            "38도 전후 발열이면 **타이레놀(아세트아미노펜)** 은 해열·진통에 "
+            "흔히 쓰이는 선택지입니다. 1일 최대 용량을 지키고, "
+            "음주·간 질환·다른 약 복용 여부는 꼭 확인하세요."
+        )
+    if any(k in msg for k in ("술", "음주")) and "타이레놀" in msg:
+        return (
+            "음주 당일 타이레놀 복용은 **간 손상 위험**이 커질 수 있어 "
+            "가능하면 피하고, 약사·의료진 상담을 권합니다."
+        )
+    return ""
+
+
+def format_mixed_input_note(user_message: str) -> str:
+    from off_topic import has_off_topic_keyword, is_medical_related
+
+    if has_off_topic_keyword(user_message) and is_medical_related(user_message):
+        return (
+            "코드·잡담 등 일반 주제는 도와드리기 어렵지만, "
+            "**증상·복약 상담** 부분은 이어서 도와드릴게요.\n\n"
+        )
+    return ""

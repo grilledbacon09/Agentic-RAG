@@ -18,7 +18,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-_DE_SRC = Path(__file__).resolve().parent.parent / "DE" / "src"
+_DE_SRC = Path(__file__).resolve().parent.parent / "database" / "src"
 if str(_DE_SRC) not in sys.path:
     sys.path.insert(0, str(_DE_SRC))
 

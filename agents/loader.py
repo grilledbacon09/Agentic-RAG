@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import List
 
-from agents.models import Chunk, Drug, Symptom
+from models import Chunk, Drug, Symptom
 
 
 def load_drugs(json_path: str | Path) -> List[Drug]:

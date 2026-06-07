@@ -29,11 +29,15 @@ def _load_catalog(config: AppConfig) -> tuple[List[Drug], List[Symptom]]:
     return _drugs_cache, _symptoms_cache
 
 
+from trace_sink import create_trace_sink
+
+
 def create_chat(config: Optional[AppConfig] = None) -> Tuple[ChatBundle, str]:
     """새 대화 세션을 시작하고 환영 메시지를 반환합니다."""
     cfg = config or load_config()
     drugs, symptoms = _load_catalog(cfg)
-    agent = ConversationalAgent(drugs, symptoms, config=cfg)
+    sink = create_trace_sink(enabled=cfg.show_reasoning)
+    agent = ConversationalAgent(drugs, symptoms, config=cfg, trace_sink=sink)
     opening = agent.start_session()
     return ChatBundle(agent=agent, session=opening.session), opening.message
 

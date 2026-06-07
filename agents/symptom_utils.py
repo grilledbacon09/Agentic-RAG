@@ -6,6 +6,11 @@ from models import Symptom
 
 EXPLICIT_RED_FLAG_CUES = (
     "갑작스",
+    "터질 것",
+    "터질듯",
+    "터질 듯",
+    "터져",
+    "찢어",
     "의식 저하",
     "의식이 없",
     "실신",
