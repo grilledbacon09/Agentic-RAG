@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import List
 
-from models import ChromaEvidence, RetrievalResult, SafetyResult, UserInput
+from agents.models import ChromaEvidence, RetrievalResult, SafetyResult, UserInput
 
 
 def build_emergency_response(user_input: UserInput, safety_result: SafetyResult) -> str:

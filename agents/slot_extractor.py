@@ -4,7 +4,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Iterable, List
 
-from models import Drug, Symptom, UserInput
+from agents.models import Drug, Symptom, UserInput
 
 SYMPTOM_ALIASES: dict[str, str] = {
     "두통": "두통",

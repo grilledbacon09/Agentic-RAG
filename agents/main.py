@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from config import load_config
-from loader import load_drugs, load_symptoms
-from models import UserInput
-from pipeline import run_pipeline
+from agents.config import load_config
+from agents.loader import load_drugs, load_symptoms
+from agents.models import UserInput
+from agents.pipeline import run_pipeline
 
 
 def parse_csv_input(raw: str) -> list[str]:

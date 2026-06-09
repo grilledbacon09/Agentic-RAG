@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from models import ConversationSession, PipelineResult, UserInput
+from agents.models import ConversationSession, PipelineResult, UserInput
 
 
 OFF_TOPIC_MESSAGE = (
@@ -349,7 +349,7 @@ def format_early_advisory(user_message: str) -> str:
 
 
 def format_mixed_input_note(user_message: str) -> str:
-    from off_topic import has_off_topic_keyword, is_medical_related
+    from agents.off_topic import has_off_topic_keyword, is_medical_related
 
     if has_off_topic_keyword(user_message) and is_medical_related(user_message):
         return (

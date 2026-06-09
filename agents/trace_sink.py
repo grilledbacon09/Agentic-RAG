@@ -5,7 +5,7 @@ from __future__ import annotations
 import sys
 from typing import Optional, Protocol
 
-from agent_trace import AgentStep, format_step_line
+from agents.agent_trace import AgentStep, format_step_line
 
 
 class TraceSink(Protocol):

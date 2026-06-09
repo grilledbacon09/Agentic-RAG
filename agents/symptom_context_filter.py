@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 
-from models import ChromaEvidence, UserInput
+from agents.models import ChromaEvidence, UserInput
 
 BODY_CUE_EXCLUSIONS: dict[str, tuple[str, ...]] = {
     "배": ("음낭", "생식", "회음", "음부", "고환", "음경"),

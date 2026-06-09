@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from agent_trace import AgentStep, format_agent_trace, format_turn_reasoning_lines
-from config import AppConfig, load_config
-from conversation_formatter import (
+from agents.agent_trace import AgentStep, format_agent_trace, format_turn_reasoning_lines
+from agents.config import AppConfig, load_config
+from agents.conversation_formatter import (
     OFF_TOPIC_MESSAGE,
     WELCOME_MESSAGE,
     SLOT_QUESTIONS,
@@ -25,19 +25,19 @@ from conversation_formatter import (
     get_next_slot,
     is_ready_for_recommendation,
 )
-from trace_sink import NullTraceSink, TraceSink
-from off_topic import has_off_topic_keyword, is_medical_related
-from slot_extractor import SlotExtractionResult
-from llm_client import extract_symptoms_llm, is_llm_enabled, polish_response_llm
-from llm_orchestrator import (
+from agents.trace_sink import NullTraceSink, TraceSink
+from agents.off_topic import has_off_topic_keyword, is_medical_related
+from agents.slot_extractor import SlotExtractionResult
+from agents.llm_client import extract_symptoms_llm, is_llm_enabled, polish_response_llm
+from agents.llm_orchestrator import (
     TurnPlan,
     generate_rag_reply_llm,
     orchestrate_turn_llm,
 )
-from models import UserInput
-from enhanced_pipeline import run_enhanced_pipeline_core
-from intent_detector import UserIntent, detect_intent
-from models import (
+from agents.models import UserInput
+from agents.enhanced_pipeline import run_enhanced_pipeline_core
+from agents.intent_detector import UserIntent, detect_intent
+from agents.models import (
     ConversationPhase,
     ConversationResponse,
     ConversationSession,
@@ -46,13 +46,13 @@ from models import (
     PipelineResult,
     Symptom,
 )
-from slot_extractor import (
+from agents.slot_extractor import (
     extract_slots_from_message,
     merge_user_input,
     pick_primary_symptoms,
     replace_primary_symptoms,
 )
-from symptom_utils import dedupe_symptoms_for_chat
+from agents.symptom_utils import dedupe_symptoms_for_chat
 import os
 
 
@@ -133,7 +133,7 @@ class ConversationalAgent:
     def _stream_pipeline_step(self, step: AgentStep) -> None:
         if not self.config.show_reasoning:
             return
-        from agent_trace import format_step_line
+        from agents.agent_trace import format_step_line
 
         self.trace_sink.begin()
         for line in format_step_line(step).splitlines():

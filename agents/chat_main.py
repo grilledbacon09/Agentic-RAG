@@ -6,8 +6,8 @@
 
 from __future__ import annotations
 
-from chat_service import create_chat, is_reset_command, send_message
-from config import load_config
+from agents.chat_service import create_chat, is_reset_command, send_message
+from agents.config import load_config
 
 
 def main() -> None:
@@ -19,8 +19,8 @@ def main() -> None:
     print("ChatGPT형 웹 UI: python chat_web.py")
     print(f"ChromaDB: {'ON' if config.use_chroma else 'OFF'}")
     print(f"Reasoning trace: {'ON' if config.show_reasoning else 'OFF'} (SHOW_REASONING=false 로 끄기)")
-    from llm_client import is_llm_enabled
-    from conversation_agent import _use_llm_orchestrator
+    from agents.llm_client import is_llm_enabled
+    from agents.conversation_agent import _use_llm_orchestrator
     llm_on = is_llm_enabled()
     print(f"LLM: {'ON' if llm_on else 'OFF (OPENAI_API_KEY 필요)'}")
     print(f"LLM orchestrator: {'ON' if _use_llm_orchestrator() else 'OFF'}")

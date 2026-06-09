@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Dict, List, Set
 
-from models import Drug, UserInput
-from safety import evaluate_drug_safety
+from agents.models import Drug, UserInput
+from agents.safety import evaluate_drug_safety
 
 
 def _norm(text: str) -> str:

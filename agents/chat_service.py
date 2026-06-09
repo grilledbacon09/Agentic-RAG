@@ -5,10 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 
-from config import AppConfig, load_config
-from conversation_agent import ConversationalAgent
-from loader import load_drugs, load_symptoms
-from models import ConversationSession, Drug, Symptom
+from agents.config import AppConfig, load_config
+from agents.conversation_agent import ConversationalAgent
+from agents.loader import load_drugs, load_symptoms
+from agents.models import ConversationSession, Drug, Symptom
 
 
 @dataclass
@@ -29,7 +29,7 @@ def _load_catalog(config: AppConfig) -> tuple[List[Drug], List[Symptom]]:
     return _drugs_cache, _symptoms_cache
 
 
-from trace_sink import create_trace_sink
+from agents.trace_sink import create_trace_sink
 
 
 def create_chat(config: Optional[AppConfig] = None) -> Tuple[ChatBundle, str]:

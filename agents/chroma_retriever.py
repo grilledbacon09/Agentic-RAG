@@ -4,7 +4,7 @@ DE 파트가 구축한 medical_knowledge 컬렉션에 접근합니다.
 DE/.env 의 EMBEDDING_BACKEND 설정을 그대로 따릅니다.
 
 사용 예:
-    from chroma_retriever import search_medical_knowledge
+    from agents.chroma_retriever import search_medical_knowledge
 
     hits = search_medical_knowledge("두통", n_results=5)
     for hit in hits:

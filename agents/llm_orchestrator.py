@@ -7,9 +7,9 @@ import re
 from dataclasses import dataclass, field
 from typing import List, Optional
 
-from llm_client import _client, is_llm_enabled
-from models import ConversationSession, PipelineResult
-from prompts import CONVERSATION_SYSTEM_PROMPT
+from agents.llm_client import _client, is_llm_enabled
+from agents.models import ConversationSession, PipelineResult
+from agents.prompts import CONVERSATION_SYSTEM_PROMPT
 
 
 @dataclass

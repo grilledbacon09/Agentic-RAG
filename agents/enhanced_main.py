@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from config import load_config
-from enhanced_pipeline import run_enhanced_pipeline
-from loader import load_drugs, load_symptoms
-from query_agent import analyze_query
+from agents.config import load_config
+from agents.enhanced_pipeline import run_enhanced_pipeline
+from agents.loader import load_drugs, load_symptoms
+from agents.query_agent import analyze_query
 
 
 def main() -> None:

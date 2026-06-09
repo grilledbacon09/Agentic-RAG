@@ -8,7 +8,7 @@ import re
 from typing import List, Optional
 
 from dotenv import load_dotenv
-from prompts import CONVERSATION_SYSTEM_PROMPT
+from agents.prompts import CONVERSATION_SYSTEM_PROMPT
 
 _PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 load_dotenv(os.path.join(_PROJECT_ROOT, ".env"))

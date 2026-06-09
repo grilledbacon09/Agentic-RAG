@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from chunker import build_chunks
+from agents.chunker import build_chunks
 
 
 def _load_json(path: Path):

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from enum import Enum
 
-from off_topic import is_off_topic, looks_like_follow_up
+from agents.off_topic import is_off_topic, looks_like_follow_up
 
 
 class UserIntent(str, Enum):

@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from config import AppConfig, load_config
-from generator import build_emergency_response, build_normal_response
-from models import Drug, Symptom, UserInput
-from retriever import retrieve_symptom_context, retrieve_top_k
-from safety import check_symptom_red_flags, evaluate_drug_safety
+from agents.config import AppConfig, load_config
+from agents.generator import build_emergency_response, build_normal_response
+from agents.models import Drug, Symptom, UserInput
+from agents.retriever import retrieve_symptom_context, retrieve_top_k
+from agents.safety import check_symptom_red_flags, evaluate_drug_safety
 
 
 def run_pipeline(

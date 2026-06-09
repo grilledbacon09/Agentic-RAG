@@ -11,8 +11,8 @@ from __future__ import annotations
 
 import gradio as gr
 
-from chat_service import ChatBundle, create_chat, is_reset_command, send_message
-from config import load_config
+from agents.chat_service import ChatBundle, create_chat, is_reset_command, send_message
+from agents.config import load_config
 
 
 def _history_to_messages(history: list) -> list[dict]:

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, List, Set
 
-from models import ChromaEvidence, Drug, RetrievalResult, UserInput
+from agents.models import ChromaEvidence, Drug, RetrievalResult, UserInput
 
 
 def _normalize_text(text: str) -> str:
@@ -124,7 +124,7 @@ def _search_chroma(
         return {}, {}
 
     try:
-        from chroma_retriever import search_medical_knowledge
+        from agents.chroma_retriever import search_medical_knowledge
 
         hits = search_medical_knowledge(query, n_results=chroma_top_n)
         return _chroma_drug_signals(hits)
@@ -219,14 +219,14 @@ def retrieve_symptom_context(
     user_text: str = "",
 ) -> List[ChromaEvidence]:
     """증상 안내/경고 청크를 ChromaDB에서 가져옵니다."""
-    from symptom_context_filter import filter_symptom_context
+    from agents.symptom_context_filter import filter_symptom_context
 
     query = _build_chroma_query(user_input, user_text)
     if not query:
         return []
 
     try:
-        from chroma_retriever import search_medical_knowledge
+        from agents.chroma_retriever import search_medical_knowledge
 
         try:
             hits = search_medical_knowledge(

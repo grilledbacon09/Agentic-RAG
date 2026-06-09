@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, List
 
-from models import Symptom
+from agents.models import Symptom
 
 EXPLICIT_RED_FLAG_CUES = (
     "갑작스",

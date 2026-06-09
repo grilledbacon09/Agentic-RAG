@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Dict, List
 
-from models import Drug, SafetyResult, Symptom, UserInput
-from symptom_utils import (
+from agents.models import Drug, SafetyResult, Symptom, UserInput
+from agents.symptom_utils import (
     group_symptoms_by_name,
     pick_canonical_symptom,
     user_describes_explicit_red_flag,

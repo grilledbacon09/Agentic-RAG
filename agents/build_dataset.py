@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from cleaner import clean_drug_record, clean_symptom_record
+from agents.cleaner import clean_drug_record, clean_symptom_record
 
 
 def _load_json(path: Path):
