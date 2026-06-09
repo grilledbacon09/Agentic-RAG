@@ -1,12 +1,10 @@
 # 데이터 설정 가이드
 
-팀원이 PostgreSQL DB 데이터를 로컬에 세팅하는 방법입니다.
+PostgreSQL DB 데이터를 로컬에 세팅하는 방법
 
 ---
 
 ## 사전 준비
-
-아래 도구들이 설치되어 있어야 합니다.
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Git](https://git-scm.com/)
@@ -16,11 +14,6 @@
 ---
 
 ## 1. 레포 클론
-
-```bash
-git clone https://github.com/your-org/your-repo.git
-cd your-repo
-```
 
 ---
 
@@ -49,7 +42,7 @@ Default region name:   ap-northeast-2
 Default output format: json
 ```
 
-> ⚠️ 발급받은 키는 읽기 전용입니다. 데이터 업로드는 불가능합니다.
+> dvc push로 데이터 업로드
 
 ---
 
@@ -60,7 +53,7 @@ Default output format: json
 dvc pull
 ```
 
-정상적으로 완료되면 `data/dumps/` 폴더에 `.sql.gz` 파일이 생성됩니다.
+정상적으로 완료되면 `data/dumps/` 폴더에 `.sql.gz` 파일이 생성됨
 
 ```bash
 # 다운로드 확인
@@ -71,7 +64,8 @@ ls data/dumps/
 
 ## 5. 환경변수 설정
 
-`.env.example` 을 복사해서 `.env` 파일을 만들고 관리자에게 받은 실제 값을 입력합니다.
+`.env.example` 을 복사해서 `.env` 파일을 만들고 실제 값을 입력.
+실제 값은 관리자에게 문의.
 
 ```bash
 cp .env.example .env
@@ -89,7 +83,7 @@ POSTGRES_DB=관리자에게 문의
 POSTGRES_PASSWORD=관리자에게 문의
 ```
 
-> ⚠️ `.env` 파일은 절대 Git에 올리지 마세요.
+> ⚠️ `.env` 파일은 절대 Git에 올리면 안됨
 
 ---
 
@@ -107,7 +101,7 @@ docker-compose up -d
 bash scripts/restore.sh
 ```
 
-Windows 사용자는 Git Bash에서 실행하세요.
+Windows 사용자는 Git Bash에서 실행
 
 ---
 
@@ -117,7 +111,7 @@ Windows 사용자는 Git Bash에서 실행하세요.
 docker exec medical_postgresql psql -U postgres -d med_db -c "\dt"
 ```
 
-테이블 목록이 출력되면 정상적으로 복원된 것입니다.
+테이블 목록이 출력되면 정상적으로 복원
 
 ---
 
@@ -134,7 +128,7 @@ dvc pull
 bash scripts/restore.sh
 ```
 
-> `.env` 파일은 git pull로 변경되지 않으니 별도로 관리자에게 확인하세요.
+> `.env` 파일은 git pull로 변경되지 않으니 별도로 관리자에게 확인
 
 ---
 
@@ -171,6 +165,3 @@ Docker 컨테이너가 실행 중인지 확인하세요.
 ```bash
 docker ps
 ```
-
-### 기타 문제
-관리자에게 문의하세요.
