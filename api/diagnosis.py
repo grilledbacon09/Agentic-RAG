@@ -4,7 +4,31 @@ from pydantic import BaseModel
 from typing import Dict, Any, Optional
 import uuid
 
-# 💡 AI 담당자가 새로 넘겨준 대화형 서비스 모듈 인터페이스 장착
+# 💡 [Deep Debugging] agents 폴더 수정 없이 내부 로직 가로채기 (Monkeypatching)
+import agents.conversation_agent
+import agents.llm_orchestrator
+
+# 에이전트가 내부적으로 사용하는 orchestrate_turn_llm 함수를 백업
+original_orchestrate = agents.conversation_agent.orchestrate_turn_llm
+
+def patched_orchestrate(*args, **kwargs):
+    # 실제 LLM 호출 실행
+    plan = original_orchestrate(*args, **kwargs)
+    if plan:
+        # 에이전트 코드가 덮어쓰기 전, LLM이 만든 순수 원본 데이터를 로그에 출력
+        print(f"\n--- [RAW LLM OUTPUT DEBUG] ---")
+        print(f" - Raw Reply: '{plan.reply}'")
+        print(f" - Reasoning: {plan.reasoning}")
+        print(f" - Slots Answered: {plan.slots_answered}")
+        print(f" -----------------------------\n")
+    else:
+        print("\n--- [RAW LLM OUTPUT DEBUG] Plan is NONE ---\n")
+    return plan
+
+# 에이전트 내부의 함수 참조를 우리가 만든 디버깅용 함수로 교체
+agents.conversation_agent.orchestrate_turn_llm = patched_orchestrate
+
+# 이제 평소처럼 나머지 모달들 임포트
 from agents.chat_service import create_chat, send_message, ChatBundle
 from agents.persistence import save_session_to_file, load_session_from_file
 
@@ -29,8 +53,6 @@ async def predict_symptom(request: Request, response: Response, body: ChatReques
     from agents.llm_client import is_llm_enabled, get_api_key
     llm_active = is_llm_enabled()
     print(f"[Request] user_id: {user_id}, chat_id: {chat_id}, LLM_Enabled: {llm_active}")
-    if not llm_active:
-        print(f"[Warning] LLM is disabled. Check OPENAI_API_KEY. Key present: {bool(get_api_key())}")
 
     if not user_id:
         user_id = str(uuid.uuid4())
@@ -68,6 +90,12 @@ async def predict_symptom(request: Request, response: Response, body: ChatReques
         print(f"[Context] Current Turn Count: {current_bundle.session.turn_count}")
 
         updated_bundle, assistant_response, debug_trace = send_message(current_bundle, user_msg)
+        
+        # 💡 [디버깅] AI가 이번 턴에 실제로 어떤 대화 객체를 생성했는지 상세 출력
+        last_turn = updated_bundle.session.turns[-1] if updated_bundle.session.turns else None
+        print(f"[Final API Response Debug]")
+        print(f" - Phase: {updated_bundle.session.phase}")
+        print(f" - Content: {assistant_response[:100]}...")
 
         SESSION_DB[session_key] = updated_bundle
         save_session_to_file(session_key, updated_bundle.session)
