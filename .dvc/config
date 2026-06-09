@@ -1,4 +1,4 @@
 [core]
     remote = agentic-rag-db
 ['remote "agentic-rag-db"']
-    url = s3://agentic-rag-db/dumps
+    url = s3://agentic-rag-db-331145994962-ap-northeast-2-an/db-backups

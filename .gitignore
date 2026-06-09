@@ -13,3 +13,7 @@ DE/.env
 # python cache
 __pycache__/
 *.pyc
+
+# data
+data/postgresql/
+data/dumps/*.sql.gz

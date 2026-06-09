@@ -1,0 +1,5 @@
+outs:
+- md5: db593f5ec62f8206dca7a9bad0b4cf55
+  size: 8987726
+  hash: md5
+  path: backup_20260609.sql.gz
