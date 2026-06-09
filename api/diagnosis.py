@@ -26,7 +26,11 @@ async def predict_symptom(request: Request, response: Response, body: ChatReques
     user_id = request.cookies.get("user_id")
 
     # [진단 로그] 서버에 들어온 쿠키 확인
-    print(f"[Request] user_id: {user_id}, chat_id: {chat_id}")
+    from agents.llm_client import is_llm_enabled, get_api_key
+    llm_active = is_llm_enabled()
+    print(f"[Request] user_id: {user_id}, chat_id: {chat_id}, LLM_Enabled: {llm_active}")
+    if not llm_active:
+        print(f"[Warning] LLM is disabled. Check OPENAI_API_KEY. Key present: {bool(get_api_key())}")
 
     if not user_id:
         user_id = str(uuid.uuid4())
