@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from typing import Dict, Any, Optional
 
 # 💡 AI 담당자가 새로 넘겨준 대화형 서비스 모듈 인터페이스 장착
-from chat_service import create_chat, send_message, ChatBundle
+from agents.chat_service import create_chat, send_message, ChatBundle
 
 router = APIRouter(prefix="/api")
 
