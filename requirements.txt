@@ -1,15 +1,26 @@
-annotated-doc==0.0.4
-annotated-types==0.7.0
-anyio==4.13.0
-click==8.4.1
-colorama==0.4.6
+# === [1] Web Framework & Application Server ===
 fastapi==0.136.3
-h11==0.16.0
-idna==3.17
-packaging==26.0
-pydantic==2.13.4
-pydantic_core==2.46.4
-starlette==1.2.0
-typing-inspection==0.4.2
-typing_extensions==4.15.0
-uvicorn==0.48.0
+uvicorn==0.42.0
+pydantic==2.12.5
+pydantic_core==2.41.5
+starlette==1.2.1
+
+# === [2] Environment Variables & Core Network ===
+python-dotenv==1.2.2
+requests==2.33.0
+httpx==0.28.1
+anyio==4.13.0
+
+# === [3] Data Processing & Storage Connectors ===
+numpy==2.4.4
+pandas==3.0.3
+SQLAlchemy==2.0.48
+psycopg2-binary==2.9.12
+boto3==1.43.23
+
+# === [4] AI Models & Agent Framework Core ===
+openai==2.30.0
+torch==2.12.0
+transformers==5.10.2
+tokenizers==0.22.2
+tqdm==4.67.3
