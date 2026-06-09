@@ -4,46 +4,72 @@ from pydantic import BaseModel
 from typing import Dict, Any, Optional
 import uuid
 import json
+import os
 
-# 💡 [Deep Debugging] agents 폴더 수정 없이 내부 로직 가로채기 (Monkeypatching)
+# 💡 [Deep Debugging] OpenAI 호출 과정에서 발생하는 모든 현상을 강제 출력
 import agents.conversation_agent
 import agents.llm_orchestrator
+import agents.llm_client
 
-# 1. GPT 원본 응답을 가로채기 위해 _parse_json 함수를 가로챕니다.
+def deep_debug_orchestrate(user_message, session, **kwargs):
+    print(f"\n[Deep Debug] orchestrate_turn_llm 시작")
+    
+    # 1. 활성화 여부 확인
+    enabled = agents.llm_orchestrator.is_llm_enabled()
+    print(f" - LLM 활성화 상태: {enabled}")
+    if not enabled:
+        print(f" - API Key 존재 여부: {bool(agents.llm_orchestrator.get_api_key())}")
+        print(f" - USE_LLM 설정 값: {os.getenv('USE_LLM')}")
+        return None
+        
+    try:
+        # 2. 클라이언트 생성 테스트
+        print(f" - OpenAI 클라이언트 생성 시도...")
+        client = agents.llm_orchestrator._client()
+        
+        # 3. 실제 API 호출 테스트 (짧은 메시지로 직접 시도)
+        print(f" - OpenAI API 연결 테스트 (gpt-4o-mini 호출)...")
+        test_resp = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": "hi"}],
+            max_tokens=5
+        )
+        print(f" - API 연결 테스트 성공: '{test_resp.choices[0].message.content.strip()}'")
+        
+        # 4. 원본 함수 실행 및 결과 확인
+        print(f" - 원본 에이전트 오케스트레이터 호출...")
+        # 주의: 원본 함수 내부에 try-except가 있어 에러가 숨겨질 수 있으므로
+        # 여기서는 원본 함수가 하는 일을 직접 수행하여 에러를 포착합니다.
+        
+        # 임시로 원본 호출
+        plan = agents.llm_orchestrator.orchestrate_turn_llm(user_message, session, **kwargs)
+        
+        if plan is None:
+            print(" - [경고] 원본 함수가 None을 반환했습니다. (파싱 실패 또는 내부 에러)")
+        else:
+            print(f" - 원본 함수 실행 성공! Reply: {plan.reply[:30]}...")
+        
+        return plan
+
+    except Exception as e:
+        print(f"\n!!! [Deep Debug] OpenAI 호출 중 에러 발생 !!!")
+        print(f" - 에러 타입: {type(e).__name__}")
+        print(f" - 에러 메시지: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return None
+
+# 에이전트가 사용하는 함수를 우리 디버그 함수로 전역 교체
+agents.conversation_agent.orchestrate_turn_llm = deep_debug_orchestrate
+
+# JSON 파싱 로그도 유지
 original_parse_json = agents.llm_orchestrator._parse_json
-
 def patched_parse_json(text):
     print(f"\n--- [GPT RAW RESPONSE TEXT] ---")
     print(text if text else "(EMPTY TEXT)")
     print(f"--------------------------------\n")
     return original_parse_json(text)
-
-# llm_orchestrator 모듈 내의 파싱 함수 교체
 agents.llm_orchestrator._parse_json = patched_parse_json
-
-# 2. 에이전트가 내부적으로 사용하는 orchestrate_turn_llm 함수를 가로챕니다.
-original_orchestrate = agents.conversation_agent.orchestrate_turn_llm
-
-def patched_orchestrate(*args, **kwargs):
-    try:
-        plan = original_orchestrate(*args, **kwargs)
-        if plan:
-            print(f"\n--- [RAW LLM OUTPUT DEBUG] ---")
-            print(f" - Raw Reply: '{plan.reply}'")
-            print(f" - Reasoning: {plan.reasoning}")
-            print(f" -----------------------------\n")
-        else:
-            print("\n--- [RAW LLM OUTPUT DEBUG] Plan is NONE (Check API key or JSON format) ---\n")
-        return plan
-    except Exception as e:
-        import traceback
-        print(f"\n--- [RAW LLM OUTPUT DEBUG] EXCEPTION occurred ---")
-        print(f"Error: {str(e)}")
-        traceback.print_exc()
-        return None
-
-# 에이전트 내부의 함수 참조 교체
-agents.conversation_agent.orchestrate_turn_llm = patched_orchestrate
 
 # 나머지 모듈 임포트
 from agents.chat_service import create_chat, send_message, ChatBundle
@@ -61,23 +87,16 @@ SESSION_DB: Dict[str, ChatBundle] = {}
 async def predict_symptom(request: Request, response: Response, body: ChatRequest):
     user_msg = body.content
     chat_id = body.chat_id
-
     user_id = request.cookies.get("user_id")
 
-    from agents.llm_client import is_llm_enabled, get_api_key
-    llm_active = is_llm_enabled()
-    print(f"[Request] user_id: {user_id}, chat_id: {chat_id}, LLM_Enabled: {llm_active}")
+    print(f"\n[Request API] user_id: {user_id}, chat_id: {chat_id}")
 
     if not user_id:
         user_id = str(uuid.uuid4())
         response.set_cookie(
-            key="user_id", 
-            value=user_id, 
-            max_age=3600*24*30,
-            samesite="none",
-            secure=True
+            key="user_id", value=user_id, max_age=3600*24*30,
+            samesite="none", secure=True
         )
-        print(f"[New User] Assigned ID: {user_id}")
 
     session_key = f"{user_id}_{chat_id}"
 
@@ -88,21 +107,14 @@ async def predict_symptom(request: Request, response: Response, body: ChatReques
                 bundle, _ = create_chat()
                 bundle.session = saved_session
                 SESSION_DB[session_key] = bundle
-                print(f"[Session] Restored from file: {session_key}")
             else:
                 bundle, opening_message = create_chat()
                 SESSION_DB[session_key] = bundle
-                print(f"[Session] Created new: {session_key}")
 
         current_bundle = SESSION_DB[session_key]
-        print(f"[Context] Current Turn Count: {current_bundle.session.turn_count}")
-
         updated_bundle, assistant_response, debug_trace = send_message(current_bundle, user_msg)
         
-        last_turn = updated_bundle.session.turns[-1] if updated_bundle.session.turns else None
-        print(f"[Final API Response Debug]")
-        print(f" - Phase: {updated_bundle.session.phase}")
-        print(f" - Content: {assistant_response[:100]}...")
+        print(f"[Response API] Content: {assistant_response[:50]}...")
 
         SESSION_DB[session_key] = updated_bundle
         save_session_to_file(session_key, updated_bundle.session)
