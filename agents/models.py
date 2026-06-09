@@ -102,6 +102,7 @@ class ConversationSession:
     pending_slot: Optional[str] = None
     turn_count: int = 0
     last_pipeline_summary: Optional[str] = None
+    has_recommendation: bool = False # 💡 추가: 추천이 발생했는지 여부 저장
 
 
 @dataclass

@@ -14,7 +14,7 @@ class ChatRequest(BaseModel):
     content: str
     chat_id: str # 💡 프론트엔드에서 관리하는 채팅방 ID 추가
 
-# 💡 세션 관리 키를 "user_id:chat_id" 형태로 관리
+# 💡 세션 관리 키를 "user_id_chat_id" 형태로 관리
 SESSION_DB: Dict[str, ChatBundle] = {}
 
 @router.post("/diagnosis")
@@ -25,9 +25,20 @@ async def predict_symptom(request: Request, response: Response, body: ChatReques
     # 1. 💡 쿠키에서 유저 식별자(user_id) 추출
     user_id = request.cookies.get("user_id")
 
+    # [진단 로그] 서버에 들어온 쿠키 확인
+    print(f"[Request] user_id: {user_id}, chat_id: {chat_id}")
+
     if not user_id:
         user_id = str(uuid.uuid4())
-        response.set_cookie(key="user_id", value=user_id, max_age=3600*24*30)
+        # 💡 운영 환경(HTTPS) 및 크로스 도메인을 위해 samesite="none", secure=True 필수
+        response.set_cookie(
+            key="user_id", 
+            value=user_id, 
+            max_age=3600*24*30,
+            samesite="none",
+            secure=True
+        )
+        print(f"[New User] Assigned ID: {user_id}")
 
     # 세션 식별자 생성
     session_key = f"{user_id}_{chat_id}"
@@ -41,20 +52,28 @@ async def predict_symptom(request: Request, response: Response, body: ChatReques
                 bundle, _ = create_chat()
                 bundle.session = saved_session
                 SESSION_DB[session_key] = bundle
+                print(f"[Session] Restored from file: {session_key}")
             else:
                 bundle, opening_message = create_chat()
                 SESSION_DB[session_key] = bundle
+                print(f"[Session] Created new: {session_key}")
 
         current_bundle = SESSION_DB[session_key]
+        
+        # [진단 로그] 대화 턴 수 확인
+        print(f"[Context] Current Turn Count: {current_bundle.session.turn_count}")
+
         updated_bundle, assistant_response, debug_trace = send_message(current_bundle, user_msg)
 
         SESSION_DB[session_key] = updated_bundle
         save_session_to_file(session_key, updated_bundle.session)
+        
         # 6. 최종 응답 반환
         return {
             "role": "ai",
             "content": assistant_response,
-            "debug_trace": debug_trace
+            "debug_trace": debug_trace,
+            "user_id": user_id # 프론트엔드 디버깅용
         }
 
     except Exception as e:
