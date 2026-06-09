@@ -13,17 +13,25 @@ original_orchestrate = agents.conversation_agent.orchestrate_turn_llm
 
 def patched_orchestrate(*args, **kwargs):
     # 실제 LLM 호출 실행
-    plan = original_orchestrate(*args, **kwargs)
-    if plan:
-        # 에이전트 코드가 덮어쓰기 전, LLM이 만든 순수 원본 데이터를 로그에 출력
-        print(f"\n--- [RAW LLM OUTPUT DEBUG] ---")
-        print(f" - Raw Reply: '{plan.reply}'")
-        print(f" - Reasoning: {plan.reasoning}")
-        print(f" - Slots Answered: {plan.slots_answered}")
-        print(f" -----------------------------\n")
-    else:
-        print("\n--- [RAW LLM OUTPUT DEBUG] Plan is NONE ---\n")
-    return plan
+    try:
+        plan = original_orchestrate(*args, **kwargs)
+        if plan:
+            # 에이전트 코드가 덮어쓰기 전, LLM이 만든 순수 원본 데이터를 로그에 출력
+            print(f"\n--- [RAW LLM OUTPUT DEBUG] ---")
+            print(f" - Raw Reply: '{plan.reply}'")
+            print(f" - Reasoning: {plan.reasoning}")
+            print(f" - Slots Answered: {plan.slots_answered}")
+            print(f" -----------------------------\n")
+        else:
+            print("\n--- [RAW LLM OUTPUT DEBUG] Plan is NONE (Check API key or JSON format) ---\n")
+        return plan
+    except Exception as e:
+        import traceback
+        print(f"\n--- [RAW LLM OUTPUT DEBUG] EXCEPTION occurred ---")
+        print(f"Error: {str(e)}")
+        traceback.print_exc()
+        print(f" ----------------------------------------------\n")
+        return None
 
 # 에이전트 내부의 함수 참조를 우리가 만든 디버깅용 함수로 교체
 agents.conversation_agent.orchestrate_turn_llm = patched_orchestrate
