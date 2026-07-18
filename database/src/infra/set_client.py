@@ -6,7 +6,9 @@ import psycopg2
 from dotenv import load_dotenv
 
 _DE_ROOT = Path(__file__).resolve().parent.parent.parent
-load_dotenv(_DE_ROOT / ".env")
+# graduation_project/.env  (_DE_ROOT → Agentic-RAG/ → graduation_project/)
+_REPO_ROOT = _DE_ROOT.parent.parent
+load_dotenv(_REPO_ROOT / ".env")
 
 # 클라이언트 초기화 (S3/MinIO & Postgres)
 s3 = boto3.client(

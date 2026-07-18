@@ -25,7 +25,7 @@ def store(data, filepath="msd_raws/links.json"):
     bucket = 'bronze'
     try:
         set_client.s3.head_bucket(Bucket=bucket)
-    except:
+    except Exception:
         set_client.s3.create_bucket(Bucket=bucket)
     
     try:
@@ -97,6 +97,14 @@ def get_links(html, output_file=OUTPUT_FILE):
     except Exception as e:
         print(f"오류 발생: {e}")
 
-if __name__ == "__main__":
+def main() -> None:
     ensure_data_dirs()
+    if not TARGET_FILE.exists():
+        print(f"[!] MSD HTML 소스 없음: {TARGET_FILE}")
+        print("    symptoms.html 을 직접 저장한 뒤 다시 실행하세요.")
+        return
     load_and_extract(TARGET_FILE)
+
+
+if __name__ == "__main__":
+    main()

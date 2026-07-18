@@ -15,9 +15,10 @@ from pathlib import Path
 INFRA_DIR = Path(__file__).resolve().parent
 SRC_DIR = INFRA_DIR.parent
 DE_ROOT = SRC_DIR.parent
-PROJECT_ROOT = DE_ROOT.parent
+PROJECT_ROOT = DE_ROOT.parent        # Agentic-RAG/
+REPO_ROOT = PROJECT_ROOT.parent      # graduation_project/
 
-ENV_FILE = DE_ROOT / ".env"
+ENV_FILE = REPO_ROOT / ".env"
 
 DATA_DIR = DE_ROOT / "data"
 MSD_SOURCE_DIR = DATA_DIR / "msd_source"

@@ -11,6 +11,8 @@ from pathlib import Path
 
 SRC_DIR = Path(__file__).resolve().parent
 DE_ROOT = SRC_DIR.parent
+# graduation_project/.env  (DE_ROOT → Agentic-RAG/ → graduation_project/)
+_REPO_ROOT = DE_ROOT.parent.parent
 
 for sub in ("infra", "collector", "extractor", "vectordb", "pipeline"):
     path = str(SRC_DIR / sub)
@@ -19,4 +21,4 @@ for sub in ("infra", "collector", "extractor", "vectordb", "pipeline"):
 
 from dotenv import load_dotenv
 
-load_dotenv(DE_ROOT / ".env")
+load_dotenv(_REPO_ROOT / ".env")

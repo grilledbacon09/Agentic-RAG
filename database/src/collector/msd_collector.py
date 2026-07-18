@@ -33,7 +33,6 @@ EXTRACTED_DATA_FILE = DATA_DIR / "msd_source" / "silver_data.csv"
 load_dotenv()
 # api key
 API_KEY = os.getenv('OPENROUTER_API_KEY')
-API_KEY = "temporary string"
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=API_KEY)
 
 #######################################################################################
@@ -140,10 +139,8 @@ def extractor():
                 print(f"[{base_symptom_id}] {max_retries}번 시도했으나 결국 실패했습니다. 건너뜁니다.")
                 log_fail_link(symptom_name, url, "Max retries exceeded with None response")
                 continue
-            
-            ai_raw_response = get_ai_answer(symptom_name, clean_text)
-            
-            validated_response = validate_ai_response(ai_raw_response)
+
+            validated_response = validate_ai_response(ai_response)
             if not validated_response:
                 log_fail_link(symptom_name, url, "Schema validation failed")
                 continue
@@ -259,10 +256,7 @@ def get_ai_answer(symptom, content_text):
             print(f"[{symptom}] JSON 파싱 실패: {e}")
             return None
     except Exception as e:
-        print(f"[{symptom}] AI 호출 중 일반 오류: {e}")
-        return None
-    except Exception as e:
-        print(f"AI 추출 오류: {e}")
+        print(f"[{symptom}] AI 호출 중 오류: {e}")
         return None
 
 ####################################################################

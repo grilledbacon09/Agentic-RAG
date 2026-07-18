@@ -215,39 +215,38 @@ def save_results_to_db(data_list: list[dict]):
             conn.close()
 
 
-if __name__ == "__main__":
+def main() -> None:
     ensure_data_dirs()
     if not LINKS_FILE.exists():
-        print(f"파일을 찾을 수 없습니다: {LINKS_FILE}")
+        print(f"[!] 파일을 찾을 수 없습니다: {LINKS_FILE}")
         print("  → MSD 증상 목록을 수집하려면: python src/collector/msd_link_collector.py")
         print("  → 또는 개발용 시드: python src/extractor/seed_dev_data.py")
-    else:
-        links_df = pd.read_csv(LINKS_FILE)
-        total_count = len(links_df)
-        print(f"총 {total_count}개의 URL 처리를 시작합니다.")
-        
-        final_results = []
-        headers = {'User-Agent': 'Mozilla/5.0'}
+        return
 
-        for index, row in links_df.iterrows():
-            symptom_id = f"S{str(index+1).zfill(3)}"
-            print(f"[{index+1}/{total_count}] {row['SYMPTOM_NAME']} 처리 중...")
-            
-            try:
-                res = requests.get(row['URL'], headers=headers, timeout=10)
-                res.raise_for_status()
-                
-                # 데이터 추출
-                extracted_data = extract_sections(res.text, symptom_id, row['CATEGORY'])
-                if index < 3:
-                    print(extracted_data)
-                final_results.append(extracted_data)
-                
-                # 서버 부하 방지
-                time.sleep(random.uniform(1.0, 2.0))
-                
-            except Exception as e:
-                print(f"   [!] 에러 발생 ({row['SYMPTOM_NAME']}): {e}")
+    links_df = pd.read_csv(LINKS_FILE)
+    total_count = len(links_df)
+    print(f"총 {total_count}개의 URL 처리를 시작합니다.")
 
-        # 최종 저장
+    final_results = []
+    headers = {"User-Agent": "Mozilla/5.0"}
+
+    for index, row in links_df.iterrows():
+        symptom_id = f"S{str(index + 1).zfill(3)}"
+        print(f"[{index + 1}/{total_count}] {row['SYMPTOM_NAME']} 처리 중...")
+        try:
+            res = requests.get(row["URL"], headers=headers, timeout=10)
+            res.raise_for_status()
+            extracted_data = extract_sections(res.text, symptom_id, row["CATEGORY"])
+            final_results.append(extracted_data)
+            time.sleep(random.uniform(1.0, 2.0))
+        except Exception as e:
+            print(f"   [!] 에러 발생 ({row['SYMPTOM_NAME']}): {e}")
+
+    if final_results:
         save_results_to_db(final_results)
+    else:
+        print("[!] 저장할 결과가 없습니다.")
+
+
+if __name__ == "__main__":
+    main()
