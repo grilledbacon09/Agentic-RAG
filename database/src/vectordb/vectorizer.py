@@ -106,6 +106,49 @@ def clean_text(value):
     return value
 
 
+# ── 청크 분할 설정 ────────────────────────────────────────────────────
+# MiniLM-L12-v2: max 128 tokens ≈ 한글 약 85자
+# 여유를 두어 200자 기준으로 분할하고, 문맥 연속성을 위해 50자 overlap 유지
+CHUNK_MAX_CHARS = int(os.getenv("CHUNK_MAX_CHARS", "200"))
+CHUNK_OVERLAP_CHARS = int(os.getenv("CHUNK_OVERLAP_CHARS", "50"))
+
+_SENT_SPLIT_RE = re.compile(r"(?<=[.!?다요음])\s+")
+
+
+def _split_text(text: str) -> list[str]:
+    """CHUNK_MAX_CHARS 초과 시 문장 단위로 분할하고 overlap 적용.
+
+    짧으면 그대로 반환하므로 모든 필드에 무조건 적용 가능.
+    """
+    if len(text) <= CHUNK_MAX_CHARS:
+        return [text]
+
+    # 마침표/느낌표/물음표 뒤 공백, 또는 줄바꿈 기준 분리
+    raw = _SENT_SPLIT_RE.split(text)
+    sents = [s.strip() for s in re.split(r"\n", " ".join(raw)) if s.strip()]
+
+    chunks: list[str] = []
+    buf = ""
+    for sent in sents:
+        candidate = f"{buf} {sent}".strip() if buf else sent
+        if len(candidate) <= CHUNK_MAX_CHARS:
+            buf = candidate
+        else:
+            if buf:
+                chunks.append(buf)
+            # overlap: 이전 버퍼의 끝 CHUNK_OVERLAP_CHARS 자를 새 시작에 포함
+            tail = buf[-CHUNK_OVERLAP_CHARS:] if len(buf) > CHUNK_OVERLAP_CHARS else buf
+            buf = f"{tail} {sent}".strip() if tail else sent
+            if len(buf) > CHUNK_MAX_CHARS:
+                # 단일 문장이 한계를 초과하는 경우 강제 분할
+                chunks.append(buf[:CHUNK_MAX_CHARS])
+                buf = buf[CHUNK_MAX_CHARS - CHUNK_OVERLAP_CHARS:]
+    if buf:
+        chunks.append(buf)
+
+    return chunks or [text[:CHUNK_MAX_CHARS]]
+
+
 def build_symptom_chunks(row) -> list[dict]:
     name = clean_text(row.get("name"))
     cause = clean_text(row.get("cause"))
@@ -115,70 +158,63 @@ def build_symptom_chunks(row) -> list[dict]:
     pre_exist = clean_text(row.get("pre_exist_condition"))
     category = clean_text(row.get("category", ""))
     is_red_flag = bool(row.get("is_red_flag", False))
+    sym_id = row["symptom_id"]
+    base_meta = {
+        "data_type": "symptom",
+        "entity_id": sym_id,
+        "entity_name": name,
+        "category": category,
+        "is_red_flag": is_red_flag,
+    }
     chunks = []
 
+    # 원인 — 자연어 문장으로 변환 후 분할
     if cause:
-        chunks.append({
-            "chunk_type": "cause",
-            "text": f"[증상] {name} ({category})\n원인: {cause}",
-            "metadata": {
-                "data_type": "symptom",
+        for i, seg in enumerate(_split_text(f"{name} 증상의 원인: {cause}")):
+            chunks.append({
+                "id": f"SYM_{sym_id}_cause_{i}",
                 "chunk_type": "cause",
-                "entity_id": row["symptom_id"],
-                "entity_name": name,
-                "category": category,
-                "is_red_flag": is_red_flag,
-            },
-        })
+                "text": seg,
+                "metadata": {**base_meta, "chunk_type": "cause", "seg": i},
+            })
 
+    # 경고 징후 / 병원 방문 기준
     if warning or meet_doc:
         parts = []
         if warning:
-            parts.append(f"경고징후: {warning}")
+            parts.append(f"경고 징후: {warning}")
         if meet_doc:
             parts.append(f"병원 방문 기준: {meet_doc}")
-        red_flag_prefix = "[긴급]" if is_red_flag else "[참고]"
-        chunks.append({
-            "chunk_type": "warning",
-            "text": f"{red_flag_prefix} {name} 응급 판단\n" + "\n".join(parts),
-            "metadata": {
-                "data_type": "symptom",
+        prefix = "긴급 " if is_red_flag else ""
+        full_text = f"{prefix}{name} 응급 판단. " + " / ".join(parts)
+        for i, seg in enumerate(_split_text(full_text)):
+            chunks.append({
+                "id": f"SYM_{sym_id}_warning_{i}",
                 "chunk_type": "warning",
-                "entity_id": row["symptom_id"],
-                "entity_name": name,
-                "category": category,
-                "is_red_flag": is_red_flag,
-            },
-        })
+                "text": seg,
+                "metadata": {**base_meta, "chunk_type": "warning", "seg": i},
+            })
 
+    # 대응 가이드
     guide_text = action_guide or meet_doc
     if guide_text:
-        chunks.append({
-            "chunk_type": "action",
-            "text": f"[대응] {name} 행동 가이드\n{guide_text}",
-            "metadata": {
-                "data_type": "symptom",
+        for i, seg in enumerate(_split_text(f"{name} 대응 방법: {guide_text}")):
+            chunks.append({
+                "id": f"SYM_{sym_id}_action_{i}",
                 "chunk_type": "action",
-                "entity_id": row["symptom_id"],
-                "entity_name": name,
-                "category": category,
-                "is_red_flag": is_red_flag,
-            },
-        })
+                "text": seg,
+                "metadata": {**base_meta, "chunk_type": "action", "seg": i},
+            })
 
+    # 기저질환
     if pre_exist and len(pre_exist) >= 30:
-        chunks.append({
-            "chunk_type": "pre_exist",
-            "text": f"[기저질환] {name}과 관련된 기저질환 및 배경:\n{pre_exist}",
-            "metadata": {
-                "data_type": "symptom",
+        for i, seg in enumerate(_split_text(f"{name} 관련 기저질환: {pre_exist}")):
+            chunks.append({
+                "id": f"SYM_{sym_id}_pre_exist_{i}",
                 "chunk_type": "pre_exist",
-                "entity_id": row["symptom_id"],
-                "entity_name": name,
-                "category": category,
-                "is_red_flag": is_red_flag,
-            },
-        })
+                "text": seg,
+                "metadata": {**base_meta, "chunk_type": "pre_exist", "seg": i},
+            })
 
     return chunks
 
@@ -190,62 +226,76 @@ def build_drug_chunks(row) -> list[dict]:
     warnings = clean_text(row.get("warnings"))
     ingredient = clean_text(row.get("ingredient"))
     contra = clean_text(row.get("combination_contraindication"))
+    category = clean_text(row.get("class_name") or row.get("category") or "")
+    drug_id = str(row["drug_id"])
+    base_meta = {"data_type": "drug", "entity_id": drug_id, "entity_name": name}
     chunks = []
     min_len = 10
 
+    # 요약 청크 — 짧고 핵심적: 약 이름 + 성분 + 분류 + 적응증 첫 60자
+    # 검색 쿼리의 첫 번째 진입점 역할
+    summary_parts = [name]
+    if ingredient and len(ingredient) <= 40:
+        summary_parts.append(f"({ingredient})")
+    if category:
+        summary_parts.append(category)
+    if indications:
+        summary_parts.append(indications[:60])
+    chunks.append({
+        "id": f"DRUG_{drug_id}_summary_0",
+        "chunk_type": "summary",
+        "text": " ".join(summary_parts),
+        "metadata": {**base_meta, "chunk_type": "summary", "seg": 0},
+    })
+
+    # 적응증 — 자연어 문장 + 분할
     if indications and len(indications) >= min_len:
-        chunks.append({
-            "chunk_type": "indications",
-            "text": f"[약물 효능] {name}\n적응증: {indications}",
-            "metadata": {
-                "data_type": "drug",
+        for i, seg in enumerate(_split_text(f"{name}은(는) {indications}")):
+            chunks.append({
+                "id": f"DRUG_{drug_id}_indications_{i}",
                 "chunk_type": "indications",
-                "entity_id": str(row["drug_id"]),
-                "entity_name": name,
-            },
-        })
+                "text": seg,
+                "metadata": {**base_meta, "chunk_type": "indications", "seg": i},
+            })
 
+    # 주의사항 — 분할
     if warnings and len(warnings) >= min_len:
-        chunks.append({
-            "chunk_type": "warning",
-            "text": f"[약물 주의] {name}\n주의사항: {warnings}",
-            "metadata": {
-                "data_type": "drug",
+        for i, seg in enumerate(_split_text(f"{name} 복용 시 주의사항: {warnings}")):
+            chunks.append({
+                "id": f"DRUG_{drug_id}_warning_{i}",
                 "chunk_type": "warning",
-                "entity_id": str(row["drug_id"]),
-                "entity_name": name,
-            },
-        })
+                "text": seg,
+                "metadata": {**base_meta, "chunk_type": "warning", "seg": i},
+            })
 
+    # 병용금기 — 대체로 짧으므로 분할 없이
     if contra:
         chunks.append({
+            "id": f"DRUG_{drug_id}_contra_0",
             "chunk_type": "contra",
-            "text": f"[병용금기] {name}\n함께 복용하면 안 되는 약물: {contra}",
+            "text": f"{name}과 함께 복용하면 안 되는 약물: {contra}",
             "metadata": {
-                "data_type": "drug",
+                **base_meta,
                 "chunk_type": "contra",
-                "entity_id": str(row["drug_id"]),
-                "entity_name": name,
+                "seg": 0,
                 "contra_raw": str(row.get("combination_contraindication", "")),
             },
         })
 
+    # 복약 안내
     dosage_parts = []
     if dosage and len(dosage) >= min_len:
-        dosage_parts.append(f"용법·용량: {dosage}")
+        dosage_parts.append(f"복용법: {dosage}")
     if ingredient and len(ingredient) >= min_len:
         dosage_parts.append(f"주성분: {ingredient}")
     if dosage_parts:
-        chunks.append({
-            "chunk_type": "dosage",
-            "text": f"[복약 안내] {name}\n" + "\n".join(dosage_parts),
-            "metadata": {
-                "data_type": "drug",
+        for i, seg in enumerate(_split_text(f"{name} " + " / ".join(dosage_parts))):
+            chunks.append({
+                "id": f"DRUG_{drug_id}_dosage_{i}",
                 "chunk_type": "dosage",
-                "entity_id": str(row["drug_id"]),
-                "entity_name": name,
-            },
-        })
+                "text": seg,
+                "metadata": {**base_meta, "chunk_type": "dosage", "seg": i},
+            })
 
     return chunks
 
@@ -288,13 +338,12 @@ def build_symptom_drug_mapping_chunks(symptom_df, drug_df) -> list[dict]:
                 continue
             seen_ids.add(chunk_id)
 
+            # 짧고 자연스러운 문장 — 전체 적응증 대신 첫 80자만 사용
+            # 임베딩 품질 우선: "두통 증상에 타이레놀을 사용할 수 있다"
+            ind_brief = indications[:80] if len(indications) > 80 else indications
             chunks.append({
                 "id": chunk_id,
-                "text": (
-                    f"[증상-약 매핑] "
-                    f"증상: {symptom_core} → 추천 약물: {drug_name}\n"
-                    f"적응증: {indications}"
-                ),
+                "text": f"{drug_name}은(는) {symptom_core} 증상에 사용할 수 있다. ({ind_brief})",
                 "metadata": {
                     "data_type": "mapping",
                     "chunk_type": "symptom_drug_map",
@@ -329,14 +378,14 @@ def integrate_data() -> dict:
 
     for _, row in symptom_df.iterrows():
         for chunk in build_symptom_chunks(row):
-            ids.append(f"SYM_{row['symptom_id']}_{chunk['chunk_type']}")
+            ids.append(chunk["id"])
             docs.append(chunk["text"])
             metadatas.append(chunk["metadata"])
             symptom_chunk_count += 1
 
     for _, row in drug_df.iterrows():
         for chunk in build_drug_chunks(row):
-            ids.append(f"DRUG_{row['drug_id']}_{chunk['chunk_type']}")
+            ids.append(chunk["id"])
             docs.append(chunk["text"])
             metadatas.append(chunk["metadata"])
             drug_chunk_count += 1

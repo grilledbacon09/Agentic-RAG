@@ -178,7 +178,11 @@ def process_taboo_info(cur, raw_items):
         )
 
 
-if __name__ == "__main__":
+def main() -> None:
     process_bronze_to_silver("drug_info")
     process_bronze_to_silver("taboo_info")
     print("[+] silver_drug_integration VIEW는 적재된 데이터를 자동 반영합니다.")
+
+
+if __name__ == "__main__":
+    main()
