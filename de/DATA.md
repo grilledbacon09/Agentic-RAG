@@ -537,3 +537,78 @@ graph = get_interaction_graph(["이부프로펜", "아스피린", "와파린"])
   → 비상업적 참조 목적만 허용
   → 실제 서비스 배포 시 제거 또는 별도 계약 필요
 ```
+
+## 11. 설치 가이드
+### 11-1. AI 파트
+pgvector DB에 연결해서 LangChain으로 RAG를 구성하는 환경.
+
+**Python 패키지**
+```
+pip install \
+    langchain \
+    langchain-community \
+    langchain-huggingface \
+    psycopg2-binary \
+    pgvector \
+    sentence-transformers \
+    python-dotenv
+```
+**임베딩 모델**
+```
+from langchain_huggingface import HuggingFaceEmbeddings
+
+embeddings = HuggingFaceEmbeddings(
+    model_name="intfloat/multilingual-e5-large",
+    encode_kwargs={"normalize_embeddings": True},
+    query_instruction="query: ",  # 반드시 붙여야 함
+)
+```
+### 11-2. WEB 파트
+
+API 서버 연동만 하면 되므로 DB 직접 접근은 불필요
+
+**약물 상호작용 그래프 (직접 DB 조회 시)**
+DB 직접 접근이 필요한 경우에만 아래 패키지 설치
+```
+pip install psycopg2-binary python-dotenv
+```
+
+### 11-3. 공통 - DB dump 직접 restore (선택)
+
+로컬에 PostgreSQL + pgvector를 직접 설치해서 사용하는 경우
+
+**1. Docker 없이 PostgreSQL 설치 (Mac)**
+
+```bash
+brew install postgresql@15
+brew services start postgresql@15
+```
+
+**1. Docker 없이 PostgreSQL 설치 (Ubuntu)**
+
+```bash
+sudo apt-get install postgresql-15 postgresql-15-pgvector
+sudo service postgresql start
+```
+
+**2. DB 생성 + pgvector 확장**
+
+```bash
+psql -U postgres -c "CREATE DATABASE drug_rag;"
+psql -U postgres -d drug_rag -c "CREATE EXTENSION IF NOT EXISTS vector;"
+```
+
+**3. S3에서 dump 다운로드 후 restore**
+
+```bash
+# AWS CLI 필요 (pip install awscli)
+aws configure
+# AWS Access Key ID: 발급받은 키
+# AWS Secret Access Key: 발급받은 시크릿
+# Default region: ap-northeast-2
+# Default output: json
+
+aws s3 cp s3://drug-rag-datalake-331145994962/gold/pgvector_dump/2026-09-08/drug_rag_pgvector.dump ./drug_rag.dump
+
+pg_restore -U postgres -d drug_rag drug_rag.dump
+```
