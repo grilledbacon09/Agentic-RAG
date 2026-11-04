@@ -195,7 +195,9 @@ def normalize_drug_inputs(
             drug = st.get("drug") or {}
             if drug.get("name"):
                 entry.label = drug["name"]
-            if entry.graph_status == "NOT_FOUND":
+            if entry.graph_status == "UNAVAILABLE":
+                entry.mapping_status = "UNAVAILABLE"
+            elif entry.graph_status == "NOT_FOUND":
                 entry.mapping_status = "NOT_FOUND"
                 entry.item_seq = seq
             elif entry.graph_status == "UNKNOWN":
@@ -272,8 +274,8 @@ def normalize_drug_inputs(
         entry.mapping_status = "RESOLVED"
         st = graph.check_status(neo_seq)
         entry.graph_status = st.get("status") or "NOT_FOUND"
-        if entry.graph_status == "NOT_FOUND":
-            entry.mapping_status = "NOT_FOUND"
+        if entry.graph_status in ("NOT_FOUND", "UNAVAILABLE"):
+            entry.mapping_status = entry.graph_status
         if (st.get("drug") or {}).get("name"):
             entry.label = st["drug"]["name"]
         mapped.append(entry)
@@ -327,6 +329,9 @@ def build_interaction_graph(
         drug_ids, drug_names, catalog=catalog, graph=graph
     )
     warnings.extend(map_warnings)
+    # Live clients connect lazily, so failure can first appear during mapping.
+    if graph.backend == DataBackend.UNAVAILABLE and not errors:
+        errors.append("Neo4j 연결 또는 조회에 실패했습니다. 서버의 neo4j 드라이버와 연결 설정을 확인해주세요.")
 
     for m in mapped:
         mapping_out.append(
@@ -364,7 +369,7 @@ def build_interaction_graph(
                 "id": nid,
                 "type": "Drug",
                 "label": m.label or m.input_value,
-                "item_seq": None,
+                "item_seq": m.item_seq,
                 "graph_status": m.graph_status,
                 "mapping_status": m.mapping_status,
                 "highlight": m.mapping_status in ("AMBIGUOUS", "NOT_MAPPED"),

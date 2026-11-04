@@ -58,3 +58,11 @@ def load_session_from_file(user_id: str) -> ConversationSession | None:
     except Exception as e:
         print(f"Error loading session for {user_id}: {e}")
         return None
+
+
+def delete_session_file(session_key: str) -> None:
+    """Delete an already validated session identifier; missing sessions are harmless."""
+    path = SESSION_DIR / f"{session_key}.json"
+    if path.resolve().parent != SESSION_DIR.resolve():
+        raise ValueError("Invalid session path")
+    path.unlink(missing_ok=True)

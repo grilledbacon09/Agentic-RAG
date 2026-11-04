@@ -168,22 +168,20 @@ class LiveGraphClient(DrugGraphClient):
             return []
 
     def check_status(self, item_seq: str) -> Dict[str, Any]:
+        unavailable = {
+            "item_seq": item_seq,
+            "status": "UNAVAILABLE",
+            "drug": None,
+            "ingredients": [],
+        }
         if not self._ensure():
-            return {
-                "item_seq": item_seq,
-                "status": "NOT_FOUND",
-                "drug": None,
-                "ingredients": [],
-            }
+            return unavailable
         try:
             return dict(self._graph.check_status(item_seq))
-        except Exception:
-            return {
-                "item_seq": item_seq,
-                "status": "NOT_FOUND",
-                "drug": None,
-                "ingredients": [],
-            }
+        except Exception as exc:
+            # Connection/query failures must not masquerade as a missing product.
+            self._connect_error = type(exc).__name__
+            return unavailable
 
     def check_interactions(
         self,

@@ -3,10 +3,11 @@ from fastapi import APIRouter, Request, Response, HTTPException
 from pydantic import BaseModel
 from typing import Dict, Any, Optional
 import uuid
+import re
 
 # AI 담당자가 제공한 대화형 서비스 모듈 및 영속성 레이어
 from agents.chat_service import create_chat, send_message, ChatBundle
-from agents.persistence import save_session_to_file, load_session_from_file
+from agents.persistence import save_session_to_file, load_session_from_file, delete_session_file
 
 router = APIRouter(prefix="/api")
 
@@ -85,3 +86,22 @@ async def predict_symptom(request: Request, response: Response, body: ChatReques
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"AI Assistant Error: {str(e)}")
+
+
+@router.delete("/diagnosis/{chat_id}", status_code=204)
+async def delete_diagnosis(chat_id: str, request: Request):
+    user_id = request.cookies.get("user_id")
+    # Only permit identifiers that cannot escape the session directory.
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,200}", chat_id):
+        raise HTTPException(status_code=400, detail="Invalid chat ID")
+    if not user_id:
+        return Response(status_code=204)
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,200}", user_id):
+        raise HTTPException(status_code=400, detail="Invalid user ID")
+    session_key = f"{user_id}_{chat_id}"
+    try:
+        delete_session_file(session_key)
+    except OSError:
+        raise HTTPException(status_code=500, detail="Could not delete chat")
+    SESSION_DB.pop(session_key, None)
+    return Response(status_code=204)
