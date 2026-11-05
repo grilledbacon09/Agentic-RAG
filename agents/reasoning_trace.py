@@ -63,6 +63,8 @@ class ReasoningTraceStep:
     data_sources: List[str] = field(default_factory=list)
     started_at: str = ""
     duration_ms: int = 0
+    duration_measured: bool = False
+    input_summary_ref: str = ""
     warnings: List[str] = field(default_factory=list)
     order: int = 0
 
@@ -82,6 +84,7 @@ class ReasoningTrace:
     duration_ms: int = 0
     steps: List[ReasoningTraceStep] = field(default_factory=list)
     data_provenance: Dict[str, Any] = field(default_factory=dict)
+    user_context: Dict[str, Any] = field(default_factory=dict)
     disclaimer: str = (
         "본 Trace는 시스템이 실제 수행한 검색·판정·검증 단계를 기록합니다. "
         "LLM 내부 추론이 아니며, PostgreSQL hit·Neo4j OK가 추천/복용 안전을 보장하지 않습니다."
@@ -97,6 +100,7 @@ class ReasoningTrace:
                 "duration_ms": self.duration_ms,
                 "steps": [s.to_dict() for s in self.steps],
                 "data_provenance": self.data_provenance,
+                "user_context": self.user_context,
                 "disclaimer": self.disclaimer,
             }
         )
@@ -111,6 +115,7 @@ class ReasoningTraceCollector:
         self._t0 = time.perf_counter()
         self.steps: List[ReasoningTraceStep] = []
         self._order = 0
+        self.user_context: Dict[str, Any] = {}
 
     def add_step(
         self,
@@ -125,6 +130,8 @@ class ReasoningTraceCollector:
         data_sources: Optional[List[str]] = None,
         warnings: Optional[List[str]] = None,
         duration_ms: int = 0,
+        duration_measured: bool = False,
+        input_summary_ref: str = "",
         started_at: Optional[str] = None,
     ) -> ReasoningTraceStep:
         self._order += 1
@@ -139,6 +146,8 @@ class ReasoningTraceCollector:
             data_sources=data_sources or [],
             started_at=started_at or _utc_now_iso(),
             duration_ms=max(0, duration_ms),
+            duration_measured=duration_measured,
+            input_summary_ref=input_summary_ref,
             warnings=warnings or [],
             order=self._order,
         )
@@ -187,6 +196,7 @@ class ReasoningTraceCollector:
             duration_ms=elapsed,
             steps=list(self.steps),
             data_provenance=data_provenance or {},
+            user_context=dict(self.user_context),
         )
 
     def to_agent_steps(self) -> List[AgentStep]:
@@ -217,9 +227,16 @@ class _StepTimer:
         self.warnings: List[str] = []
         self.summary = ""
         self.status = "success"
+        self.measured_duration_ms: Optional[int] = None
+        self.input_summary_ref = "trace.user_context"
 
     def complete(self) -> ReasoningTraceStep:
-        ms = int((time.perf_counter() - self._t0) * 1000)
+        if self.measured_duration_ms is not None:
+            ms = max(0, self.measured_duration_ms)
+            measured = True
+        else:
+            ms = int((time.perf_counter() - self._t0) * 1000)
+            measured = ms > 0
         return self.collector.add_step(
             step_id=self.step_id,
             agent=self.agent,
@@ -231,6 +248,8 @@ class _StepTimer:
             data_sources=self.data_sources,
             warnings=self.warnings,
             duration_ms=ms,
+            duration_measured=measured,
+            input_summary_ref=self.input_summary_ref,
             started_at=self.started_at,
         )
 
@@ -244,6 +263,220 @@ def user_input_summary(user_input) -> Dict[str, Any]:
         "conditions": list(user_input.conditions or []),
         "age": user_input.age,
     }
+
+
+def _field_trace_status(values: List[str]) -> Dict[str, Any]:
+    cleaned = [v for v in (values or []) if str(v).strip()]
+    if not cleaned:
+        return {
+            "status": "unknown",
+            "label": "미확인",
+            "values": [],
+        }
+    if len(cleaned) == 1 and cleaned[0].strip() in ("없음", "none", "해당없음"):
+        return {
+            "status": "declared_none",
+            "label": "없음(사용자 진술)",
+            "values": cleaned,
+        }
+    return {
+        "status": "provided",
+        "label": ", ".join(cleaned),
+        "values": cleaned,
+    }
+
+
+def build_trace_user_context(user_input, context_text: str = "") -> Dict[str, Any]:
+    """Trace 최상단 공통 입력 요약 (Web 중복 렌더링 방지용)."""
+    age = user_input.age
+    age_block = (
+        {"status": "provided", "label": str(age), "values": [age]}
+        if age is not None
+        else {"status": "unknown", "label": "미확인", "values": []}
+    )
+    ctx = (context_text or "").strip()
+    return {
+        "symptoms": _field_trace_status(list(user_input.symptoms or [])),
+        "current_drug_ids": _field_trace_status(list(user_input.current_drug_ids or [])),
+        "current_drug_names": _field_trace_status(list(user_input.current_drug_names or [])),
+        "allergies": _field_trace_status(list(user_input.allergies or [])),
+        "conditions": _field_trace_status(list(user_input.conditions or [])),
+        "age": age_block,
+        "latest_user_text": _truncate(ctx, 400) if ctx else "",
+        "display_hint": "공통 입력 요약 — Agent별 input_summary 대신 이 블록을 우선 표시",
+    }
+
+
+def query_evidence_from_analysis(query_analysis, context_text: str = "") -> List[Dict[str, Any]]:
+    ui = query_analysis.user_input
+    ev: List[Dict[str, Any]] = []
+    if ui.symptoms:
+        ev.append(
+            {
+                "kind": "symptoms",
+                "detail": f"구조화 증상: {', '.join(ui.symptoms)}",
+                "source": "user_input",
+            }
+        )
+    ctx = (context_text or "").strip()
+    if ctx:
+        ev.append(
+            {
+                "kind": "context_text",
+                "detail": _truncate(ctx, 200),
+                "source": "conversation_turn",
+            }
+        )
+    if query_analysis.detected_terms:
+        ev.append(
+            {
+                "kind": "catalog_terms",
+                "detail": ", ".join(query_analysis.detected_terms[:8]),
+                "source": "legacy_json_catalog",
+            }
+        )
+    if query_analysis.unknown_terms:
+        ev.append(
+            {
+                "kind": "unknown_terms",
+                "detail": ", ".join(query_analysis.unknown_terms[:8]),
+                "source": "catalog_lookup",
+            }
+        )
+    for msg in query_analysis.messages[:3]:
+        ev.append({"kind": "analysis_note", "detail": msg, "source": "query_agent"})
+    return ev
+
+
+def clarification_decision_enriched(user_input, clarification) -> Dict[str, Any]:
+    critical_missing = not (user_input.symptoms or [])
+    if not clarification.needs_clarification:
+        mode = "none"
+    elif critical_missing:
+        mode = "required"
+    else:
+        mode = "recommended_optional"
+    return {
+        "needs_clarification": clarification.needs_clarification,
+        "mode": mode,
+        "can_proceed_with_recommendation": not critical_missing,
+        "questions": clarification.questions[:5],
+        "reasons": clarification.reasons[:5],
+    }
+
+
+def clarification_evidence(clarification, decision: Dict[str, Any]) -> List[Dict[str, Any]]:
+    ev: List[Dict[str, Any]] = []
+    for r in clarification.reasons[:5]:
+        ev.append({"kind": "rule", "detail": r, "source": "clarification_agent"})
+    if decision.get("mode") == "recommended_optional":
+        ev.append(
+            {
+                "kind": "branch",
+                "detail": "증상은 있으나 추가 질문 권장 — 파이프라인은 추천 단계까지 진행 가능",
+                "source": "clarification_agent",
+            }
+        )
+    return ev
+
+
+def safety_evidence_from_red_flag(red_flag, user_input, context_text: str = "") -> List[Dict[str, Any]]:
+    ev: List[Dict[str, Any]] = []
+    combined = f"{context_text} {' '.join(user_input.symptoms or [])}".strip()
+    if combined:
+        ev.append(
+            {
+                "kind": "checked_text",
+                "detail": _truncate(combined, 180),
+                "source": "user_input",
+            }
+        )
+    if red_flag.matched:
+        for sig in red_flag.matched[:5]:
+            ev.append({"kind": "red_flag_signal", "detail": sig, "source": "red_flag_rules"})
+    else:
+        ev.append(
+            {
+                "kind": "red_flag_scan",
+                "detail": "입력·증상 텍스트에서 응급 red flag 키워드 미감지 (미확인 ≠ 안전)",
+                "source": "red_flag_rules",
+            }
+        )
+    for reason in (red_flag.reasons or [])[:4]:
+        ev.append({"kind": "note", "detail": reason, "source": "safety_agent"})
+    return ev
+
+
+def recommendation_evidence_from_decision(decision, reranked) -> List[Dict[str, Any]]:
+    ev: List[Dict[str, Any]] = []
+    rerank_by_id = {item.retrieval.drug.drug_id: item for item in reranked}
+    for rec in decision.recommended:
+        drug = rec.retrieval.drug
+        item = rerank_by_id.get(drug.drug_id)
+        entry: Dict[str, Any] = {
+            "kind": "recommended",
+            "drug_id": drug.drug_id,
+            "drug_name": drug.name_ko,
+            "final_score": round(rec.final_score, 3),
+            "risk_level": rec.risk_level,
+        }
+        if drug.indications:
+            entry["indications_excerpt"] = _truncate(drug.indications, 120)
+        if item:
+            entry["rerank_reasons"] = list(item.rerank_reasons[:4])
+        ev.append(entry)
+    for rej in decision.rejected[:5]:
+        ev.append(
+            {
+                "kind": "rejected",
+                "drug_id": rej.retrieval.drug.drug_id,
+                "drug_name": rej.retrieval.drug.name_ko,
+                "blocked": rej.blocked,
+                "risk_level": rej.risk_level,
+                "reason_hints": [r for r in rej.rerank_reasons if "blocked" in r or "verdict" in r][:3],
+            }
+        )
+    return ev
+
+
+def validator_evidence_from_result(validation, decision) -> List[Dict[str, Any]]:
+    ev: List[Dict[str, Any]] = []
+    for check in validation.checks:
+        ev.append({"kind": "check", "detail": check, "source": "validator"})
+    for err in validation.errors:
+        ev.append({"kind": "error", "detail": err, "source": "validator"})
+    if not decision.recommended:
+        ev.append(
+            {
+                "kind": "note",
+                "detail": "추천 후보 없음 — validator는 빈 목록 기준으로 검증",
+                "source": "validator",
+            }
+        )
+    return ev
+
+
+def parse_retrieval_attempt(notes: List[str]) -> Dict[str, Any]:
+    joined = " ".join(notes)
+    lower = joined.lower()
+    attempt = {
+        "postgresql_attempted": "postgresql" in lower or "de" in lower or "검색 실패" in joined,
+        "postgresql_succeeded": False,
+        "fallback_executed": "fallback" in lower or "legacy" in lower,
+        "failure_kind": None,
+        "failure_detail": None,
+    }
+    if "missing_dependency" in lower or "no module named" in lower:
+        attempt["failure_kind"] = "missing_python_dependency"
+    elif "연결" in joined or "connection" in lower:
+        attempt["failure_kind"] = "connection"
+    elif "검색 실패" in joined:
+        attempt["failure_kind"] = "search_error"
+    for note in notes:
+        if note.startswith("PostgreSQL 검색 실패"):
+            attempt["failure_detail"] = note[:200]
+            break
+    return attempt
 
 
 def retrieval_evidence_from_results(items, *, max_snippet: int = 120) -> List[Dict[str, Any]]:
@@ -445,10 +678,13 @@ class PipelineTraceBridge:
         legacy_status: str,
         legacy_messages: List[str],
         populate: Optional[Callable[[_StepTimer], None]] = None,
+        measured_duration_ms: Optional[int] = None,
     ) -> None:
         if self.enable_structured and self.collector is not None:
             try:
                 timer = self.collector.track(step_id, agent)
+                if measured_duration_ms is not None:
+                    timer.measured_duration_ms = measured_duration_ms
                 if populate:
                     populate(timer)
                 rstep = timer.complete()

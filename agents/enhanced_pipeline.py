@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import time
 from typing import Callable, List, Optional
 
 from agents.agent_trace import AgentStep, format_agent_trace
@@ -16,13 +17,21 @@ from agents.integrations.types import DataBackend, DataProvenance, provenance_to
 from agents.reasoning_trace import (
     PipelineTraceBridge,
     apply_safety_provenance,
+    build_trace_user_context,
+    clarification_decision_enriched,
+    clarification_evidence,
     compute_retrieval_data_sources,
     legacy_messages_clarification,
     legacy_messages_query,
+    parse_retrieval_attempt,
+    query_evidence_from_analysis,
     recommendation_decision_trace,
+    recommendation_evidence_from_decision,
     reranker_evidence_from_results,
     retrieval_evidence_from_results,
+    safety_evidence_from_red_flag,
     user_input_summary,
+    validator_evidence_from_result,
 )
 from agents.retriever import retrieve_candidates, retrieve_symptom_context
 from agents.safety import check_symptom_red_flags, evaluate_drug_safety
@@ -109,6 +118,8 @@ def run_enhanced_pipeline_core(
     provenance = DataProvenance()
     de_ctx = build_de_context(cfg)
     bridge = PipelineTraceBridge.create(cfg, trace_steps, on_step)
+    if bridge.collector is not None:
+        bridge.collector.user_context = build_trace_user_context(user_input, context_text)
 
     def _finish(
         *,
@@ -139,17 +150,19 @@ def run_enhanced_pipeline_core(
         )
 
     # --- Query Agent ---
+    _t0 = time.perf_counter()
     query_analysis = analyze_user_input(user_input, drugs, symptoms)
+    query_ms = int((time.perf_counter() - _t0) * 1000)
     q_status, q_messages = legacy_messages_query(query_analysis)
 
     def _populate_query(t) -> None:
-        t.input_summary = user_input_summary(user_input)
-        if context_text.strip():
-            t.input_summary["context_text"] = context_text.strip()[:200]
+        t.input_summary = {}
         t.decision = {
             "detected_terms_count": len(query_analysis.detected_terms),
             "unknown_terms": query_analysis.unknown_terms[:8],
+            "symptoms": list(user_input.symptoms or []),
         }
+        t.evidence = query_evidence_from_analysis(query_analysis, context_text)
         t.data_sources = ["legacy_json"]
         t.summary = "사용자 입력 및 증상·조건 분석 완료"
         if query_analysis.unknown_terms:
@@ -161,19 +174,20 @@ def run_enhanced_pipeline_core(
         legacy_status=q_status,
         legacy_messages=q_messages,
         populate=_populate_query if bridge.enable_structured else None,
+        measured_duration_ms=query_ms,
     )
 
     # --- Clarification Agent ---
+    _t0 = time.perf_counter()
     clarification = generate_clarifying_questions(user_input)
+    clarification_ms = int((time.perf_counter() - _t0) * 1000)
     c_status, c_messages = legacy_messages_clarification(clarification)
+    clarification_decision = clarification_decision_enriched(user_input, clarification)
 
     def _populate_clarification(t) -> None:
-        t.input_summary = user_input_summary(user_input)
-        t.decision = {
-            "needs_clarification": clarification.needs_clarification,
-            "questions": clarification.questions[:5],
-            "reasons": clarification.reasons[:5],
-        }
+        t.input_summary = {}
+        t.decision = clarification_decision
+        t.evidence = clarification_evidence(clarification, clarification_decision)
         t.summary = c_status
 
     bridge.emit_step(
@@ -182,10 +196,13 @@ def run_enhanced_pipeline_core(
         legacy_status=c_status,
         legacy_messages=c_messages,
         populate=_populate_clarification if bridge.enable_structured else None,
+        measured_duration_ms=clarification_ms,
     )
 
     # --- Safety Agent ---
+    _t0 = time.perf_counter()
     red_flag = detect_red_flags(user_input, symptoms, user_text=context_text)
+    safety_ms = int((time.perf_counter() - _t0) * 1000)
     safe_messages = [
         f"red_flag={red_flag.has_red_flag}",
         f"action={red_flag.action}",
@@ -194,12 +211,18 @@ def run_enhanced_pipeline_core(
         safe_messages.append(f"signals={', '.join(red_flag.matched[:5])}")
 
     def _populate_safety(t) -> None:
-        t.input_summary = user_input_summary(user_input)
+        t.input_summary = {}
         t.decision = {
             "has_red_flag": red_flag.has_red_flag,
             "matched_signals": red_flag.matched,
             "action": red_flag.action,
+            "red_flag_absence_note": (
+                "감지된 응급 신호 없음 (미확인 정보와 무관하게 '안전'을 의미하지 않음)"
+                if not red_flag.has_red_flag
+                else None
+            ),
         }
+        t.evidence = safety_evidence_from_red_flag(red_flag, user_input, context_text)
         t.data_sources = ["legacy_json"]
         t.summary = "응급 red flag 검사 완료"
         if red_flag.has_red_flag:
@@ -212,6 +235,7 @@ def run_enhanced_pipeline_core(
         legacy_status="응급 red flag 검사 완료",
         legacy_messages=safe_messages,
         populate=_populate_safety if bridge.enable_structured else None,
+        measured_duration_ms=safety_ms,
     )
 
     if red_flag.has_red_flag:
@@ -263,6 +287,7 @@ def run_enhanced_pipeline_core(
         )
 
     # --- Retrieval Agent ---
+    _t0 = time.perf_counter()
     retrieved, retrieval_backend, retrieval_notes = retrieve_candidates(
         user_input,
         drugs,
@@ -275,6 +300,7 @@ def run_enhanced_pipeline_core(
         chroma_weight=cfg.chroma_score_weight,
         min_score=cfg.min_retrieval_score,
     )
+    retrieval_ms = int((time.perf_counter() - _t0) * 1000)
     provenance.retrieval = retrieval_backend
     hit_sources = compute_retrieval_data_sources(retrieved, retrieval_backend, retrieval_notes)
     provenance.retrieval_hit_sources = list(hit_sources)
@@ -289,13 +315,23 @@ def run_enhanced_pipeline_core(
     if stub_count:
         ret_messages.append(f"stub catalog 미매칭 후보 {stub_count}건")
 
+    retrieval_attempt = parse_retrieval_attempt(retrieval_notes)
+    retrieval_attempt["final_backend"] = retrieval_backend.value
+    retrieval_attempt["final_hit_sources"] = list(hit_sources)
+    if retrieved and retrieval_backend.value in ("postgresql", "hybrid"):
+        retrieval_attempt["postgresql_succeeded"] = any(
+            getattr(r, "retrieval_source", "") == "postgresql" for r in retrieved
+        )
+
     def _populate_retrieval(t) -> None:
-        t.input_summary = user_input_summary(user_input)
+        t.input_summary = {}
         t.decision = {
             "retrieved_count": len(retrieved),
             "backend": retrieval_backend.value,
             "hit_sources": hit_sources,
             "fallback_notes": retrieval_notes[:6],
+            "retrieval_attempt": retrieval_attempt,
+            "search_queries_hint": list(user_input.symptoms or [])[:5],
         }
         t.evidence = retrieval_evidence_from_results(retrieved)
         t.data_sources = list(hit_sources)
@@ -304,7 +340,7 @@ def run_enhanced_pipeline_core(
             t.warnings.append(
                 f"stub catalog 미매칭 후보 {stub_count}건 — 추천 전 추가 검증 필요"
             )
-        if any("fallback" in n.lower() or "실패" in n for n in retrieval_notes):
+        if retrieval_attempt.get("fallback_executed"):
             t.warnings.append("PostgreSQL 검색 실패 또는 fallback 발생 — legacy 출처 포함")
 
     bridge.emit_step(
@@ -313,11 +349,13 @@ def run_enhanced_pipeline_core(
         legacy_status="검색 완료",
         legacy_messages=ret_messages,
         populate=_populate_retrieval if bridge.enable_structured else None,
+        measured_duration_ms=retrieval_ms,
     )
 
     _ = [evaluate_drug_safety(user_input, result.drug) for result in retrieved]
 
     # --- Reranker ---
+    _t0 = time.perf_counter()
     reranked = rerank_results(
         user_input,
         retrieved,
@@ -325,6 +363,7 @@ def run_enhanced_pipeline_core(
         graph_client=de_ctx.graph,
         de_fallback_legacy=de_ctx.fallback_legacy,
     )
+    rerank_ms = int((time.perf_counter() - _t0) * 1000)
     apply_safety_provenance(provenance, reranked)
     safety_sources = list(provenance.safety_backends) or [provenance.safety.value]
     rerank_messages = [
@@ -358,10 +397,13 @@ def run_enhanced_pipeline_core(
         legacy_status="재정렬 완료",
         legacy_messages=rerank_messages,
         populate=_populate_rerank if bridge.enable_structured else None,
+        measured_duration_ms=rerank_ms,
     )
 
     # --- Recommendation Agent ---
+    _t0 = time.perf_counter()
     decision = decide_recommendations(reranked, max_recommendations=top_k)
+    recommendation_ms = int((time.perf_counter() - _t0) * 1000)
     rec_messages = list(decision.messages) if decision.messages else []
     rec_messages.insert(
         0,
@@ -369,7 +411,9 @@ def run_enhanced_pipeline_core(
     )
 
     def _populate_rec(t) -> None:
+        t.input_summary = {}
         t.decision = recommendation_decision_trace(decision)
+        t.evidence = recommendation_evidence_from_decision(decision, reranked)
         t.summary = (
             f"추천 {len(decision.recommended)}건 / 제외 {len(decision.rejected)}건"
         )
@@ -382,10 +426,13 @@ def run_enhanced_pipeline_core(
         legacy_status="추천 결정",
         legacy_messages=rec_messages,
         populate=_populate_rec if bridge.enable_structured else None,
+        measured_duration_ms=recommendation_ms,
     )
 
     # --- Validator ---
+    _t0 = time.perf_counter()
     validation = validate_decision(decision, drugs)
+    validator_ms = int((time.perf_counter() - _t0) * 1000)
     val_messages = [
         "출력 검증 완료" if validation.passed else "출력 검증 실패",
     ]
@@ -394,11 +441,13 @@ def run_enhanced_pipeline_core(
         val_messages.append(f"error: {err}")
 
     def _populate_val(t) -> None:
+        t.input_summary = {}
         t.decision = {
             "passed": validation.passed,
             "checks": validation.checks[:8],
             "errors": validation.errors[:8],
         }
+        t.evidence = validator_evidence_from_result(validation, decision)
         t.summary = "출력 검증 완료" if validation.passed else "출력 검증 실패"
         if not validation.passed:
             t.status = "warning"
@@ -410,6 +459,7 @@ def run_enhanced_pipeline_core(
         legacy_status="검증 완료",
         legacy_messages=val_messages,
         populate=_populate_val if bridge.enable_structured else None,
+        measured_duration_ms=validator_ms,
     )
 
     return _finish(

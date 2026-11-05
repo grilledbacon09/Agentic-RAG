@@ -281,6 +281,19 @@ def replace_primary_symptoms(
     )
 
 
+def _apply_inline_declarations(text: str, patch: UserInput) -> None:
+    """한 문장에 '알레르기 없음' 등 복합 진술을 반영 (pending_slot 없이)."""
+    if not (text or "").strip():
+        return
+    if re.search(r"복용[^,.]{0,24}없", text) or re.search(r"먹[^,.]{0,12}없", text):
+        patch.current_drug_ids = ["없음"]
+        patch.current_drug_names = ["없음"]
+    if re.search(r"알레르기[^,.]{0,16}없", text):
+        patch.allergies = ["없음"]
+    if re.search(r"기저[^,.]{0,24}없", text):
+        patch.conditions = ["없음"]
+
+
 def extract_slots_from_message(
     message: str,
     drugs: List[Drug],
@@ -326,6 +339,8 @@ def extract_slots_from_message(
     if pending_slot == "current_meds" and negative:
         patch.current_drug_ids = ["없음"]
         patch.current_drug_names = ["없음"]
+
+    _apply_inline_declarations(text, patch)
 
     messages: List[str] = []
     if extracted_symptoms:

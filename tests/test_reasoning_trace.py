@@ -20,9 +20,13 @@ from agents.integrations.types import DataBackend, DataProvenance
 from agents.reasoning_trace import (
     ReasoningTraceCollector,
     apply_safety_provenance,
+    build_trace_user_context,
+    clarification_decision_enriched,
     compute_retrieval_data_sources,
+    parse_retrieval_attempt,
     sanitize_trace_value,
 )
+from agents.clarification_agent import generate_clarifying_questions
 from tests.isolation import reset_vector_e5_cache
 
 
@@ -240,8 +244,8 @@ class ReasoningTracePipelineTests(unittest.TestCase):
     def test_korean_symptoms_preserved(self):
         ui = UserInput(symptoms=["머리가 아프고 미열이 있어요"])
         result = self._run(ui, use_de_vector=False, use_de_graph=False)
-        query = result.reasoning_trace["steps"][0]
-        self.assertIn("머리가 아프고", str(query["input_summary"]))
+        uc = result.reasoning_trace.get("user_context") or {}
+        self.assertIn("머리가 아프고", uc.get("symptoms", {}).get("label", ""))
 
 
 class ReasoningTraceApiTests(unittest.TestCase):
@@ -432,6 +436,75 @@ class ReasoningTracePatchRegressionTests(unittest.TestCase):
             [], DataBackend.UNAVAILABLE, ["Retrieval fallback=legacy_json (DE 미사용 또는 실패)"]
         )
         self.assertEqual(sources, ["legacy_json"])
+
+
+class ReasoningTraceImprovementTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.drugs = load_drugs(ROOT / "data" / "drugs.json")
+        cls.symptoms = load_symptoms(ROOT / "data" / "symptoms.json")
+
+    def test_user_context_declared_none(self):
+        ui = UserInput(
+            symptoms=["요통"],
+            current_drug_names=["없음"],
+            allergies=["없음"],
+            conditions=["없음"],
+        )
+        ctx = build_trace_user_context(ui, "그냥 욱신거림")
+        self.assertEqual(ctx["allergies"]["status"], "declared_none")
+        self.assertIn("사용자 진술", ctx["allergies"]["label"])
+
+    def test_pipeline_has_user_context_and_evidence(self):
+        ui = UserInput(symptoms=["소화불량"])
+        cfg = _cfg(use_chroma=False, use_de_vector=False, use_de_graph=False)
+        result = run_enhanced_pipeline_core(ui, self.drugs, self.symptoms, config=cfg)
+        trace = result.reasoning_trace
+        self.assertIn("user_context", trace)
+        self.assertIn("symptoms", trace["user_context"])
+        query = next(s for s in trace["steps"] if s["step_id"] == "query_agent")
+        self.assertGreater(len(query["evidence"]), 0)
+        self.assertEqual(query.get("input_summary"), {})
+        self.assertTrue(query.get("duration_measured"))
+
+    def test_clarification_mode_optional_when_symptoms_present(self):
+        ui = UserInput(symptoms=["두통"])
+        cr = generate_clarifying_questions(ui)
+        dec = clarification_decision_enriched(ui, cr)
+        if cr.needs_clarification:
+            self.assertEqual(dec["mode"], "recommended_optional")
+            self.assertTrue(dec["can_proceed_with_recommendation"])
+
+    def test_agent_durations_not_all_zero(self):
+        ui = UserInput(symptoms=["두통"])
+        cfg = _cfg(use_chroma=False, use_de_vector=False, use_de_graph=False)
+        result = run_enhanced_pipeline_core(ui, self.drugs, self.symptoms, config=cfg)
+        measured = [
+            s["duration_ms"]
+            for s in result.reasoning_trace["steps"]
+            if s.get("duration_measured")
+        ]
+        self.assertGreater(len(measured), 0)
+
+    def test_parse_retrieval_missing_dependency(self):
+        notes = [
+            "PostgreSQL 검색 실패(unavailable): [missing_dependency] No module named 'torch'",
+            "postgresql_attempted=true",
+            "postgresql_failure_kind=missing_python_dependency",
+        ]
+        attempt = parse_retrieval_attempt(notes)
+        self.assertEqual(attempt["failure_kind"], "missing_python_dependency")
+        self.assertTrue(attempt["fallback_executed"] or attempt["postgresql_attempted"])
+
+    def test_recommendation_and_validator_evidence(self):
+        ui = UserInput(symptoms=["소화불량"])
+        cfg = _cfg(use_chroma=False, use_de_vector=False, use_de_graph=False)
+        result = run_enhanced_pipeline_core(ui, self.drugs, self.symptoms, config=cfg)
+        rec = next(s for s in result.reasoning_trace["steps"] if s["step_id"] == "recommendation_agent")
+        val = next(s for s in result.reasoning_trace["steps"] if s["step_id"] == "validator")
+        if result.decision.recommended:
+            self.assertGreater(len(rec["evidence"]), 0)
+        self.assertGreater(len(val["evidence"]), 0)
 
 
 class CollectorUnitTests(unittest.TestCase):
