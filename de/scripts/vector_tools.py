@@ -266,6 +266,8 @@ class DrugVectorDB:
         증상에 맞는 약 후보. 같은 약은 1개로 묶고(가장 높은 점수), 후보마다 graph_tools.assess()로 판정할 것
           - drug_efficacy (e약은요: 일반의약품 효능)
           - drug_permit section=summary (식약처 허가 제품 요약, 일반의약품·허가 유효만)
+        otc_only=True(기본): 모든 후보를 허가정보 구분값으로 다시 확인해 전문의약품·허가 취소 제품 제외
+          → 항목마다 etc_otc, otc_verified(허가정보에서 확인됐는지) 표시
         반환 항목의 item_seq가 비어 있으면 graph_tools.find_drug(name)으로 찾기
         """
         rows = self.search(query, "drug_efficacy", top_k=top_k * 3)
@@ -277,8 +279,31 @@ class DrugVectorDB:
             key = r["item_seq"] or _norm_name(r["name"])
             if key and key not in merged:
                 merged[key] = r
-        out = list(merged.values())[:top_k]
+        out = list(merged.values())
         self._fill_item_seq(out)
+        if otc_only:
+            out = self._keep_otc(out)
+        return out[:top_k]
+
+    def _keep_otc(self, rows: list[dict]) -> list[dict]:
+        """식약처 허가정보 기준으로 전문의약품·허가 취소 제품을 뺌 (e약은요·약학정보원 문서도 같은 기준으로 확인)
+        각 항목에 etc_otc / otc_verified 추가. 허가정보에서 제품을 못 찾은 항목은 otc_verified=False로 남김"""
+        seqs = [r["item_seq"] for r in rows if r.get("item_seq")]
+        info = {}
+        if seqs:
+            for f in self._rows(
+                    f"SELECT DISTINCT ON (item_seq) item_seq, is_otc, is_active, metadata->>'etc_otc' AS etc_otc "
+                    f"FROM {self.table} WHERE doc_type = 'drug_permit' AND section = 'summary' AND item_seq = ANY(%s) "
+                    f"ORDER BY item_seq, chunk_index", [seqs]):
+                info[f["item_seq"]] = f
+        out = []
+        for r in rows:
+            f = info.get(r.get("item_seq"))
+            if f and (f["is_otc"] is False or f["is_active"] is False):
+                continue                                   # 전문의약품 또는 허가 취소 → 추천 후보에서 제외
+            r["etc_otc"] = f["etc_otc"] if f else None
+            r["otc_verified"] = bool(f)
+            out.append(r)
         return out
 
     def _fill_item_seq(self, rows: list[dict]) -> None:

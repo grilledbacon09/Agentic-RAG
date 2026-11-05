@@ -69,7 +69,8 @@ def latest_items(prefix: str) -> list[dict]:
     if not dates:
         logger.warning(f"  {prefix}: 데이터 없음")
         return []
-    latest = dates[-1]
+    rd = os.getenv("RUN_DATE")
+    latest = rd if rd in dates else dates[-1]      # RUN_DATE 폴더가 있으면 그 날짜 (덤프와 같은 기준으로 맞춤)
     items = []
     for k in keys:
         if f"/{latest}/" in k:
@@ -80,6 +81,20 @@ def latest_items(prefix: str) -> list[dict]:
 
 def meta(x: dict) -> dict:
     return x.get("metadata", x)
+
+
+# 공식 코드 매핑(code_map)에 없는 원료를 이름으로 DUR 성분에 연결할 때 쓰는 정규화
+# 예) '아세트아미노펜 제피세립' / '아세트아미노펜(미분화)' / '판토텐산 칼슘' → DUR 성분명과 비교
+FORM_WORDS = ["코팅과립", "제피세립", "직타용", "미분화", "미립자", "과립", "세립", "분말", "결정"]
+_FORM_RE = re.compile("|".join(sorted(FORM_WORDS, key=len, reverse=True)))
+_HANGUL_RE = re.compile(r"[가-힣]")
+
+
+def canon_ingredient(name: str | None) -> str:
+    """공백·괄호 속 원료 표기·원료 표기 단어 제거 (graph_tools.canon_ingredient와 같은 규칙)"""
+    n = re.sub(r"\s+", "", name or "")
+    n = re.sub(r"[\(\[]([^\)\]]*)[\)\]]", lambda m: "" if _FORM_RE.fullmatch(m.group(1)) else m.group(0), n)
+    return _FORM_RE.sub("", n)
 
 
 # ─────────────────────────────────────
@@ -98,6 +113,22 @@ class GraphData:
         self.m2d: dict[str, set] = defaultdict(set)
         self.product_flags: dict[tuple, set] = defaultdict(set)   # (item_seq, group) → {성분코드}
         self.stats = defaultdict(int)
+        self._name_index: dict[str, set] | None = None
+        self.name_matched: dict[str, set] = {}       # 원료코드 → 이름으로 연결된 D코드 (검토용 로그)
+
+    def name_index(self) -> dict[str, set]:
+        """정규화한 한글 성분명 → DUR 성분코드 (DUR 성분명 + code_map의 원료명 별칭)"""
+        if self._name_index is None:
+            idx: dict[str, set] = defaultdict(set)
+            for code, e in self.ingredients.items():
+                if not e["in_dur"]:
+                    continue
+                for n in {e["name_kor"], *e["aliases"]}:
+                    if n and _HANGUL_RE.search(n):          # 영문명은 순서 대응 오류가 있어 사용 안 함
+                        idx[canon_ingredient(n)].add(code)
+            idx.pop("", None)
+            self._name_index = idx
+        return self._name_index
 
     def add_ingredient(self, code: str, kor: str = "", eng: str = "", in_dur: bool = False):
         e = self.ingredients.setdefault(code, {"code": code, "name_kor": "", "name_eng": "",
@@ -235,9 +266,15 @@ class GraphData:
                                    "is_finished_drug": True, "name_eng": "", "manufacturer": "",
                                    "atc_code": "", "bar_codes": [], "official_url": ""}
             d_codes = sorted(self.m2d.get(src, set()))
+            mapped_by = "code_map" if d_codes else ""
+            if not d_codes:      # 공식 매핑에 없으면 한글 성분명으로 DUR 성분 찾기
+                d_codes = sorted(self.name_index().get(canon_ingredient(m.get("ingr_name_kor", "")), set()))
+                if d_codes:
+                    mapped_by = "name"
+                    self.name_matched.setdefault(f"{src}|{m.get('ingr_name_kor', '')}", set()).update(d_codes)
             if d_codes:
                 targets, mapped = d_codes, True
-                self.stats["CONTAINS_D코드연결"] += 1
+                self.stats["CONTAINS_D코드연결" if mapped_by == "code_map" else "CONTAINS_이름매칭연결"] += 1
             else:
                 key = f"M:{src}" if src else f"N:{m.get('ingr_name_kor', '')}"
                 if key in ("M:", "N:"):
@@ -248,6 +285,7 @@ class GraphData:
             for code in targets:
                 self.contains[(seq, code)] = {
                     "item_seq": seq, "code": code, "src_code": src, "mapped_to_dur": mapped,
+                    "mapped_by": mapped_by if mapped else "",
                     "amount": m.get("amount", ""), "unit": m.get("unit", ""),
                 }
 
@@ -330,7 +368,7 @@ Q = {
         MATCH (d:Drug {item_seq: r.item_seq})
         MATCH (i:Ingredient {code: r.code})
         MERGE (d)-[c:CONTAINS]->(i)
-        SET c.src_code = r.src_code, c.mapped_to_dur = r.mapped_to_dur,
+        SET c.src_code = r.src_code, c.mapped_to_dur = r.mapped_to_dur, c.mapped_by = r.mapped_by,
             c.amount = r.amount, c.unit = r.unit""",
     "pairs": f"""
         UNWIND $rows AS r
@@ -440,13 +478,18 @@ def main():
     rows = g.rows()
     for k, v in g.stats.items():
         logger.info(f"  {k}: {v:,}")
+    if g.name_matched:
+        many = sum(1 for ds in g.name_matched.values() if len(ds) > 1)
+        logger.info(f"  이름으로 DUR 성분에 연결한 원료 {len(g.name_matched):,}종 (여러 D코드 {many}종) 예: "
+                    + ", ".join(f"{k.split('|', 1)[1]}→{'/'.join(sorted(v))}" for k, v in list(g.name_matched.items())[:8]))
     amb = sum(1 for ds in g.m2d.values() if len(ds) > 1)
     if amb:
         logger.warning(f"  원료코드 {amb}종이 여러 D코드에 매핑됨 → 모두 연결 (안전 측 처리)")
 
     logger.info("③ Neo4j 적재")
     if args.local:
-        uri, user, pw = "bolt://localhost:7687", "neo4j", os.getenv("NEO4J_LOCAL_PASSWORD", "neo4j111")
+        uri, user, pw = (os.getenv("NEO4J_LOCAL_URI", "bolt://localhost:7687"), "neo4j",
+                         os.getenv("NEO4J_LOCAL_PASSWORD", "neo4j111"))
     else:
         uri, user, pw = (os.getenv("NEO4J_URI", "bolt://localhost:7687"), os.getenv("NEO4J_USER", "neo4j"),
                          os.getenv("NEO4J_PASSWORD", "password1234"))
