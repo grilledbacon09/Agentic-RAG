@@ -302,10 +302,18 @@ def retrieve_candidates(
             retrieval_backend = outcome.backend
             notes.append(f"Retrieval: {outcome.backend.value} hits={len(de_results)}")
         elif outcome.attempted_postgresql:
+            err = outcome.error or "no rows"
             notes.append(
-                f"PostgreSQL 검색 실패({outcome.backend.value}): "
-                f"{(outcome.error or 'no rows')[:120]}"
+                f"PostgreSQL 검색 실패({outcome.backend.value}): {err[:120]}"
             )
+            notes.append("postgresql_attempted=true")
+            if "missing_dependency" in err.lower() or "No module named" in err:
+                notes.append("postgresql_failure_kind=missing_python_dependency")
+            elif "connection" in err.lower() or "connect" in err.lower():
+                notes.append("postgresql_failure_kind=connection")
+            else:
+                notes.append("postgresql_failure_kind=search_error")
+            notes.append(f"Retrieval fallback=legacy_json (DE 미사용 또는 실패)")
             if not config.de_fallback_legacy:
                 notes.append("DE_FALLBACK_LEGACY=false — legacy 검색 생략")
                 return [], DataBackend.UNAVAILABLE, notes

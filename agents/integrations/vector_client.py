@@ -150,6 +150,10 @@ class LiveVectorClient(DrugVectorClient):
                 model=shared_model,
             )
             return True
+        except ImportError as exc:
+            self._connect_error = f"[missing_dependency] {exc}"
+            self._db = None
+            return False
         except Exception as exc:
             self._connect_error = str(exc)
             self._db = None
