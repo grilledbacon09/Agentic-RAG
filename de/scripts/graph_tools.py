@@ -220,9 +220,11 @@ class DrugGraph:
             return s.run(query, **params).data()
 
     # ── 1. 제품 찾기 ───────────────────────
-    def find_drug(self, query: str, limit: int = 10) -> list[dict]:
+    def find_drug(self, query: str, limit: int = 10, otc_only: bool = False) -> list[dict]:
         """제품명(부분 일치) / 바코드(13자리) / 품목기준코드(9자리) → 제품 후보 목록
         정렬: 이름 완전 일치 → 허가 유효 → 일반의약품 → 이름이 짧은 순
+        otc_only=False(기본): 복용 중인 약 입력용 — 전문의약품도 찾아야 금기 검사가 됨
+        otc_only=True       : 추천·안내할 약을 찾을 때 — 허가 유효한 일반의약품만
         """
         q = re.sub(r"\s+", "", query or "")
         if not q:
@@ -230,7 +232,10 @@ class DrugGraph:
         barcode = q if re.fullmatch(r"\d{13}", q) else None
         seq = q if re.fullmatch(r"\d{9}", q) else None
         name = None if (barcode or seq) else q
-        return self._run(Q_FIND, barcode=barcode, seq=seq, name=name, limit=limit)
+        rows = self._run(Q_FIND, barcode=barcode, seq=seq, name=name, limit=limit * (5 if otc_only else 1))
+        if otc_only:
+            rows = [r for r in rows if r.get("is_otc") and r.get("is_active")]
+        return rows[:limit]
 
     # ── 2. 성분 정보 유무 ──────────────────
     def check_status(self, item_seq: str) -> dict:
