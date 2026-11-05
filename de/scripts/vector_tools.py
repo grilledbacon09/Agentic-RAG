@@ -86,6 +86,9 @@ _DUR_ALIAS = {**{k: k for k in DUR_TYPES}, **{v: k for k, v in DUR_TYPES.items()
 # graph_tools.assess() findings → dur_type
 FINDING_TO_DUR = {
     "contraindication": "combination_ban",
+    "current_contraindication": "combination_ban",
+    "duplicate_ingredient": "dose_caution",       # 성분 중복 → 그 성분의 1일 최대 용량 문서
+    "current_duplicate": "dose_caution",
     "effect_duplicate": "effect_duplicate",
     "PREGNANT":         "pregnancy_ban",
     "PEDIATRIC":        "age_specific_ban",
@@ -381,12 +384,18 @@ class DrugVectorDB:
         판정(verdict)은 바꾸지 않음
         """
         result = json.loads(json.dumps(assess_result, ensure_ascii=False, default=str))
-        for f in result.get("findings", []):
+        for f in result.get("findings", []) + result.get("current_warnings", []):
             dur = FINDING_TO_DUR.get(f.get("type")) or FINDING_TO_DUR.get(f.get("group"))
             if not dur:
                 f["evidence"] = []
                 continue
-            if f.get("type") in ("contraindication", "effect_duplicate"):
+            if f.get("type") == "current_contraindication":          # 복용약끼리의 병용금기
+                ev = self.explain_ingredient(codes=[f.get("code_a")], dur_types=[dur],
+                                             pair_with=[f.get("code_b")], limit=per_finding * 3)
+            elif f.get("type") in ("duplicate_ingredient", "current_duplicate"):   # 성분 중복 → 용량주의
+                code = f.get("candidate_code") or f.get("code_a")
+                ev = self.explain_ingredient(codes=[code], dur_types=[dur], limit=per_finding * 3)
+            elif f.get("type") in ("contraindication", "effect_duplicate"):
                 ev = self.explain_ingredient(codes=[f.get("candidate_code")], dur_types=[dur],
                                              pair_with=[f.get("current_code")] if dur == "combination_ban" else None,
                                              limit=per_finding * 3)
