@@ -1,6 +1,9 @@
 # 환경변수
 config/.env
 *.env
+config/.env_for_members.txt*
+config/*.bak_*
+dump_data/
 
 # 임시 파일
 *.dump
