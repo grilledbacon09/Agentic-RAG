@@ -1,4 +1,5 @@
 import re
+import os
 from fastapi import HTTPException
 
 
@@ -6,8 +7,13 @@ def search_medications(query, limit=20):
     # Use the authoritative graph product catalogue, including prescription drugs.
     from agents.integrations.de_import import load_de_module
     try:
-        with load_de_module('graph_tools').DrugGraph() as graph:
+        module = load_de_module('graph_tools')
+        if not os.getenv('NEO4J_URI') or not os.getenv('NEO4J_PASSWORD'):
+            raise HTTPException(503, '복용약 검색 서버 설정이 필요합니다.')
+        with module.DrugGraph() as graph:
             rows = graph.find_drug(query, limit=limit, otc_only=False)
+    except HTTPException:
+        raise
     except Exception:
         raise HTTPException(503, '복용약 검색 서버에 연결할 수 없습니다.') from None
     return [{'drug_id': str(row['item_seq']), 'name': row['name']}

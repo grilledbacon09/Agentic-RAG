@@ -12,6 +12,20 @@ from api.user import Medication
 
 
 class MemberUnitTests(unittest.TestCase):
+    def test_pipeline_state_codec_preserves_types_and_rejects_unknown(self):
+        from agents.state_codec import encode, decode
+        from agents.models import PipelineResult
+        from agents.recommendation_agent import RecommendationDecision
+        from agents.validator import ValidationResult
+        from agents.integrations.types import DataProvenance, DataBackend
+        result = PipelineResult(UserInput(symptoms=['두통']), [], RecommendationDecision(), ValidationResult(True),
+            data_provenance=DataProvenance(retrieval=DataBackend.POSTGRESQL))
+        restored = decode(json.loads(json.dumps(encode(result))))
+        self.assertEqual(restored, result)
+        self.assertIs(restored.data_provenance.retrieval, DataBackend.POSTGRESQL)
+        with self.assertRaises(ValueError):
+            decode({'kind': 'record', 'type': 'arbitrary_code', 'fields': {}})
+
     def test_all_session_fields_roundtrip(self):
         session = ConversationSession(user_input=UserInput(symptoms=['두통'], age=35),
             phase=ConversationPhase.FOLLOW_UP, turns=[ConversationTurn('user', '질문')],

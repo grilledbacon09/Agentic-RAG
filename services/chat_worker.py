@@ -13,10 +13,15 @@ def _run(pipe, state, content):
         from agents.config import load_config
         from agents.chat_service import create_chat, send_message
         from agents.persistence import dict_to_session, session_to_dict
+        from agents.state_codec import encode, decode
         bundle, _ = create_chat(replace(load_config(), show_reasoning=False, enable_agent_trace=False))
         bundle.session = dict_to_session(state)
+        bundle.agent._last_pipeline_result = decode(state.get('_pipeline_result'))
         updated, reply, debug, sources, trace = send_message(bundle, content)
-        pipe.send({'state': session_to_dict(updated.session), 'content': reply,
+        updated.session.has_recommendation = updated.agent._last_pipeline_result is not None
+        saved_state = session_to_dict(updated.session)
+        saved_state['_pipeline_result'] = encode(updated.agent._last_pipeline_result)
+        pipe.send({'state': saved_state, 'content': reply,
                    'metadata': {k: v for k, v in {'debug_trace': debug, 'data_sources': sources, 'reasoning_trace': trace}.items() if v is not None}})
     except Exception:
         pipe.send({'error': 'engine_failed'})

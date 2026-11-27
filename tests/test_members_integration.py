@@ -53,6 +53,7 @@ def fake_turn(state, content):
     state = deepcopy(state)
     state['has_recommendation'] = True
     state['turn_count'] += 1
+    state['turns'].extend([{'role': 'user', 'content': content}, {'role': 'assistant', 'content': '저장된 답변'}])
     return {'state': state, 'content': '저장된 답변', 'metadata': {'data_sources': {'test': True}}}
 
 
@@ -71,6 +72,10 @@ def test_auth_csrf_profile_isolation_and_delete(setup):
     a, payload, uid = account()
     b, _, _ = account()
     assert a.get('/api/auth/me').status_code == 200
+    assert a.post('/api/users/me/consents', json={'consents': payload['consents']}).status_code == 204
+    with tx() as cursor:
+        cursor.execute('SELECT count(*) AS n FROM app.user_consents WHERE user_id=%s AND withdrawn_at IS NULL', (uid,))
+        assert cursor.fetchone()['n'] == 3
     duplicate = a.post('/api/auth/signup', json=payload | {'email': f" {payload['email'].upper()} "})
     assert duplicate.status_code == 409
     profile = a.get('/api/users/me/profile').json()
@@ -271,3 +276,29 @@ def test_delete_chat_and_account_during_engine_work(setup):
     with tx() as cursor:
         cursor.execute('SELECT count(*) AS n FROM app.chat_requests WHERE chat_id=%s', (chat,))
         assert cursor.fetchone()['n'] == 0
+
+
+def test_real_engine_recommendation_followup_and_reset_restore(setup):
+    account, tx, mp = setup
+    for key in ['USE_LLM', 'USE_DE_GRAPH', 'USE_DE_VECTOR', 'USE_CHROMA', 'SHOW_REASONING']:
+        mp.setenv(key, 'false')
+    a, _, _ = account()
+    body = dict(gender='unspecified', age=35, allergy_status='none', medication_status='none',
+                allergies=[], medications=[], version=1)
+    assert a.put('/api/users/me/profile', json=body).status_code == 200
+    chat = new_chat(a)
+    for content in ['두통이 있어요', '없음', '왜 이 약인가요?']:
+        response = a.post('/api/diagnosis', json=send_body(chat) | {'content': content})
+        assert response.status_code == 200, response.text
+    with tx() as cursor:
+        cursor.execute('SELECT session_state FROM app.chats WHERE id=%s', (chat,))
+        assert cursor.fetchone()['session_state']['_pipeline_result'] is not None
+    for content in ['reset', '안녕하세요']:
+        response = a.post('/api/diagnosis', json=send_body(chat) | {'content': content})
+        assert response.status_code == 200, response.text
+    with tx() as cursor:
+        cursor.execute('SELECT session_state FROM app.chats WHERE id=%s', (chat,))
+        state = cursor.fetchone()['session_state']
+        assert state['_pipeline_result'] is None
+        assert state['_context_start_sequence'] == 9
+    assert len(a.get(f'/api/chats/{chat}/messages').json()['items']) == 11

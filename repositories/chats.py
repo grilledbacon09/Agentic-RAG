@@ -58,6 +58,18 @@ def claim(cursor, chat, client_id, payload_hash):
     return {'request_id': request_id, 'lease_token': lease_token}
 
 
+def display_metadata(metadata):
+    """Drop only optional trace fields as whole objects, never truncate JSON/text."""
+    result = dict(metadata)
+    for optional in ('debug_trace', 'reasoning_trace'):
+        if len(json.dumps(result, ensure_ascii=False, separators=(',', ':'), allow_nan=False)) <= 8000:
+            break
+        if optional in result:
+            result.pop(optional)
+            result['details_omitted'] = True
+    return result
+
+
 def validate_output(content, metadata):
     if not isinstance(content, str) or len(content) > 8000:
         raise HTTPException(502, {'code': 'failed', 'message': '생성 응답이 허용 길이를 초과하여 저장하지 못했습니다.'})

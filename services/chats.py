@@ -55,7 +55,8 @@ def send(member, chat_id, content, client_id, confirm_profile=False):
             raise HTTPException(409, {'code': 'profile_changed', 'message': '건강설정이 변경되었습니다. 기존 상담 정보로 계속하거나 새 상담을 시작해주세요.'})
         claimed = repo.claim(cursor, chat, client_id, digest(content))
         if 'request_id' in claimed:
-            cursor.execute('SELECT role,content FROM app.chat_messages WHERE chat_id=%s ORDER BY sequence', (chat_id,))
+            cursor.execute('SELECT role,content FROM app.chat_messages WHERE chat_id=%s AND sequence>=%s ORDER BY sequence',
+                (chat_id, state.get('_context_start_sequence', 1)))
             state['turns'] = [dict(r) for r in cursor.fetchall()]
             if confirm_profile:
                 state['_acknowledged_profile_version'] = current['version']
@@ -66,9 +67,10 @@ def send(member, chat_id, content, client_id, confirm_profile=False):
         return claimed['result']
     try:
         output = run_turn(state, content)
+        output['metadata'] = repo.display_metadata(output['metadata'])
         repo.validate_output(output['content'], output['metadata'])
         saved_state = dict(output['state'])
-        saved_state.pop('turns', None)
+        engine_turns = saved_state.pop('turns', [])
         if '_acknowledged_profile_version' in state:
             saved_state['_acknowledged_profile_version'] = state['_acknowledged_profile_version']
         with member_transaction(member) as cursor:
@@ -81,6 +83,8 @@ def send(member, chat_id, content, client_id, confirm_profile=False):
             if not cursor.fetchone():
                 raise HTTPException(409, {'code': 'failed', 'message': '처리 권한이 만료되어 응답을 저장하지 않았습니다.'})
             seq = latest['next_sequence']
+            # A reset keeps the visible history but starts a fresh engine context.
+            saved_state['_context_start_sequence'] = max(1, seq + 2 - len(engine_turns))
             user_id = repo.add_message(cursor, chat_id, seq, 'user', content, request_id=claimed['request_id'])
             message_id = repo.add_message(cursor, chat_id, seq+1, 'assistant', output['content'], output['metadata'], claimed['request_id'])
             cursor.execute('UPDATE app.chats SET session_state=%s,revision=revision+1,next_sequence=%s WHERE id=%s',

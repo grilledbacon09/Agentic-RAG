@@ -39,6 +39,23 @@ class ProfileUpdate(BaseModel):
 class DeleteAccount(BaseModel):
     password: str = Field(min_length=1, max_length=128)
 
+class ConsentUpdate(BaseModel):
+    consents: dict[str, str]
+
+@router.post('/users/me/consents', status_code=204)
+def renew_consents(body: ConsentUpdate, member=Depends(auth.current_member)):
+    from api.auth import POLICY_VERSION, POLICIES
+    from uuid import uuid4
+    if body.consents != {key: POLICY_VERSION for key in POLICIES}:
+        raise HTTPException(422, '현재 동의 버전을 확인해주세요.')
+    with auth.member_transaction(member) as cursor:
+        for kind, version in body.consents.items():
+            cursor.execute('''INSERT INTO app.user_consents(id,user_id,consent_type,policy_version,accepted_at)
+                VALUES (%s,%s,%s,%s,now()) ON CONFLICT (user_id,consent_type,policy_version)
+                DO UPDATE SET accepted_at=now(),withdrawn_at=NULL''',
+                (str(uuid4()), member.user_id, kind, version))
+    return Response(status_code=204)
+
 @router.get('/users/me/profile')
 def get_profile(member=Depends(auth.current_member)):
     with auth.member_transaction(member) as cursor:
