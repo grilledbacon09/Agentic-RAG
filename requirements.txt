@@ -10,6 +10,7 @@ python-dotenv==1.2.2
 requests==2.33.0
 httpx==0.28.1
 anyio==4.13.0
+argon2-cffi==25.1.0
 
 # === [3] Data Processing & Storage Connectors ===
 numpy==2.4.4

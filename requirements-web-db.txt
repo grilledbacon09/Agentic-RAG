@@ -1,4 +1,4 @@
-# Web medicine search/detail only: no embeddings, torch, or Neo4j required.
+# Web APIs with member authentication and PostgreSQL; no embedding/torch packages.
 -r requirements-local.txt
 psycopg2-binary==2.9.13
 argon2-cffi==25.1.0
