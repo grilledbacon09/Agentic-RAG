@@ -1,46 +1,30 @@
-import tempfile
+﻿import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from uuid import uuid4
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from api.diagnosis import router
-
+from api.user import router as user_router
 
 class ChatDeletionTests(unittest.TestCase):
     def setUp(self):
         app = FastAPI()
         app.include_router(router)
+        app.include_router(user_router)
         self.client = TestClient(app)
 
-    def test_deletes_only_current_users_session_and_is_idempotent(self):
+    def test_anonymous_cookie_cannot_delete_legacy_file(self):
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            own = root / 'user-a_chat-1.json'
-            other = root / 'user-b_chat-1.json'
-            own.write_text('{}')
-            other.write_text('{}')
-            cache = {'user-a_chat-1': object(), 'user-b_chat-1': object()}
-            with patch('agents.persistence.SESSION_DIR', root), patch('api.diagnosis.SESSION_DB', cache):
-                self.client.cookies.set('user_id', 'user-a')
-                for _ in range(2):
-                    self.assertEqual(self.client.delete('/api/diagnosis/chat-1').status_code, 204)
-                self.assertFalse(own.exists())
-                self.assertTrue(other.exists())
-                self.assertNotIn('user-a_chat-1', cache)
-                self.assertIn('user-b_chat-1', cache)
+            legacy = Path(directory) / 'user-a_chat-1.json'
+            legacy.write_text('{}')
+            self.client.cookies.set('user_id', 'user-a')
+            self.assertEqual(self.client.delete(f'/api/diagnosis/{uuid4()}').status_code, 401)
+            self.assertTrue(legacy.exists())
 
-    def test_missing_cookie_and_invalid_identifiers(self):
-        with patch('api.diagnosis.delete_session_file') as delete:
-            self.assertEqual(self.client.delete('/api/diagnosis/chat-1').status_code, 204)
-            delete.assert_not_called()
-            self.client.cookies.set('user_id', '../outside')
-            self.assertEqual(self.client.delete('/api/diagnosis/chat-1').status_code, 400)
-            delete.assert_not_called()
-
-    def test_failed_disk_deletion_retains_cache(self):
-        self.client.cookies.set('user_id', 'user-a')
-        cache = {'user-a_chat-1': object()}
-        with patch('api.diagnosis.SESSION_DB', cache), patch('api.diagnosis.delete_session_file', side_effect=OSError):
-            self.assertEqual(self.client.delete('/api/diagnosis/chat-1').status_code, 500)
-            self.assertIn('user-a_chat-1', cache)
+    def test_anonymous_cookie_cannot_send_or_read_settings(self):
+        self.client.cookies.set('user_id', '../outside')
+        self.assertEqual(self.client.post('/api/diagnosis', json={
+            'content': 'test', 'chat_id': str(uuid4()), 'client_request_id': str(uuid4())}).status_code, 401)
+        self.assertEqual(self.client.get('/api/user/setting/user_01').status_code, 410)
+        self.assertEqual(self.client.post('/api/user/setting', json={'user_id': 'user_01'}).status_code, 410)

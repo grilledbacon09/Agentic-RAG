@@ -1,30 +1,74 @@
-# api/user.py
-from fastapi import APIRouter
-from pydantic import BaseModel
-from typing import List, Dict, Any
+﻿from typing import Literal
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+from services import auth
+from services.users import search_medications, validate_medications
+from repositories.users import profile, replace_profile
 
-router = APIRouter(prefix="/api/user")
+router = APIRouter(prefix='/api')
 
-class UserSetting(BaseModel):
-    user_id: str
-    gender: str
-    age_group: str
-    allergies: List[str]
+class Medication(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    drug_id: str = Field(pattern=r'^[0-9]{9}$')
+    name: str = Field(default='', max_length=300)
 
-# 💡 다른 파일(diagnosis.py)에서도 조회할 수 있도록 전역 변수 유지
-USER_DB: Dict[str, Dict[str, Any]] = {}
+class ProfileUpdate(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    gender: Literal['male', 'female', 'other', 'unspecified'] = 'unspecified'
+    age: int | None = Field(default=None, ge=0, le=120, strict=True)
+    allergy_status: Literal['unknown', 'none', 'known']
+    medication_status: Literal['unknown', 'none', 'known']
+    allergies: list[str] = Field(default_factory=list, max_length=50)
+    medications: list[Medication] = Field(default_factory=list, max_length=50)
+    version: int = Field(ge=1)
 
-@router.post("/setting")
-def save_user_setting(setting: UserSetting):
-    USER_DB[setting.user_id] = {
-        "gender": setting.gender,
-        "age_group": setting.age_group,
-        "allergies": setting.allergies
-    }
-    return {"status": "success", "message": "유저 설정이 서버에 안전하게 저장되었습니다."}
+    @model_validator(mode='after')
+    def consistent(self):
+        self.allergies = [name.strip() for name in self.allergies]
+        if any(not name or len(name) > 200 for name in self.allergies):
+            raise ValueError('알레르기는 빈 값 없이 항목당 200자까지 입력해주세요.')
+        if len(set(x.casefold() for x in self.allergies)) != len(self.allergies):
+            raise ValueError('중복 알레르기를 제거해주세요.')
+        if len({m.drug_id for m in self.medications}) != len(self.medications):
+            raise ValueError('중복 복용약을 제거해주세요.')
+        for status, values in [(self.allergy_status, self.allergies), (self.medication_status, self.medications)]:
+            if (status == 'known') != bool(values):
+                raise ValueError('항목이 있으면 있음, 비어 있으면 없음 또는 미입력을 선택해주세요.')
+        return self
 
-@router.get("/setting/{user_id}")
-def get_user_setting(user_id: str):
-    if user_id not in USER_DB:
-        return {"user_id": user_id, "gender": "", "age_group": "", "allergies": []}
-    return {"user_id": user_id, **USER_DB[user_id]}
+class DeleteAccount(BaseModel):
+    password: str = Field(min_length=1, max_length=128)
+
+@router.get('/users/me/profile')
+def get_profile(member=Depends(auth.current_member)):
+    with auth.member_transaction(member) as cursor:
+        return profile(cursor, member.user_id)
+
+@router.put('/users/me/profile')
+def put_profile(body: ProfileUpdate, member=Depends(auth.current_member)):
+    medications = validate_medications(body.medications)
+    with auth.member_transaction(member) as cursor:
+        return replace_profile(cursor, member.user_id, body, medications)
+
+@router.get('/users/me/medications/search')
+def medications_search(q: str = Query(min_length=1, max_length=200), member=Depends(auth.current_member)):
+    return {'items': search_medications(q)}
+
+@router.delete('/users/me', status_code=204)
+def delete_account(body: DeleteAccount, request: Request, member=Depends(auth.current_member)):
+    auth.rate_limit(request, member.user_id, 'delete_account')
+    with auth.member_transaction(member) as cursor:
+        cursor.execute('SELECT password_hash FROM app.users WHERE id=%s', (member.user_id,))
+        if not auth.verify_password(cursor.fetchone()['password_hash'], body.password):
+            raise HTTPException(401, '비밀번호가 올바르지 않습니다.')
+        cursor.execute('INSERT INTO app.deleted_users(user_id) VALUES (%s)', (member.user_id,))
+        cursor.execute('DELETE FROM app.users WHERE id=%s', (member.user_id,))
+    response = Response(status_code=204)
+    auth.clear_cookie(response)
+    response.delete_cookie('user_id', path='/')
+    return response
+
+@router.api_route('/user/setting', methods=['POST'])
+@router.api_route('/user/setting/{user_id}', methods=['GET'])
+def legacy_setting(user_id: str = ''):
+    raise HTTPException(410, '이전 설정 API가 종료되었습니다. 로그인 후 설정을 이용해주세요.')

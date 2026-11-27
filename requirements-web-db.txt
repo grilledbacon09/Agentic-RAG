@@ -1,3 +1,4 @@
 # Web medicine search/detail only: no embeddings, torch, or Neo4j required.
 -r requirements-local.txt
 psycopg2-binary>=2.9,<3
+argon2-cffi>=23.1,<26

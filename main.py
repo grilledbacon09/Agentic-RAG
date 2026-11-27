@@ -7,6 +7,7 @@
 
 import os
 from pathlib import Path
+from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -18,10 +19,25 @@ load_dotenv(PROJECT_ROOT / '.env')
 # 로컬 기본 실행에는 Docker/Chroma 서버가 필요하지 않습니다.
 os.environ.setdefault('USE_CHROMA', 'false')
 
-from api import diagnosis, user, medicines, pharmacies, interaction_graph
+from api import diagnosis, user, medicines, pharmacies, interaction_graph, auth, chats
 from agents.loader import load_drugs, load_symptoms
+from database.app_connection import close_pool
 
-app = FastAPI(title="의약품 통합 헬스케어 서버")
+@asynccontextmanager
+async def lifespan(app):
+    yield
+    close_pool()
+
+
+app = FastAPI(title="의약품 통합 헬스케어 서버", lifespan=lifespan)
+
+
+@app.middleware('http')
+async def private_response_headers(request, call_next):
+    response = await call_next(request)
+    if request.url.path.startswith(('/api/auth', '/api/users', '/api/chats', '/api/diagnosis', '/api/user/')):
+        response.headers['Cache-Control'] = 'no-store'
+    return response
 
 # CORS 허용 (React 포트 통신용)
 app.add_middleware(
@@ -44,6 +60,8 @@ app.state.SYMPTOMS = load_symptoms(DATA_DIR / "symptoms.json")
 
 
 app.include_router(diagnosis.router)
+app.include_router(auth.router)
+app.include_router(chats.router)
 app.include_router(user.router)
 app.include_router(medicines.router)
 app.include_router(pharmacies.router)

@@ -1,4 +1,4 @@
-"""AI–DE 연동 추가 점검: 판정·stub·fallback·회귀·API 호환 (Mock only)."""
+﻿"""AI–DE 연동 추가 점검: 판정·stub·fallback·회귀·API 호환 (Mock only)."""
 
 from __future__ import annotations
 
@@ -282,27 +282,15 @@ class DiagnosisApiCompatibilityTests(unittest.TestCase):
         app = FastAPI()
         app.include_router(router)
 
-        fake_bundle = mock.MagicMock()
-
-        with patch("api.diagnosis.create_chat") as create, patch(
-            "api.diagnosis.send_message"
-        ) as send, patch("api.diagnosis.save_session_to_file"), patch(
-            "api.diagnosis.load_session_from_file", return_value=None
-        ), patch(
-            "api.diagnosis.SESSION_DB", {}
-        ):
-            create.return_value = (fake_bundle, "welcome")
-            send.return_value = (
-                fake_bundle,
-                "테스트 답변",
-                None,
-                {"retrieval": "legacy_json", "safety": "legacy_json", "notes": []},
-                None,
-            )
+        from services.auth import current_member, Identity
+        app.dependency_overrides[current_member] = lambda: Identity('user', 'session', 'hash', 'test@example.invalid')
+        with patch('api.diagnosis.send') as send:
+            send.return_value = {'role': 'ai', 'content': '테스트 답변', 'debug_trace': None,
+                'data_sources': {'retrieval': 'legacy_json', 'safety': 'legacy_json', 'notes': []}}
             client = TestClient(app)
             resp = client.post(
                 "/api/diagnosis",
-                json={"content": "안녕", "chat_id": "t1"},
+                json={"content": "안녕", "chat_id": "00000000-0000-0000-0000-000000000001", "client_request_id": "00000000-0000-0000-0000-000000000002"},
             )
             self.assertEqual(resp.status_code, 200)
             body = resp.json()
@@ -330,3 +318,4 @@ class ClientInterfaceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

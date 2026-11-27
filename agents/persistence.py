@@ -34,7 +34,8 @@ def dict_to_session(d: Dict[str, Any]) -> ConversationSession:
         confirmed_slots=confirmed_slots,
         pending_slot=d.get("pending_slot"),
         turn_count=d.get("turn_count", 0),
-        last_pipeline_summary=d.get("last_pipeline_summary")
+        last_pipeline_summary=d.get("last_pipeline_summary"),
+        has_recommendation=d.get("has_recommendation", False),
     )
 
 def save_session_to_file(user_id: str, session: ConversationSession):

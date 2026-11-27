@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Multi-Agent Reasoning Trace 전용 테스트 (Mock, UTF-8)."""
 
 from __future__ import annotations
@@ -259,22 +259,14 @@ class ReasoningTraceApiTests(unittest.TestCase):
 
         app = FastAPI()
         app.include_router(router)
-        fake = mock.MagicMock()
-        with patch("api.diagnosis.create_chat") as create, patch(
-            "api.diagnosis.send_message"
-        ) as send, patch("api.diagnosis.save_session_to_file"), patch(
-            "api.diagnosis.load_session_from_file", return_value=None
-        ), patch("api.diagnosis.SESSION_DB", {}):
-            create.return_value = (fake, "hi")
-            send.return_value = (
-                fake,
-                "답변",
-                None,
-                {"retrieval": "mock", "safety": "mock", "notes": []},
-                {"trace_id": "t-1", "steps": [], "pipeline_status": "completed"},
-            )
+        from services.auth import current_member, Identity
+        app.dependency_overrides[current_member] = lambda: Identity('user', 'session', 'hash', 'test@example.invalid')
+        with patch('api.diagnosis.send') as send:
+            send.return_value = {'role': 'ai', 'content': '답변', 'debug_trace': None,
+                'data_sources': {'retrieval': 'mock', 'safety': 'mock', 'notes': []},
+                'reasoning_trace': {'trace_id': 't-1', 'steps': [], 'pipeline_status': 'completed'}}
             client = TestClient(app)
-            resp = client.post("/api/diagnosis", json={"content": "두통", "chat_id": "1"})
+            resp = client.post("/api/diagnosis", json={"content": "두통", "chat_id": "00000000-0000-0000-0000-000000000001", "client_request_id": "00000000-0000-0000-0000-000000000002"})
             self.assertEqual(resp.status_code, 200)
             self.assertIn("reasoning_trace", resp.json())
 
@@ -542,3 +534,4 @@ class CollectorUnitTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
