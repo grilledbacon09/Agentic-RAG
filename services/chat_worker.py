@@ -1,4 +1,4 @@
-"""A killable per-turn worker: the entire engine gets 90 seconds, no DB handles."""
+"""A killable per-turn worker: the entire engine gets 120 seconds, no DB handles."""
 import multiprocessing
 import threading
 import time
@@ -29,7 +29,7 @@ def _run(pipe, state, content):
         pipe.close()
 
 
-def run_turn(state, content, timeout=90):
+def run_turn(state, content, timeout=120):
     if not _capacity.acquire(blocking=False):
         raise HTTPException(503, {'code': 'failed', 'message': '상담 서버가 사용 중입니다. 잠시 후 다시 실행해주세요.'})
     ctx = multiprocessing.get_context('spawn')
@@ -42,7 +42,7 @@ def run_turn(state, content, timeout=90):
         started = True
         send.close()
         if not receive.poll(max(0, deadline-time.monotonic())):
-            raise HTTPException(504, {'code': 'failed', 'message': '90초 안에 상담을 완료하지 못했습니다. 다시 실행해주세요.'})
+            raise HTTPException(504, {'code': 'failed', 'message': f'{timeout}초 안에 상담을 완료하지 못했습니다. 다시 실행해주세요.'})
         result = receive.recv()
         if result.get('error'):
             raise HTTPException(502, {'code': 'failed', 'message': '상담 응답 생성에 실패했습니다.'})

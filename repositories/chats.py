@@ -53,7 +53,7 @@ def claim(cursor, chat, client_id, payload_hash):
         return {'error': {'code': 'busy', 'message': '이 상담의 다른 요청이 처리 중입니다.'}}
     request_id, lease_token = str(uuid4()), str(uuid4())
     cursor.execute('''INSERT INTO app.chat_requests(id,chat_id,client_request_id,payload_hash,status,lease_token,lease_expires_at)
-        VALUES (%s,%s,%s,%s,'processing',%s,now()+interval '120 seconds')''',
+        VALUES (%s,%s,%s,%s,'processing',%s,now()+interval '150 seconds')''',
         (request_id, str(chat['id']), client_id, payload_hash, lease_token))
     return {'request_id': request_id, 'lease_token': lease_token}
 
