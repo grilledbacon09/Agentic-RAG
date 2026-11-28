@@ -61,7 +61,11 @@ def transaction():
             message = str(exc).lower()
             for marker in ('timeout', 'timed out', 'connection refused', 'password authentication failed',
                            'no pg_hba.conf entry', 'does not exist', 'could not translate host name',
-                           'too many clients', 'ssl'):
+                           'too many clients', 'invalid sslmode value', 'server does not support ssl',
+                           'received invalid response to ssl negotiation', 'certificate verify failed',
+                           'root certificate file', 'ssl connection has been closed unexpectedly',
+                           'unexpected eof', 'connection reset by peer', 'wrong version number',
+                           'unsupported protocol', 'tlsv1 alert', 'ssl syscall error', 'ssl'):
                 if marker in message:
                     reason = marker
                     break
