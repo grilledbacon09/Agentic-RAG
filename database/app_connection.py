@@ -1,4 +1,5 @@
 """Member database only. No migrations or memory fallback at application startup."""
+import logging
 import os
 import threading
 from contextlib import contextmanager
@@ -53,7 +54,19 @@ def transaction():
                 yield cursor
     except psycopg2.IntegrityError:
         raise HTTPException(409, '중복 데이터 또는 변경 충돌입니다.') from None
-    except psycopg2.Error:
+    except psycopg2.Error as exc:
+        stage = 'connect' if connection is None else 'transaction'
+        reason = type(exc).__name__
+        if stage == 'connect':
+            message = str(exc).lower()
+            for marker in ('timeout', 'timed out', 'connection refused', 'password authentication failed',
+                           'no pg_hba.conf entry', 'does not exist', 'could not translate host name',
+                           'too many clients', 'ssl'):
+                if marker in message:
+                    reason = marker
+                    break
+        logging.getLogger(__name__).error('Member DB failure: stage=%s reason=%s sqlstate=%s',
+                                         stage, reason, exc.pgcode or 'unavailable')
         raise HTTPException(503, '회원 DB를 사용할 수 없습니다. 저장되지 않았습니다.') from None
     finally:
         if connection is not None:
